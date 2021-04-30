@@ -16,7 +16,7 @@ export const SidebarContainer = styled.div`
 export const SidebarHeader = styled.h3`
   padding: 20px 0;
   text-align: center;
-  margin-bottom: 10px;
+  margin-bottom: 50px;
   letter-spacing: 6px;
   font-family: ${p => p.font}
 `
@@ -30,7 +30,7 @@ export const MenuItem = styled.div`
     text-align: center;
     ${p.selected && `background-color: ${p.colorPalette.selectedBackgroundCollapsedMode === 'dark' ? 'rgba(0, 0, 0, 0.6)' : 'rgba(255, 255, 255, 0.6)'}`};
   `};
-
+  
   padding: 10px 25px;
   font-weight: 600;
   color: ${p => p.selected ? p.colorPalette.fontColorSelected : p.colorPalette.fontColor} ;  
@@ -46,10 +46,9 @@ export const MenuItem = styled.div`
 
   &:after {
     content: '';
-    border: 1px solid ${p => p.selected ? p.colorPalette.fontColorSelected : p.colorPalette.dividerColor};s
-    display: ${p => p.isSidebarOpen && p.selected && p.isOpen ? 'none' : 'in-line'};
-    float: right;
-    margin:8px;
+    border: 1px solid ${p => p.selected ? p.colorPalette.fontColorSelected : p.colorPalette.dividerColor};
+    display: ${p => p.isSidebarOpen && p.selected && p.isOpen ? 'none' : 'block'};
+    margin:8px 0 5px;
     transition: .1s ease-in all;
   };
 
@@ -96,9 +95,9 @@ export const Toggler = styled.div`
       top: .25em;
       height: .1em;
       width: 100%;
-      background: #fff;
+      background: rgba(150, 119, 193);
       box-shadow: 
-        0 .75em 0 0 #fff,
-        0 1.5em 0 0 #fff;        
+        0 .75em 0 0 rgba(150, 119, 193),
+        0 1.5em 0 0 rgba(150, 119, 193);        
     }
 `
