@@ -1,31 +1,39 @@
 import styled from '@emotion/styled';
 
 export const AppointmentsContainer = styled.div`
-    .header{    
+    .header{   
+        margin-top: 60px; 
         display: flex;
         flex-direction: row;
     }
     .lefth{
-        //background-color: #03b1fc; 
-        background-color: white;
+        background-color: #009879;
         border: none;
-        color: black;
+        color: white;
         padding: 15px 32px;        
         font-size: 16px;
+        cursor: pointer;
+    }
+    .lefth:hover{
+        background-color: #34eb9e;
     }
     .righth{
         margin-left: auto; 
         margin-right: 0;
         padding: 15px 32px;
-        background-color: #4CAF50;
+        background-color: #009879;
         border: none;
         color: white;
         font-size: 18px;
+        cursor: pointer; 
+    }
+    .righth:hover{
+        background-color: #34eb9e;
     }
 
 
     .title{
-        margin-top: 15px;
+        margin-top: 25px;
         //border: 1px solid black;
         height: 50px;
     }
@@ -34,16 +42,19 @@ export const AppointmentsContainer = styled.div`
         color: #202020;
         letter-spacing: -2px;
         line-height: 50px;
-        float: left;        
+        //float: left;      
     }
 
 
     .main {
         font-family: sans-serif; 
+        
     }
     .content-table {
         border-collapse: collapse;
-        margin: 25px 0;
+        margin-top: 25px;
+        margin-left: auto;
+        margin-right: auto;
         font-size: 0.9em;
         min-width: 400px;
         border-radius: 5px 5px 0 0;

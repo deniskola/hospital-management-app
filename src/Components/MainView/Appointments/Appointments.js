@@ -8,12 +8,12 @@ const Appointments = () => {
     <AppointmentsContainer>
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
       <div className='header'>
-        <button className='lefth'>DATE</button> 
+        <button className='lefth'><i class="fa fa-sort"></i>&nbsp;&nbsp;DATE</button> 
         &nbsp;&nbsp;&nbsp;       
-        <button className='lefth'>DOCTOR</button>
+        <button className='lefth'><i class="fa fa-sort"></i>&nbsp;&nbsp;DOCTOR</button>
         &nbsp;&nbsp;&nbsp;
-        <button className='lefth'>SERVICES</button>
-        <button className='righth'>ADD APPOINTMENT</button>
+        <button className='lefth'><i class="fa fa-sort"></i>&nbsp;&nbsp;SERVICES</button>
+        <button className='righth'><i class="fa fa-plus"></i>&nbsp;&nbsp;ADD APPOINTMENT</button>
       </div>
       <div className='title'>
         <h1>APPOINTMENTS</h1>
@@ -28,7 +28,8 @@ const Appointments = () => {
       <th>Customer Name</th>
       <th>Services</th>
       <th>Status</th>
-      <th><button class="btn"><i class="fa fa-trash"></i></button></th>
+      <th>Edit</th>
+      <th>Delete</th>
     </tr>
   </thead>
   <tbody>
@@ -39,7 +40,8 @@ const Appointments = () => {
       <td>Rinor Restelica</td>
       <td>Dental Examination</td>
       <td>Approved</td>
-      <td></td>
+      <td><button class="btn"><i class="fa fa-trash"></i></button></td>
+      <td><button class="btn"><i class="fa fa-edit"></i></button></td>
     </tr>
     <tr class="active-row">
       <td>2</td>
@@ -48,7 +50,8 @@ const Appointments = () => {
       <td>Lavdim Menxhiqi</td>
       <td>Dental Examination</td>
       <td>Pending</td>
-      <td></td>
+      <td><button class="btn"><i class="fa fa-trash"></i></button></td>
+      <td><button class="btn"><i class="fa fa-edit"></i></button></td>
     </tr>
     <tr>
       <td>3</td>
@@ -57,7 +60,8 @@ const Appointments = () => {
       <td>Blerim Zylfiu</td>
       <td>Dental Examination</td>
       <td>Cancelled</td>
-      <td></td>
+      <td><button class="btn"><i class="fa fa-trash"></i></button></td>
+      <td><button class="btn"><i class="fa fa-edit"></i></button></td>
     </tr>
   </tbody>
 </table>
