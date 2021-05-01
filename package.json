@@ -5,11 +5,18 @@
   "dependencies": {
     "@emotion/core": "^11.0.0",
     "@emotion/react": "^11.1.5",
+<<<<<<< HEAD
     "@emotion/styled": "^11.3.0",
+=======
+    "@emotion/styled": "^11.1.5",
+    "@material-ui/core": "^4.11.4",
+    "@material-ui/styles": "^4.11.4",
+>>>>>>> a8b072e5bbd5b11e1490fc0ea4fe7f7f81068d6c
     "@testing-library/jest-dom": "^5.11.10",
     "@testing-library/react": "^11.2.6",
     "@testing-library/user-event": "^12.8.3",
     "bootstrap": "^4.6.0",
+    "classnames": "^2.3.1",
     "framer-motion": "^4.1.2",
     "mdbreact": "^5.0.2",
     "node-sass": "^5.0.0",
