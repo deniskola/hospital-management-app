@@ -22,7 +22,6 @@ export const profileCard = styled.div`
     border-radius:50%;
     padding:5px;
     transform:translate(5px,45px);
-
 }
 img{
     border:2px solide #8e00b9;
