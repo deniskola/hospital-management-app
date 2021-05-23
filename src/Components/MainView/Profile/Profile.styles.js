@@ -15,13 +15,24 @@ export const ProfileContainer = styled.div`
         height:100%;
         margin-right: 10px;
     }
-    /*----------------- Personal information div --------------*/
-    .PersonalInfo{
+    .right-container{
+        display:flex;
+        flex-direction: column;
+        width:70%;
+        height:100%;
+    }
+    .third-div{
+        display:flex;
+        flex-direction: row;
+    }
+`
+/*----------------- Personal information div --------------*/
+export const PersonalInfo = styled.div`
         background-color:white;
         height:300px;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4);
         margin:10px;
-    }
+    
     .first-container img{
         border-radius:50%;
         background-color:#3892D6;
@@ -47,16 +58,25 @@ export const ProfileContainer = styled.div`
     .third-container img{
         margin-right:5px;
     }
-    /*-------------- Body Information div -------------------- */
-    .BodyInfo{
-        height: 100px;
+`
+
+/*-------------- Body Information div -------------------- */
+export const BodyInfo = styled.div`
+        height: 110px;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4);
         margin:10px; 
         background-color:white;
-    }
 
+    .vertical-line{
+        border-left: 1px solid #D6DCE1;
+        height : 40px;
+    }
+    p{
+        padding-left: 10px;
+        padding-top: 5px;
+    }
     .body-first-container{
-        height:30px;
+        height:40px;
         display:flex;
         flex-direction: row;
         justify-content: space-evenly;
@@ -71,50 +91,94 @@ export const ProfileContainer = styled.div`
         margin-top: 5px;
 
     }
-    
-    /*------------------- Bood pressure ---------------------*/
-    .bloodPressure{
+`  
+/*------------------- Bood pressure ---------------------*/ 
+export const bloodPressure = styled.div`
         background-color:white;
-        height: 50px;
+        height: 60px;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4);
         margin:10px;
         text-align:left;
         padding-left:10px;
-    }
     #bp2{
         margin-left:80px;
         color:purple;
     }
+`  
+/*-------------------- Allergy--------------------------------------*/
+export const Allergy = styled.div`
     
-    /*----------------------------------------------------------*/
-    .right-container{
-        display:flex;
-        flex-direction: column;
-        border: 2px solid black;
-        width:70%;
-        height:100%;
-    }
-    .Allergy{
-        height:120px;
-        margin:10px;
-        border:1px solid black;
-    }
-    .History{
-        height:180px;
-        margin:10px;
-        border: 1px solid black;
-    }
-    .third-div{
-        display:flex;
+    height:180px;
+    background-color:white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4);
+
+    .upper-container{
+        display: flex;
         flex-direction: row;
     }
-    .proccedures, .labResults{
-        width: 45%;
-        border: 1px solid black;
-        height: 100px;
-        margin: 10px;
+    .upper-container img {
+        height: 25px;
+        width: 25px;
+        align-items: left;
+        margin: 5px;
+    }
+    p{
+        font-size:16px;
+        padding-top:5px;
+    }
+    .lower-container{
+        
     }
 
+`   
+export const History = styled.div`
+    height:180px;
+    background-color:white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4);
+    margin-top:10px;
+
+    .upper-container{
+        display: flex;
+        flex-direction: row;
+    }
+    .upper-container img {
+        height: 25px;
+        width: 25px;
+        align-items: left;
+        margin: 5px;
+    }
+    p{
+        font-size:16px;
+        padding-top:5px;
+    }
+    
 `
-
-
+export const Proccedures = styled.div`
+    width: 49%;
+    margin-top: 10px;
+    height:150px;
+    background-color:white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4);
+    .pline{
+        border-bottom: 1px solid #D6DCE1;
+    }
+    p{
+        font-size:14 px;
+        padding-top:5px;
+    }
+`
+export const LabResults = styled.div`
+    width: 49%;
+    margin-top: 10px;
+    margin-left: 2%;
+    height:150px;
+    background-color:white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4);
+    .pline{
+        border-bottom: 1px solid #D6DCE1;
+    }
+    p{
+        font-size:14px;
+        padding-top:5px;
+    }
+`
