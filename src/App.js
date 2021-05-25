@@ -1,21 +1,24 @@
 import React from "react";
 import * as s from "./App.styles";
 import * as Palette from "./colors";
+import {Route} from 'react-router-dom';
 
 // Components
 import Sidebar from "./Components/Sidebar/Sidebar";
 import MainView from "./Components/MainView/MainView";
 import Login from "./Components/LoginPage/Login";
+import { Fragment } from "react";
 
 const App = () => {
   const sidebarHeader = {
     fullName: "Hospital X",
     shortName: "X",
-  };
+    }
+
   const menuItems = [
     {
       name: "Dashboard",
-      to: "/",
+      to: "/dashboard",
       icon: "/icons/dashboard.png",
       subMenuItems: [],
     },
@@ -64,13 +67,18 @@ const App = () => {
 
   return (
     <s.App>
-      <Sidebar
-        sidebarHeader={sidebarHeader}
-        menuItems={menuItems}
-        fonts={fonts}
-        colorPalette={Palette.silver}
-      />
-      <MainView />
+      <Route exact path='/' component={Login}/>
+      <Route path={'/(.+)'} render={()=>(
+          <Fragment>
+            <Sidebar
+            sidebarHeader={sidebarHeader}
+            menuItems={menuItems}
+            fonts={fonts}
+            colorPalette={Palette.silver}
+            />
+            <MainView />
+        </Fragment>
+      )}/>
     </s.App>
   );
 };

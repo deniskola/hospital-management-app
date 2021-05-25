@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from 'react-router-dom'
 import welcomeImage from "../../assets/welcome-img.png";
 import backgroundImage from "../../assets/background-img.jpg";
 import * as s from "./Login.styles";
@@ -50,10 +51,10 @@ const Login = () => {
                 backgroundColor: "#A071FF",
                 color: "white",
               }}
-            >
-              Login
+             >Log In
             </button>
           </form>
+          <h3>Test <Link to='/dashboard'>Activities</Link></h3>
         </div>
       </div>
     </s.LoginContainer>
