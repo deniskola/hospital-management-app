@@ -4,8 +4,6 @@ export const ProfileContainer = styled.div`
     text-align: center;
     display: flex;
     flex-direction: row;
-    border: 1px solid black;
-    padding: 10px;
     font-size:10px;
 
     .left-container{

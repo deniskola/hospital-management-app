@@ -5,30 +5,10 @@ import history  from './history.PNG';
 import React,{Component} from 'react';
 import {Table} from 'react-bootstrap';
 import {Button, ButtonToolbar} from 'react-bootstrap';
-import {AddAllergyModal} from './Allergies/AddAllergyModal';
-import {EditAllergyModal} from './Allergies/EditAllergyModal';
 
 
-export class Profile extends Component{
+const Profile = () => {
 
-  constructor(props){
-    super(props);
-    this.state={Allergies:[], addModalShow: false, editModalShow: false}
-  }
-  
-  deleteAllergy(aid){
-    if(window.confirm('Are you sure?')){
-        fetch(process.env.REACT_APP_API+'Pacienti/'+aid,{
-            method:'DELETE',
-            header:{'Accept':'application/json',
-            'Content-type':'application/json'}
-        })
-    }
-  }
-  render(){
-      const { Allergies, aid , aType, adesc}=this.state;
-      let addModalClose=()=>this.setState({addModalShow:false});
-      let editModalClose=()=>this.setState({editModalShow:false});
     return (
       <div>
       <p.ProfileContainer>
@@ -94,39 +74,9 @@ export class Profile extends Component{
                   </tr>
                 </thead>
                 <tbody>
-                    {Allergies.map(allergy=>                                 
-                      <tr>         
-                        <td>{allergy.id}</td>             
-                        <td>{allergy.typeA}</td>
-                        <td>{allergy.desc}</td>
-                        <td><ButtonToolbar>
-                            <Button className="mr-2" variant="info"
-                            onClick={()=>this.setState({editModalShow: true, aid:allergy.id, aType:allergy.typeA, adesc:allergy.desc})}>
-                            Edit</Button>
-                            <Button className="mr-2" variant="danger"
-                            onClick={()=>this.deleteAllergy(allergy.id)}>
-                            Delete
-                            </Button>
-
-                            <EditAllergyModal show={this.state.editModalShow}
-                            onHide={editModalClose}
-                            aid={aid}
-                            aType={aType}
-                            adesc={adesc}
-                            />
-                            </ButtonToolbar>
-                        </td>
-                      </tr>)}
                 </tbody>
               </Table>
             </div>
-            <ButtonToolbar>
-              <Button variant="info" onClick={()=>this.setState({addModalShow:true})} >
-                Add Allergy
-              </Button>
-              <AddAllergyModal show={this.state.addModalShow}
-                onHide={addModalClose}/>
-            </ButtonToolbar>
           </p.Allergy>
 
 
@@ -138,10 +88,10 @@ export class Profile extends Component{
               <p>Patient History</p>
             </div>
             <div class="lower-container">
-              <Table>
+              <Table striped bordered hover size="sm">
                 <thead>
                   <tr class="history-row">
-                    <th>ID</th>
+                    <th>#</th>
                     <th>Date</th>
                     <th>Description</th>
                     <th>Doctor</th>
@@ -149,7 +99,24 @@ export class Profile extends Component{
                   </tr>
                 </thead>
                 <tbody>
-
+                  <tr>
+                    <td>1</td>
+                    <td>12/03/2021</td>
+                    <td>Lab test</td>
+                    <td>Dr.Astrit Gashi</td>
+                  </tr>
+                  <tr>
+                    <td>1</td>
+                    <td>12/03/2021</td>
+                    <td>Lab test</td>
+                    <td>Dr.Astrit Gashi</td>
+                  </tr>
+                  <tr>
+                    <td>1</td>
+                    <td>12/03/2021</td>
+                    <td>Lab test</td>
+                    <td>Dr.Astrit Gashi</td>
+                  </tr>
                 </tbody>
               </Table>
             </div>
@@ -168,7 +135,6 @@ export class Profile extends Component{
       </p.ProfileContainer>
       </div>
     )
-  }
 }
 
 export default Profile
