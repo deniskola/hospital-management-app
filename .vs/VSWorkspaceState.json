@@ -1,13 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\src",
-    "\\src\\Components",
-    "\\src\\Components\\MainView",
-    "\\src\\Components\\MainView\\Profile",
-    "\\src\\Components\\MainView\\Profile\\Allergies",
-    "\\src\\Components\\MainView\\Services"
+    "\\API",
+    "\\Domain"
   ],
-  "SelectedNode": "\\src\\Components\\MainView\\Services",
+  "SelectedNode": "\\Domain\\Class1.cs",
   "PreviewInSolutionExplorer": false
 }
