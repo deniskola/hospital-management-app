@@ -1,8 +1,15 @@
-import React,{ useState } from 'react';
-
+import React , {useEffect,useState} from "react";
+import axios from 'axios';
 import * as s from './Dashboard.styles';
 
 const Dashboard=()=>{
+    const [dReminders, setReminder]=useState([]);
+
+    useEffect(() => {
+      axios.get('http://localhost:5000/api/DReminders').then(response=>{
+        setReminder(response.data);
+      })
+    },[])
 
     const [name,setName]=useState("Dr.John Doe");
     const [job,setJob]=useState("General Practitioners");
@@ -20,6 +27,14 @@ const Dashboard=()=>{
                <h3>{name}</h3>
                <h4>{job}</h4>
                <h5>{about}</h5>
+               <ul>
+                {dReminders.map(dReminder=> (// if here shows error use (dReminder:any)
+                  <li key={dReminder.id}>
+                      {dReminder.title}
+                      {dReminder.date}
+                  </li>
+                ))}
+              </ul>
            </div>
         </div>
        </s.profileCard>

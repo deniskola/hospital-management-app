@@ -1,7 +1,8 @@
-import React from "react";
+import React , {useEffect,useState} from "react";
 import * as s from "./App.styles";
 import * as Palette from "./colors";
 import {Route} from 'react-router-dom';
+import axios from 'axios';
 
 // Components
 import Sidebar from "./Components/Sidebar/Sidebar";
@@ -10,6 +11,14 @@ import Login from "./Components/LoginPage/Login";
 import { Fragment } from "react";
 
 const App = () => {
+  const [dReminders, setReminder]=useState([]);
+
+  useEffect(() => {
+    axios.get('http://localhost:5000/api/DReminders').then(response=>{
+      setReminder(response.data);
+    })
+  },[])
+
   const sidebarHeader = {
     fullName: "Hospital X",
     shortName: "X",
@@ -76,7 +85,9 @@ const App = () => {
             fonts={fonts}
             colorPalette={Palette.silver}
             />
-            <MainView />
+            <MainView>
+              
+            </MainView>
         </Fragment>
       )}/>
     </s.App>
