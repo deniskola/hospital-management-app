@@ -17,24 +17,28 @@ namespace API
     {
         public static async Task Main(string[] args)
         {
-            var host=CreateHostBuilder(args).Build();
+            var host = CreateHostBuilder(args).Build();
 
-            using var scope=host.Services.CreateScope();
+            using var scope = host.Services.CreateScope();
 
-            var services=scope.ServiceProvider;
+            var services = scope.ServiceProvider;
 
-            try{
-                var context=services.GetRequiredService<DataContext>();
+            try
+            {
+                var context = services.GetRequiredService<DataContext>();
                 context.Database.Migrate();
                 await Seed.SeedData(context);
                 await SeedProfile.SeedData(context);
                 await SeedAppointments.SeedData(context);
                 await SeedServices.SeedData(context);
                 await SeedActivity.SeedData(context);
+                await SeedAbout.SeedData(context);
 
-            }catch(Exception ex){
-                var logger=services.GetRequiredService<ILogger<Program>>();
-                logger.LogError(ex,"An error occured during migration");
+            }
+            catch (Exception ex)
+            {
+                var logger = services.GetRequiredService<ILogger<Program>>();
+                logger.LogError(ex, "An error occured during migration");
             }
 
             await host.RunAsync();
