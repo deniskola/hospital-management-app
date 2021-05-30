@@ -28,6 +28,8 @@ namespace API
                 context.Database.Migrate();
                 await Seed.SeedData(context);
                 await SeedProfile.SeedData(context);
+                await SeedAppointments.SeedData(context);
+                await SeedServices.SeedData(context);
 
             }catch(Exception ex){
                 var logger=services.GetRequiredService<ILogger<Program>>();
