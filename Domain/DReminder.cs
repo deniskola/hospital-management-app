@@ -1,0 +1,14 @@
+using System;
+
+namespace Domain
+{
+    public class DReminder
+    {
+        public Guid Id{ get;set; }
+
+        public string Title{get;set;}
+
+        public DateTime Date{get;set;}
+        
+    }
+}
