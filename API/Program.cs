@@ -30,6 +30,7 @@ namespace API
                 await SeedProfile.SeedData(context);
                 await SeedAppointments.SeedData(context);
                 await SeedServices.SeedData(context);
+                await SeedActivity.SeedData(context);
 
             }catch(Exception ex){
                 var logger=services.GetRequiredService<ILogger<Program>>();

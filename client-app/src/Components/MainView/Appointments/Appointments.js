@@ -28,8 +28,8 @@ const Appointments = () => {
       <th>Customer Name</th>
       <th>Services</th>
       <th>Status</th>
-      <th>Edit</th>
       <th>Delete</th>
+      <th>Edit</th>
     </tr>
   </thead>
   <tbody>
