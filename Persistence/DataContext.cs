@@ -5,12 +5,13 @@ namespace Persistence
 {
     public class DataContext : DbContext
     {
-        public DataContext(DbContextOptions options):base(options){
+        public DataContext(DbContextOptions options) : base(options)
+        {
 
         }
-
-        public DbSet<DReminder> DReminders{get;set;}
-        public DbSet<PAllergies> PAllergies{get;set;}
+        public DbSet<About> About { get; set; }
+        public DbSet<DReminder> DReminders { get; set; }
+        public DbSet<PAllergies> PAllergies { get; set; }
 
     }
 }

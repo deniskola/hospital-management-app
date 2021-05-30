@@ -22,3 +22,15 @@ C:\xampp\htdocs\hospital-management-app\Domain\obj\Debug\net5.0\Domain.csproj.Co
 C:\xampp\htdocs\hospital-management-app\Domain\obj\Debug\net5.0\Domain.dll
 C:\xampp\htdocs\hospital-management-app\Domain\obj\Debug\net5.0\ref\Domain.dll
 C:\xampp\htdocs\hospital-management-app\Domain\obj\Debug\net5.0\Domain.pdb
+C:\Users\DT Computers\OneDrive\Desktop\Projekti2\hospital-management-app\Domain\bin\Debug\net5.0\Domain.deps.json
+C:\Users\DT Computers\OneDrive\Desktop\Projekti2\hospital-management-app\Domain\bin\Debug\net5.0\Domain.dll
+C:\Users\DT Computers\OneDrive\Desktop\Projekti2\hospital-management-app\Domain\bin\Debug\net5.0\ref\Domain.dll
+C:\Users\DT Computers\OneDrive\Desktop\Projekti2\hospital-management-app\Domain\bin\Debug\net5.0\Domain.pdb
+C:\Users\DT Computers\OneDrive\Desktop\Projekti2\hospital-management-app\Domain\obj\Debug\net5.0\Domain.csproj.AssemblyReference.cache
+C:\Users\DT Computers\OneDrive\Desktop\Projekti2\hospital-management-app\Domain\obj\Debug\net5.0\Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\DT Computers\OneDrive\Desktop\Projekti2\hospital-management-app\Domain\obj\Debug\net5.0\Domain.AssemblyInfoInputs.cache
+C:\Users\DT Computers\OneDrive\Desktop\Projekti2\hospital-management-app\Domain\obj\Debug\net5.0\Domain.AssemblyInfo.cs
+C:\Users\DT Computers\OneDrive\Desktop\Projekti2\hospital-management-app\Domain\obj\Debug\net5.0\Domain.csproj.CoreCompileInputs.cache
+C:\Users\DT Computers\OneDrive\Desktop\Projekti2\hospital-management-app\Domain\obj\Debug\net5.0\Domain.dll
+C:\Users\DT Computers\OneDrive\Desktop\Projekti2\hospital-management-app\Domain\obj\Debug\net5.0\ref\Domain.dll
+C:\Users\DT Computers\OneDrive\Desktop\Projekti2\hospital-management-app\Domain\obj\Debug\net5.0\Domain.pdb

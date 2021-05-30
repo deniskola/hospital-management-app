@@ -1643,7 +1643,6 @@
           "AutoMapper.Extensions.Microsoft.DependencyInjection": "8.1.0",
           "Domain": "1.0.0",
           "MediatR.Extensions.Microsoft.DependencyInjection": "9.0.0",
-          "Microsoft.EntityFrameworkCore.SqlServer": "5.0.3",
           "Persistence": "1.0.0"
         },
         "compile": {
@@ -1656,9 +1655,6 @@
       "Domain/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v5.0",
-        "dependencies": {
-          "Microsoft.EntityFrameworkCore.SqlServer": "5.0.3"
-        },
         "compile": {
           "bin/placeholder/Domain.dll": {}
         },
@@ -6156,45 +6152,37 @@
       "AutoMapper.Extensions.Microsoft.DependencyInjection >= 8.1.0",
       "Microsoft.EntityFrameworkCore >= 5.0.3",
       "Microsoft.EntityFrameworkCore.Design >= 5.0.3",
-      "Microsoft.EntityFrameworkCore.SqlServer >= 5.0.3",
       "Microsoft.EntityFrameworkCore.Tools >= 5.0.3",
       "Swashbuckle.AspNetCore >= 5.6.3"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Nisi\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\": {}
+    "C:\\Users\\DT Computers\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\xampp\\htdocs\\hospital-management-app\\api\\API.csproj",
+      "projectUniqueName": "C:\\Users\\DT Computers\\OneDrive\\Desktop\\Projekti2\\hospital-management-app\\API\\API.csproj",
       "projectName": "API",
-      "projectPath": "C:\\xampp\\htdocs\\hospital-management-app\\api\\API.csproj",
-      "packagesPath": "C:\\Users\\Nisi\\.nuget\\packages\\",
-      "outputPath": "C:\\xampp\\htdocs\\hospital-management-app\\api\\obj\\",
+      "projectPath": "C:\\Users\\DT Computers\\OneDrive\\Desktop\\Projekti2\\hospital-management-app\\API\\API.csproj",
+      "packagesPath": "C:\\Users\\DT Computers\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\DT Computers\\OneDrive\\Desktop\\Projekti2\\hospital-management-app\\API\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
-      ],
       "configFilePaths": [
-        "C:\\Users\\Nisi\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        "C:\\Users\\DT Computers\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net5.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\xampp\\htdocs\\hospital-management-app\\Application\\Application.csproj": {
-              "projectPath": "C:\\xampp\\htdocs\\hospital-management-app\\Application\\Application.csproj"
+            "C:\\Users\\DT Computers\\OneDrive\\Desktop\\Projekti2\\hospital-management-app\\Application\\Application.csproj": {
+              "projectPath": "C:\\Users\\DT Computers\\OneDrive\\Desktop\\Projekti2\\hospital-management-app\\Application\\Application.csproj"
             }
           }
         }
@@ -6220,10 +6208,6 @@
           "Microsoft.EntityFrameworkCore.Design": {
             "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
             "suppressParent": "All",
-            "target": "Package",
-            "version": "[5.0.3, )"
-          },
-          "Microsoft.EntityFrameworkCore.SqlServer": {
             "target": "Package",
             "version": "[5.0.3, )"
           },

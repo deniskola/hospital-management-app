@@ -11,7 +11,6 @@
           "AutoMapper.Extensions.Microsoft.DependencyInjection": "8.1.0",
           "Domain": "1.0.0",
           "MediatR.Extensions.Microsoft.DependencyInjection": "9.0.0",
-          "Microsoft.EntityFrameworkCore.SqlServer": "5.0.3",
           "Persistence": "1.0.0"
         },
         "runtime": {
@@ -1081,9 +1080,6 @@
         }
       },
       "Domain/1.0.0": {
-        "dependencies": {
-          "Microsoft.EntityFrameworkCore.SqlServer": "5.0.3"
-        },
         "runtime": {
           "Domain.dll": {}
         }

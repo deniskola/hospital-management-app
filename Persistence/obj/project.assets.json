@@ -1523,9 +1523,6 @@
       "Domain/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v5.0",
-        "dependencies": {
-          "Microsoft.EntityFrameworkCore.SqlServer": "5.0.3"
-        },
         "compile": {
           "bin/placeholder/Domain.dll": {}
         },
@@ -5816,39 +5813,32 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Nisi\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\": {}
+    "C:\\Users\\DT Computers\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\xampp\\htdocs\\hospital-management-app\\Persistence\\Persistence.csproj",
+      "projectUniqueName": "C:\\Users\\DT Computers\\OneDrive\\Desktop\\Projekti2\\hospital-management-app\\Persistence\\Persistence.csproj",
       "projectName": "Persistence",
-      "projectPath": "C:\\xampp\\htdocs\\hospital-management-app\\Persistence\\Persistence.csproj",
-      "packagesPath": "C:\\Users\\Nisi\\.nuget\\packages\\",
-      "outputPath": "C:\\xampp\\htdocs\\hospital-management-app\\Persistence\\obj\\",
+      "projectPath": "C:\\Users\\DT Computers\\OneDrive\\Desktop\\Projekti2\\hospital-management-app\\Persistence\\Persistence.csproj",
+      "packagesPath": "C:\\Users\\DT Computers\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\DT Computers\\OneDrive\\Desktop\\Projekti2\\hospital-management-app\\Persistence\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
-      ],
       "configFilePaths": [
-        "C:\\Users\\Nisi\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        "C:\\Users\\DT Computers\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net5.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\xampp\\htdocs\\hospital-management-app\\Domain\\Domain.csproj": {
-              "projectPath": "C:\\xampp\\htdocs\\hospital-management-app\\Domain\\Domain.csproj"
+            "C:\\Users\\DT Computers\\OneDrive\\Desktop\\Projekti2\\hospital-management-app\\Domain\\Domain.csproj": {
+              "projectPath": "C:\\Users\\DT Computers\\OneDrive\\Desktop\\Projekti2\\hospital-management-app\\Domain\\Domain.csproj"
             }
           }
         }

@@ -1,31 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\xampp\\htdocs\\hospital-management-app\\Domain\\Domain.csproj": {}
+    "C:\\Users\\DT Computers\\OneDrive\\Desktop\\Projekti2\\hospital-management-app\\Domain\\Domain.csproj": {}
   },
   "projects": {
-    "C:\\xampp\\htdocs\\hospital-management-app\\Domain\\Domain.csproj": {
+    "C:\\Users\\DT Computers\\OneDrive\\Desktop\\Projekti2\\hospital-management-app\\Domain\\Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\xampp\\htdocs\\hospital-management-app\\Domain\\Domain.csproj",
+        "projectUniqueName": "C:\\Users\\DT Computers\\OneDrive\\Desktop\\Projekti2\\hospital-management-app\\Domain\\Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "C:\\xampp\\htdocs\\hospital-management-app\\Domain\\Domain.csproj",
-        "packagesPath": "C:\\Users\\Nisi\\.nuget\\packages\\",
-        "outputPath": "C:\\xampp\\htdocs\\hospital-management-app\\Domain\\obj\\",
+        "projectPath": "C:\\Users\\DT Computers\\OneDrive\\Desktop\\Projekti2\\hospital-management-app\\Domain\\Domain.csproj",
+        "packagesPath": "C:\\Users\\DT Computers\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\DT Computers\\OneDrive\\Desktop\\Projekti2\\hospital-management-app\\Domain\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Nisi\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Users\\DT Computers\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -43,12 +37,6 @@
       "frameworks": {
         "net5.0": {
           "targetAlias": "net5.0",
-          "dependencies": {
-            "Microsoft.EntityFrameworkCore.SqlServer": {
-              "target": "Package",
-              "version": "[5.0.3, )"
-            }
-          },
           "imports": [
             "net461",
             "net462",
