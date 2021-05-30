@@ -16,9 +16,9 @@ using Microsoft.EntityFrameworkCore; //this one right here
 using Persistence;
 using MediatR;
 using AutoMapper;
-using Application.ProfileA;
+using API.Extensions;
 using Application.CoreP;
-using API.PExtensions;
+
 
 namespace API
 {
@@ -37,7 +37,7 @@ namespace API
 
             services.AddControllers();
 
-            services.AddProfileServices(_config);
+            services.AddAplicationServices(_config);
            
         }
 
@@ -51,9 +51,11 @@ namespace API
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "API v1"));
             }
 
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors("CorsPolicy");
 
             app.UseAuthorization();
 
