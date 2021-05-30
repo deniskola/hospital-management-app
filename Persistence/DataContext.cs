@@ -13,6 +13,7 @@ namespace Persistence
         public DbSet<DReminder> DReminders { get; set; }
         public DbSet<PAllergies> PAllergies { get; set; }
         public DbSet<AboutUs> SAboutUs { get; set; }
+        public DbSet<AddAppointment> Appointments { get; set; }
 
 
 
