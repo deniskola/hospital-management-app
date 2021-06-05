@@ -3,7 +3,8 @@ import {
   successCardHeader,
   dangerCardHeader,
   primaryCardHeader,
-  whiteColor
+  whiteColor,
+  purpleColor
 } from "./material-dashboard-react.js";
 
 const cardHeaderStyle = {
@@ -17,7 +18,7 @@ const cardHeaderStyle = {
       margin: "0 15px",
       padding: "0",
       position: "relative",
-      color: whiteColor
+      color: "#000"
     },
     "&:first-child": {
       borderRadius: "calc(.25rem - 1px) calc(.25rem - 1px) 0 0"
@@ -82,25 +83,25 @@ const cardHeaderStyle = {
     }
   },
   warningCardHeader: {
-    color: whiteColor,
+    color: whiteColor,purpleColor,
     "&:not($cardHeaderIcon)": {
       ...warningCardHeader
     }
   },
   successCardHeader: {
-    color: whiteColor,
+    color: whiteColor,purpleColor,
     "&:not($cardHeaderIcon)": {
       ...successCardHeader
     }
   },
   dangerCardHeader: {
-    color: whiteColor,
+    color: whiteColor,purpleColor,
     "&:not($cardHeaderIcon)": {
       ...dangerCardHeader
     }
   },
   primaryCardHeader: {
-    color: whiteColor,
+    color: whiteColor,purpleColor,
     "&:not($cardHeaderIcon)": {
       ...primaryCardHeader
     }

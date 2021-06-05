@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using Domain;
 using System;
 using Application.ProfileA;
-using System.Threading;
 
 namespace API.Controllers
 {

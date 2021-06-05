@@ -3,6 +3,7 @@ import * as s from "./App.styles";
 import * as Palette from "./colors";
 import {Route} from 'react-router-dom';
 import axios from 'axios';
+import {ToastProvider,useToasts} from "react-toast-notifications";
 
 // Components
 import Sidebar from "./Components/Sidebar/Sidebar";
@@ -78,9 +79,11 @@ const App = () => {
             fonts={fonts}
             colorPalette={Palette.silver}
             />
+            <ToastProvider>
             <MainView>
               
             </MainView>
+            </ToastProvider>
         </Fragment>
       )}/>
     </s.App>

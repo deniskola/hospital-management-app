@@ -3,7 +3,7 @@ import AboutDash from "./AboutDash/AboutDash";
 import { Button } from "semantic-ui-react";
 import {v4 as uuid} from 'uuid';
 import agent from '../../../api/agent';
-import LoadingComponent from "../../../LoadingComponent";
+
 
 function About() {
   const [about, setAbout] = useState([]);
@@ -67,7 +67,7 @@ function About() {
     
   }
 
-  if(loading) return <LoadingComponent content ="Loading app"/>
+ 
   return (
     <div>
           <div> 

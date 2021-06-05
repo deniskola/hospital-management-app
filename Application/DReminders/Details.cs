@@ -11,7 +11,7 @@ namespace Application.DReminders
     {
         public class Query : IRequest<DReminder>
         {
-            public Guid Id { get; set; }
+            public int id { get; set; }
         }
 
         public class Handler : IRequestHandler<Query, DReminder>
@@ -24,7 +24,7 @@ namespace Application.DReminders
             }
             public async Task<DReminder> Handle(Query request, CancellationToken cancellationToken)
             {
-                return await context.DReminders.FindAsync(request.Id);
+                return await context.DReminders.FindAsync(request.id);
             }
         }
     }

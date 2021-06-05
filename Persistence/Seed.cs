@@ -16,13 +16,13 @@ namespace Persistence
             {
                 new DReminder
                 {
-                    Title = "Surgery for patient Jane ",
-                    Date = DateTime.Now.AddMonths(-2),
+                    reminderTitle = "Surgery for patient Jane ",
+                    reminderDate = "2021-2-2",
                 },
                 new DReminder
                 {   
-                    Title = "Surgery for patient John",
-                    Date = DateTime.Now.AddMonths(-1),
+                    reminderTitle = "Surgery for patient John",
+                    reminderDate = "2021-2-2",
                 }
             };
 

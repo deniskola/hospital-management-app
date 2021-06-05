@@ -1,13 +1,13 @@
 using AutoMapper;
 using Domain;
 
-namespace Application.AboutCore
+namespace Application.Abouts.AboutCore
 {
     public class MappingProfiles : Profile
     {
         public MappingProfiles()
         {
-            CreateMap<About, About>();
+            CreateMap<AddAppointment, AddAppointment>();
         }
     }
 }

@@ -1,13 +1,9 @@
-using Persistence;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using Domain;
-using Microsoft.EntityFrameworkCore;
 using System;
-using MediatR;
 using Application.Abouts;
-using System.Threading;
 
 namespace API.Controllers
 {

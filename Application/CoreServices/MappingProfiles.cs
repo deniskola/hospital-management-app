@@ -8,6 +8,8 @@ namespace Application.CoreServices
         public MappingProfiles()
         {
             CreateMap<AboutUs, AboutUs>();
+			
+			CreateMap<Activity, Activity>();
         }
     }
 }

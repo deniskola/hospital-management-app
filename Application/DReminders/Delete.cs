@@ -10,7 +10,7 @@ namespace Application.DReminders
     {
         public class Command : IRequest
         {
-            public Guid Id { get; set; }
+            public int id { get; set; }
         }
 
         public class Handler : IRequestHandler<Command>
@@ -22,7 +22,7 @@ namespace Application.DReminders
             }
             public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
             {
-                var dReminder=await context.DReminders.FindAsync(request.Id);
+                var dReminder=await context.DReminders.FindAsync(request.id);
 
                 context.Remove(dReminder);
 

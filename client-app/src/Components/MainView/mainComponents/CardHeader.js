@@ -7,7 +7,6 @@ import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
 
 
-
 import styles from "./style/cardHeaderStyle.js";
 
 const useStyles = makeStyles(styles);
@@ -38,7 +37,7 @@ CardHeader.propTypes = {
     "danger",
     "info",
     "primary",
-    "rose"
+    "rose","purpleColor"
   ]),
   plain: PropTypes.bool,
   stats: PropTypes.bool,

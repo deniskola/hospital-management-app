@@ -49,6 +49,7 @@ const dangerColor = ["#f44336", "#ef5350", "#e53935", "#f55a4e"];
 const successColor = ["#4caf50", "#66bb6a", "#43a047", "#5cb860"];
 const blackColor = "#000";
 const whiteColor = "#FFF";
+const purpleColor="#8E59FA";
 
 const boxShadow = {
   boxShadow:
@@ -222,6 +223,7 @@ export {
   successColor,
   blackColor,
   whiteColor,
+  purpleColor,
   primaryBoxShadow,
   infoBoxShadow,
   successBoxShadow,

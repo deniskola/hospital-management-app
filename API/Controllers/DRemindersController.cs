@@ -1,13 +1,10 @@
-using Persistence;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using Domain;
-using Microsoft.EntityFrameworkCore;
 using System;
-using MediatR;
 using Application.DReminders;
-using System.Threading;
+
 
 namespace API.Controllers
 {
@@ -20,9 +17,9 @@ namespace API.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<DReminder>> GetReminder(Guid id)
+        public async Task<ActionResult<DReminder>> GetReminder(int id)
         { // if we change the id from Guid to int in db we should change the Guid here
-            return await Mediator.Send(new Details.Query{Id = id});
+            return await Mediator.Send(new Details.Query{id = id});
         }
 
         [HttpPost]
@@ -32,16 +29,16 @@ namespace API.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> EditReminder(Guid id, DReminder dReminder)
+        public async Task<IActionResult> EditReminder(int id, DReminder dReminder)
         {
-            dReminder.Id=id;
+            dReminder.id=id;
             return Ok(await Mediator.Send(new Edit.Command{DReminder=dReminder}));
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteActivity(Guid id){
+        public async Task<IActionResult> DeleteActivity(int id){
             
-            return Ok(await Mediator.Send(new Delete.Command{Id = id}));
+            return Ok(await Mediator.Send(new Delete.Command{id = id}));
         }
     }
 }

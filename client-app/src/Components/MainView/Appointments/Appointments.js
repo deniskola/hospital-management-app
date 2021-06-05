@@ -1,7 +1,6 @@
 import React from 'react';
 import AppointmentsContainer from './Appointments.styles';
 
-
 const Appointments = () => {
 
   return (
@@ -67,10 +66,8 @@ const Appointments = () => {
 </table>
       </div>
     </AppointmentsContainer>
-
-    
+ 
   );
-  
 }
 
 

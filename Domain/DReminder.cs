@@ -1,14 +1,16 @@
 using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Domain
 {
     public class DReminder
     {
-        public Guid Id{ get;set; }
+        [Key]
+        public int id{ get;set; }
 
-        public string Title{get;set;}
+        public string reminderTitle{get;set;}
 
-        public DateTime Date{get;set;}
+        public string reminderDate{get;set;}
         
     }
 }

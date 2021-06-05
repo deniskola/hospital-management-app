@@ -27,7 +27,7 @@ namespace Application.DReminders
 
             public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
             {
-                var dReminder=await context.DReminders.FindAsync(request.DReminder.Id);
+                var dReminder=await context.DReminders.FindAsync(request.DReminder.id);
 
                 mapper.Map(request.DReminder, dReminder);
 
