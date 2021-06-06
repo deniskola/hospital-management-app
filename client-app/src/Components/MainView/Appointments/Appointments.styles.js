@@ -7,7 +7,8 @@ export const AppointmentsContainer = styled.div`
         flex-direction: row;
     }
     .lefth{
-        background-color: #009879;
+        //background-color: #009879;
+        background: linear-gradient(135deg, #71b7e6, #9b59b6);
         border: none;
         color: white;
         padding: 15px 32px;        
@@ -21,7 +22,8 @@ export const AppointmentsContainer = styled.div`
         margin-left: auto; 
         margin-right: 0;
         padding: 15px 32px;
-        background-color: #009879;
+        //background-color: #009879;
+        background: linear-gradient(135deg, #71b7e6, #9b59b6);
         border: none;
         color: white;
         font-size: 18px;
@@ -65,9 +67,10 @@ export const AppointmentsContainer = styled.div`
         align-text: center;
     }  
     .content-table thead tr {
-        background-color: #009879;
+        //background-color: #009879;
+        background: linear-gradient(135deg, #71b7e6, #9b59b6);
         color: #ffffff;
-        text-align: left;
+        //text-align: left;
         font-weight: bold;
     }
     .content-table th,
@@ -81,16 +84,17 @@ export const AppointmentsContainer = styled.div`
         background-color: #f3f3f3;
     } 
     .content-table tbody tr:last-of-type {
-        border-bottom: 2px solid #009879;
+        border-bottom: 2px solid #9b59b6;
     }  
-    .content-table tbody tr.active-row {
+    .content-table tbody tr:nth-of-type(odd) {
         font-weight: bold;
-        color: #009879;
+        color: linear-gradient(135deg, #71b7e6, #9b59b6);
+        //color: #009879;
     }
 
-
     .btn {
-        background-color: #009879; 
+        //background-color: #009879; 
+        background: linear-gradient(135deg, #71b7e6, #9b59b6);
         border: none; 
         color: #ffffff; 
         padding: 12px 16px; 

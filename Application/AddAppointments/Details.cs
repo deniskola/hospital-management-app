@@ -12,7 +12,7 @@ namespace Application.AddAppointments
         public class Query : IRequest<AddAppointment>
         {
 
-            public Guid Id { get; set; }
+            public int Id { get; set; }
 
         }
         public class Handler : IRequestHandler<Query, AddAppointment>

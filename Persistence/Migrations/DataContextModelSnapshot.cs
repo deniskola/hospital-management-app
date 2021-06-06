@@ -72,9 +72,10 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("Domain.AddAppointment", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<DateTime>("AppointmentDate")
                         .HasColumnType("datetime2");

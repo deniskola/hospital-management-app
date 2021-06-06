@@ -43,8 +43,18 @@ const ProfileA = {
   delete: (id) => axios.delete(`/allergies/${id}`)
 };
 
+const Appointments = {
+  table: () => requests.get('/appointments'),
+  details: (id) => requests.get(`/appointments/${id}`),
+  create: (appointment) => axios.post('/appointments',appointment),
+  update: (appointment) => axios.put(`/appointments/${appointment.id}`,appointment),
+  delete: (id) => axios.delete(`/appointments/${id}`)
+};
+
 const agent = {
-  Abouts, ProfileA
+  Abouts,
+  Appointments,
+  ProfileA
 };
 
 export default agent;
