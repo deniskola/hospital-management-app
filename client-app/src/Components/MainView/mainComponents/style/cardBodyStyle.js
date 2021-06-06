@@ -6,11 +6,12 @@ const cardBodyStyle = {
     position: "relative"
   },
   cardBodyPlain: {
-    paddingLeft: "5px",
-    paddingRight: "5px"
+    borderRadius:"0 0 25px 25px !important",
+    backgroundColor:"#f1eafb"
   },
   cardBodyProfile: {
-    marginTop: "15px"
+    borderRadius:"25px 25px 0 0px !important",
+    backgroundColor:"#ddcdf2"
   }
 };
 

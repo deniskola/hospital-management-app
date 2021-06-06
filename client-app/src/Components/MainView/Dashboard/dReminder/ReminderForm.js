@@ -11,7 +11,7 @@ import Form from './Form';
 const styles=theme=>({
     adornmentText:{
         '& .MuiTypography-root':{
-            color:'#FECB90',
+            color:'#7238E6',
             fontWeight:'bolder',
             fontSize:'1.5em'
         }
@@ -82,7 +82,7 @@ const ReminderForm=({classes,...props})=>{
     return(
         <div>
         <Form  autoComplete="off" noValidate className={classes.root} onSubmit={handleSubmit}>
-            <Grid container spacing={2}>
+            <Grid container container direction="row" justify="flex-start" alignItem="center" >
                 <Grid item xs={4}>
                 <Input
                         label="Title"
@@ -97,10 +97,11 @@ const ReminderForm=({classes,...props})=>{
                         {...(errors.reminderTitle && {error:true,helperText:errors.reminderTitle})}
                         />
                 </Grid>
-                <Grid item xs={4}>
+                <Grid item xs={4} >
                 <TextField
                         name="reminderDate"
                         label="Date"
+                        variant="outlined"
                         value={values.date}
                         type="date"
                         className={classes.textField}
@@ -110,6 +111,15 @@ const ReminderForm=({classes,...props})=>{
                         }}
                         {...(errors.reminderDate && {error: true, helperText:errors.reminderDate})}
                     />
+
+                    <Select 
+                        label="Patient"
+                        name="patientName"
+                        value={values.patient}
+                        onChange={handleInputChange}
+                        options={props.dReminderList}
+                    />
+
                 </Grid>
                 <ButtonGroup className={classes.submitButtonGroup}>
                     <MuiButton size="large" type="submit"> Submit</MuiButton>    

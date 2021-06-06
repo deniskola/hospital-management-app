@@ -24,7 +24,7 @@ export const SidebarHeader = styled.h3`
 export const MenuItemContainer = styled.div``;
 export const ItemContainer = styled.div``;
 
-// Menu items -------------------------------------------------------------
+
 export const MenuItem = styled.div`
   ${p => !p.isSidebarOpen && `
     text-align: center;
@@ -73,7 +73,7 @@ export const Icon = styled.img`
 `
 
 
-// Toggler -----------------------------------------------------------------------------
+
 export const TogglerContainer = styled.div`
   position: absolute;
   width: 30%;

@@ -10,10 +10,12 @@ const styles=theme=>({
         padding:'1px',
         dipslay:'flex',
         alignItems:'center',
-        width:'250px'
+        width:'350px',
+        borderRadius:"25px!important",
+        borderColor: "#5500ff!important"
     },
     searchInput :{
-        marginLeft:theme.spacing(1.5),
+        marginLeft:theme.spacing(15.5),
         flex:1,
     },
     listRoot:{
@@ -54,6 +56,8 @@ useEffect(()=>{
 },[])
 
 
+
+
 useEffect(()=>{
     let x=[...reminderList];
     x=x.filter(y=>{
@@ -64,17 +68,19 @@ useEffect(()=>{
 
     return(
         <>
-        <Paper className={classes.searchPaper}>
+        <Paper className={classes.searchPaper} variant="outlined">
             <InputBase className={classes.searchInput}
             value={searchKey}
             onChange={e=> setSearchKey(e.target.value)}
-            placeholder="Search reminders"
+            placeholder=""
             onClick={()=>setShow(true)}
             onDoubleClick={()=>setShow(false)}/>
+
             <IconButton>
-                <SearchTwoToneIcon/>
+                <SearchTwoToneIcon style={{ color:"#5500ff" }}/>
             </IconButton>
         </Paper>
+
         {
             show?( 
                 <List className={classes.listRoot}>
@@ -105,3 +111,4 @@ const mapActionToProps = {
 
 
 export default connect(mapStateToProps,mapActionToProps)(withStyles(styles)(SearchReminder));
+

@@ -99,11 +99,11 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("Domain.DReminder", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTime>("Date")
+                    b.Property<string>("Date")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Title")

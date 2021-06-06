@@ -2,7 +2,6 @@ import React , {useEffect,useState} from "react";
 import * as s from "./App.styles";
 import * as Palette from "./colors";
 import {Route} from 'react-router-dom';
-import axios from 'axios';
 import {ToastProvider,useToasts} from "react-toast-notifications";
 
 // Components

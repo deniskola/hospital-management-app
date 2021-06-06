@@ -29,9 +29,7 @@ const Sidebar = props => {
   const [isSidebarOpen, setSidebarState] = useState(true);
   const [header, setHeader] = useState(sidebarHeader.fullName);
 
-  // Effects
 
-  // Set selected menu item based on URL pathname
   useLayoutEffect(() => {
     const path = window.location.pathname;
     const parts = path.split('/');
@@ -42,13 +40,10 @@ const Sidebar = props => {
     }
   }, [menuItems])
 
-  // Update of header state
   useEffect(() => {
     isSidebarOpen ? setTimeout(() => setHeader(sidebarHeader.fullName), 200) : setHeader(sidebarHeader.shortName);
   }, [isSidebarOpen, sidebarHeader])
 
-
-  // Update of sidebar state
   useEffect(() => {
     const updateWindowWidth = () => {
       if (window.innerWidth < 1280) setSidebarState(false);
@@ -61,7 +56,7 @@ const Sidebar = props => {
   }, [isSidebarOpen]);
 
 
-  // Add index of items that contain sub menu items
+
 
   const handleMenuItemClick = (name, index) => {
     setSelectedMenuItem(name);

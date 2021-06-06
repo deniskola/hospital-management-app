@@ -1,7 +1,7 @@
 import React from 'react';
 import { Switch, Route ,Router} from 'react-router-dom';
 
-// Components
+
 import Login from './Components/LoginPage/Login';
 import Dashboard from './Components/MainView/Dashboard/Dashboard';
 import Activity from './Components/MainView/Activity/Activity';
@@ -10,7 +10,7 @@ import About from './Components/MainView/About/About';
 import Services from './Components/MainView/Services/Services';
 import Contacts from './Components/MainView/Contacts/Contacts';
 import Profile from './Components/MainView/Profile/Profile';
-import Sidebar from './Components/Sidebar/Sidebar';
+
 
 const Routes = () => {
   return (

@@ -45,16 +45,10 @@ const Login = () => {
               <p>remember me</p>
               <p style={{ marginLeft: "40px" }}> forgot password?</p>
             </div>
-            <button
-              style={{
-                marginTop: "25px",
-                backgroundColor: "#A071FF",
-                color: "white",
-              }}
-             >Log In
-            </button>
+            <Link to='/dashboard'>
+            <button style={{ marginTop: "25px",backgroundColor: "#A071FF",color: "white",}}>Log In</button>
+            </Link>
           </form>
-          <h3>Test <Link to='/dashboard'>Activities</Link></h3>
         </div>
       </div>
     </s.LoginContainer>
