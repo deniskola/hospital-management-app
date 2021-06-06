@@ -23,6 +23,7 @@
     "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-react": "^7.23.2",
     "framer-motion": "^4.1.2",
+    "google-maps-react": "^2.0.6",
     "mdbreact": "^5.0.2",
     "node-sass": "^6.0.0",
     "react": "^17.0.2",
@@ -32,6 +33,7 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "^4.0.3",
     "react-toast-notifications": "^2.4.4",
+    "redux": "^4.1.0",
     "redux-thunk": "^2.3.0",
     "sass": "^1.32.12",
     "semantic-ui-css": "^2.4.1",
@@ -62,5 +64,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/uuid": "^8.3.0",
+    "eslint-plugin-react": "^7.23.2"
   }
 }

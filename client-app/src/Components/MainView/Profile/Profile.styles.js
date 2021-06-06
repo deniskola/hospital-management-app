@@ -106,11 +106,12 @@ export const bloodPressure = styled.div`
 /*-------------------- Allergy--------------------------------------*/
 export const Allergy = styled.div`
     
-    height:180px;
+    height:auto;
     background-color:white;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4);
 
     .upper-container{
+        margin-top:5px;
         display: flex;
         flex-direction: row;
     }
@@ -118,7 +119,7 @@ export const Allergy = styled.div`
         height: 25px;
         width: 25px;
         align-items: left;
-        margin: 5px;
+        margin-right: 5px;
     }
     p{
         font-size:16px;

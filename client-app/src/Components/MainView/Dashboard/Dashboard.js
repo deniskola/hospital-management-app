@@ -17,10 +17,10 @@ import * as actions from "./actions/dReminder";
 import {connect} from "react-redux";
 import * as s from './Dashboard.styles';
 //Charts
-import Chart from "chart.js";
+//import Chart from "chart.js";
 import {Line,Bar} from "react-chartjs-2";
 import Typography from "@material-ui/core/Typography";
-import{chartOptions,parseOptions,chartExample1,chartExample2,}from "./chart/charts.js";
+//import{chartOptions,parseOptions,chartExample1,chartExample2,}from "./chart/charts.js";
 
 const styles=theme=>({
   root:{  

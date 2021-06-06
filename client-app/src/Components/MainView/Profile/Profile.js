@@ -2,12 +2,69 @@ import * as p from './Profile.styles';
 import bodyHeight  from './bodyHeight.PNG'; 
 import AllergiesIcon  from './AllergiesIcon.png'; 
 import history  from './history.PNG'; 
-import React,{Component} from 'react';
-import {Table} from 'react-bootstrap';
-import {Button, ButtonToolbar} from 'react-bootstrap';
-
+import React,{useEffect,useState} from 'react';
+import {ButtonGroup,Table, TableBody,TableRow, TableCell,TableHead} from "@material-ui/core";
+import axios from 'axios';
+import { Button } from 'semantic-ui-react';
+//import AllergiesDashboard from './ProfileDashboard/AllergiesDashboard';
+import agent from '../../../api/agent';
+import {v4 as uuid} from 'uuid';
+import AllergiesModalForm from './Form/AllergiesModalForm';
 
 const Profile = () => {
+   const [allergies, setAllergies]=useState([]);
+   const [selectedAllergy, setSelectedAllergy]=useState(undefined);
+   const [editMode, setEditMode]=useState(false);
+   const [submitting, setSubmitting] = useState(false);
+
+   useEffect(() => {
+      axios.get('http://localhost:5000/API/PAllergies').then(response =>{
+        setAllergies(response.data);
+      })
+   }, [])
+
+   function handleSelectAllergy(id){
+      setSelectedAllergy(allergies.find(x => x.id === id))
+   }
+   function handleCancelSelectAllergy(){
+     setSelectedAllergy (undefined);
+   }
+   function handleModalFormOpen(id){
+     id ? handleSelectAllergy() : handleCancelSelectAllergy();
+      setEditMode(true);
+   }
+   function handleModalFormClose(){
+     setEditMode(false);
+   }
+
+   /*function handleCreateOrEditAllergy(allergy){
+    setSubmitting(true);
+    if(allergy.id){
+      agent.ProfileA.update(allergy).then(()=>{
+        setAllergy([...pAllergies.filter(x => x.id !== allergy.id), allergy]) 
+        setSelectedAllergy(allergy);
+        setEditMode(false);
+        setSubmitting(false);
+      })
+    }else {
+      allergy.id = uuid();
+      agent.ProfileA.create(allergy).then(()=> {
+        setAllergy([...pAllergies, allergy])
+        setSelectedAllergy(allergy);
+        setEditMode(false);
+        setSubmitting(false);
+
+      })}
+    }
+
+    function handleDeleteAllergy(id){
+      setSubmitting(true);
+      agent.ProfileA.delete(id).then(() =>{
+        setAllergy([...pAllergies.filter(x=> x.id !==id)])
+        setSubmitting(false);
+      })
+      
+    }*/
 
     return (
       <div>
@@ -58,24 +115,39 @@ const Profile = () => {
         </div>
 
         <div class="right-container">
-          <p.Allergy>
+          <p.Allergy openModalForm={handleModalFormOpen}>
             <div class="upper-container">
-              <img src={AllergiesIcon} alt=""/> 
-              <p>Allergies</p>
+              <img src={AllergiesIcon} alt="logo" style={{marginTop:'5px', marginLeft:'5px'}} /> 
+              <p><b>Allergies</b></p>
+              <Button  basic color='purple' style={{marginLeft:'60%'}}>+ Add Allergy</Button>
             </div>
             <div class="lower-container">
-              <Table striped bordered hover size="sm">
-                <thead>
-                  <tr>
-                    <th>ID</th>
-                    <th>Type of Allergy:</th>
-                    <th>Description</th>
-                    <th>edit/delete</th>
-                  </tr>
-                </thead>
-                <tbody>
-                </tbody>
-              </Table>
+            <Table
+                  tableHead={[]}
+                  tableData={[]}
+                  />
+                  <TableHead>
+                    <TableRow>
+                      <TableCell>Type</TableCell>
+                      <TableCell>Description</TableCell>
+                    </TableRow>
+                  </TableHead>
+                  <TableBody>
+                    {
+                      allergies.map(pAllergies =>(
+                          <TableRow key={pAllergies.id}>
+                          <TableCell>{pAllergies.type}</TableCell>
+                          <TableCell>{pAllergies.description}</TableCell>
+                          <TableCell>
+                          <ButtonGroup variant="text">
+                            <Button   basic color='purple' width='1'><i class="edit icon"></i></Button>
+                            <Button   basic color='purple' width='1'><i class="trash icon"></i></Button>
+                          </ButtonGroup>
+                          </TableCell>
+                        </TableRow>
+                      ))
+                    }
+                  </TableBody>
             </div>
           </p.Allergy>
 
@@ -105,18 +177,7 @@ const Profile = () => {
                     <td>Lab test</td>
                     <td>Dr.Astrit Gashi</td>
                   </tr>
-                  <tr>
-                    <td>1</td>
-                    <td>12/03/2021</td>
-                    <td>Lab test</td>
-                    <td>Dr.Astrit Gashi</td>
-                  </tr>
-                  <tr>
-                    <td>1</td>
-                    <td>12/03/2021</td>
-                    <td>Lab test</td>
-                    <td>Dr.Astrit Gashi</td>
-                  </tr>
+                 
                 </tbody>
               </Table>
             </div>

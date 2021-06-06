@@ -35,8 +35,16 @@ const Abouts = {
   delete: (id) => axios.delete(`/about/${id}`),
 };
 
+const ProfileA = {
+  list: () => requests.get("/allergies"),
+  details: (id) => requests.get(`/allergies/${id}`),
+  create: (allergy) => axios.post(`/allergies`, allergy),
+  update: (allergy) => axios.put(`/allergies/${allergy.id}`, allergy),
+  delete: (id) => axios.delete(`/allergies/${id}`)
+};
+
 const agent = {
-  Abouts,
+  Abouts, ProfileA
 };
 
 export default agent;
