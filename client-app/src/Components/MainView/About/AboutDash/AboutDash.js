@@ -1,50 +1,32 @@
 import React from "react";
-import { Grid, List, Button } from "semantic-ui-react";
+import { Grid, List } from "semantic-ui-react";
 import AboutDetails from "../Details/AboutDetails";
 import AboutList from "./AboutList";
 import AboutForm from "../Form/AboutForm";
+import { useStore } from "../../../../stores/store";
+import { observer } from "mobx-react-lite";
 
-export default function AboutDash({
-  about,
-  selectedAbout,
-  selectAbout,
-  deleteAbout,
-  cancelSelectAbout,
-  editMode,
-  openForm,
-  closeForm,
-  createOrEdit,
-  submitting,
-}) {
+export default observer(function AboutDash() {
+
+  const {aboutStore} = useStore();
+  const {selectedAbout, editMode} = aboutStore;
   return (
     <Grid>
-      <Grid.Column width="10">
+      <Grid.Column width="2">
+      </Grid.Column>  
+      <Grid.Column width="9">
         <List>
-          <AboutList
-            about={about}
-            selectAbout={selectAbout}
-            deleteAbout={deleteAbout}
-            submitting={submitting}
-          />
+          <AboutList/>
         </List>
       </Grid.Column>
-      <Grid.Column width="6">
+      <Grid.Column width="5">
         {selectedAbout && !editMode && (
-          <AboutDetails
-            ab={selectedAbout}
-            cancelSelectAbout={cancelSelectAbout}
-            openForm={openForm}
-          />
+          <AboutDetails/>
         )}
         {editMode && (
-          <AboutForm
-            closeForm={closeForm}
-            ab={selectedAbout}
-            createOrEdit={createOrEdit}
-            submitting={submitting}
-          />
+          <AboutForm/>
         )}
       </Grid.Column>
     </Grid>
   );
-}
+})

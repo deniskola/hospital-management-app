@@ -4,7 +4,7 @@ export const MainViewContainer = styled.div`
   width: 80%;
   padding: 20px 50px;
   text-align: center;
-
+  overflow-y: auto;
   h1 {
     font-size: 2rem
   }

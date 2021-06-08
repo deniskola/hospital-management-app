@@ -1,8 +1,13 @@
 import React from "react";
 import { Button, Card } from "semantic-ui-react";
-import { About } from "../About";
+import LoadingComponent from "../../../../LoadingComponent";
+import { useStore } from "../../../../stores/store";
 
-export default function AboutDetails({ ab, cancelSelectAbout, openForm }) {
+export default function AboutDetails() {
+  const {aboutStore} =useStore();
+  const {selectedAbout: ab, openForm, cancelSelectedAbout} = aboutStore;
+
+  if(!ab) return <LoadingComponent/> ;
   return (
     <Card fluid>
       <Card.Content>
@@ -18,7 +23,7 @@ export default function AboutDetails({ ab, cancelSelectAbout, openForm }) {
             content="Edit"
           />
           <Button
-            onClick={cancelSelectAbout}
+            onClick={cancelSelectedAbout}
             basic
             color="grey"
             content="Cancel"

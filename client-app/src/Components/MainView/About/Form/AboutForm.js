@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { Form, Segment, Button } from "semantic-ui-react";
+import { useStore } from "../../../../stores/store";
+import { observer } from "mobx-react-lite";
 
-export default function AboutForm({
-  ab: selectedAbout,
-  closeForm,
-  createOrEdit,
-  submitting,
-}) {
+export default observer(function AboutForm() {
+
+  const {aboutStore} = useStore();
+  const {selectedAbout, closeForm, createAbout, updateAbout, loading} = aboutStore;
   const initialState = selectedAbout ?? {
     id: "",
     title: "",
@@ -16,7 +16,7 @@ export default function AboutForm({
   const [ab, setAbout] = useState(initialState);
 
   function handleSubmit() {
-    createOrEdit(ab);
+    ab.id ? updateAbout(ab) : createAbout(ab);
   }
 
   function handleInputChange(event) {
@@ -40,7 +40,7 @@ export default function AboutForm({
           onChange={handleInputChange}
         />
         <Button
-          loading={submitting}
+          loading={loading}
           floated="right"
           positive
           type="submit"
@@ -55,4 +55,4 @@ export default function AboutForm({
       </Form>
     </Segment>
   );
-}
+})
