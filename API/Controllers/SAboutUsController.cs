@@ -5,9 +5,11 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using Application.Services;
 using System.Threading;
+using Microsoft.AspNetCore.Authorization;
 
 namespace API.Controllers
 {
+    [AllowAnonymous]
     public class SAboutUsController : BaseApiController
     {
 

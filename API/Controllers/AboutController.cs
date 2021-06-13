@@ -4,9 +4,11 @@ using System.Collections.Generic;
 using Domain;
 using System;
 using Application.Abouts;
+using Microsoft.AspNetCore.Authorization;
 
 namespace API.Controllers
 {
+    [AllowAnonymous]
     public class AboutController : BaseApiController
     {
 

@@ -10,6 +10,8 @@ using Microsoft.Extensions.Logging;
 using Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Identity;
+using Domain;
 
 namespace API
 {
@@ -26,8 +28,9 @@ namespace API
             try
             {
                 var context = services.GetRequiredService<DataContext>();
+                var userManager = services.GetRequiredService<UserManager<AppUser>>();
                 context.Database.Migrate();
-                await Seed.SeedData(context);
+                await Seed.SeedData(context, userManager);
                 await SeedProfile.SeedData(context);
                 await SeedAppointments.SeedData(context);
                 await SeedServices.SeedData(context);
