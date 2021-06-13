@@ -2,6 +2,8 @@ import React, { useState, useEffect, useLayoutEffect } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import * as s from './Sidebar.styles';
+import { useStore } from '../../stores/store';
+import { Button } from "semantic-ui-react";
 
 const Sidebar = props => {
   const { 
@@ -28,7 +30,7 @@ const Sidebar = props => {
   const [selected, setSelectedMenuItem] = useState(menuItems[0].name);
   const [isSidebarOpen, setSidebarState] = useState(true);
   const [header, setHeader] = useState(sidebarHeader.fullName);
-
+  const {userStore: {logout}} = useStore();
 
   useLayoutEffect(() => {
     const path = window.location.pathname;
@@ -92,6 +94,7 @@ const Sidebar = props => {
       <s.TogglerContainer onClick={() => setSidebarState(!isSidebarOpen)}>
         <s.Toggler />
       </s.TogglerContainer>
+      <Button style={{margin: "50px 0 0 10%" }} onClick={logout} icon="power"/>
     </s.SidebarContainer>
   )
 }

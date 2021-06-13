@@ -1,4 +1,5 @@
 import axios from "axios";
+import { stores } from '../stores/store'
 
 const sleep = (delay) => {
   return new Promise((resolve) => {
@@ -8,12 +9,18 @@ const sleep = (delay) => {
 
 axios.defaults.baseURL = "http://localhost:5000/api";
 
+axios.interceptors.request.use(config => {
+  const token = stores.commonStore.token;
+  if(token) config.headers.Authorization = `Bearer ${token}`
+  return config;
+})
+
 axios.interceptors.response.use(async (response) => {
   try {
     await sleep(1000);
     return response;
   } catch (error) {
-    console.log(error);
+    console.log(error); 
     return await Promise.reject(error);
   }
 });
@@ -51,10 +58,17 @@ const Appointments = {
   delete: (id) => axios.delete(`/appointments/${id}`)
 };
 
+const Account = {
+  current: () =>  requests.get('/account'),
+  login: (user) => requests.post('/account/login', user),
+  register: (user) => requests.post('/account/register', user)
+}
+
 const agent = {
   Abouts,
   Appointments,
-  ProfileA
+  ProfileA,
+  Account
 };
 
 export default agent;

@@ -8,6 +8,7 @@ import { observer } from "mobx-react-lite";
 
 function About() {
   const { aboutStore } = useStore();
+  
 
   useEffect(() => {
     aboutStore.loadAbout();
@@ -18,6 +19,7 @@ function About() {
   return (
     <div>
           <div> 
+            
             <Button onClick={() => aboutStore.openForm()} color="black" content="+" floated="left"/>
             <AboutDash />
           </div> 
