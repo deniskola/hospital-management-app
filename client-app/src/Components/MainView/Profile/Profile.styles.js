@@ -27,54 +27,62 @@ export const ProfileContainer = styled.div`
 /*----------------- Personal information div --------------*/
 export const PersonalInfo = styled.div`
         background-color:white;
-        height:300px;
+        height:400px;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4);
         margin:10px;
     
     .first-container img{
         border-radius:50%;
         background-color:#3892D6;
-        margin-top:5px;
+        margin-top:25px;
         padding:5px;
         border: 5px solid white;
     }
     .first-container{
         padding-top:5px;
-        height:80px;
+        height:120px;
         background:#A938D6;    
     }
     .second-container{
-        margin-top:70px;
+        margin-top:85px;
+        font-size:14px;
     }
     h4{
         color:purple;
     }
     .third-container{
-        margin-top:25px;
-        margin-right:130px;
+        margin-top:10px;
+        margin-right:0px;
     }
     .third-container img{
         margin-right:5px;
+    }
+    .p{
+        font-size:12px;
+    }
+    .f-name{
+        margin-top:10px;
+        font-size:14px;
     }
 `
 
 /*-------------- Body Information div -------------------- */
 export const BodyInfo = styled.div`
-        height: 110px;
+        height: 200px;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4);
         margin:10px; 
         background-color:white;
 
     .vertical-line{
         border-left: 1px solid #D6DCE1;
-        height : 40px;
+        height : 100px;
     }
     p{
         padding-left: 10px;
         padding-top: 5px;
     }
     .body-first-container{
-        height:40px;
+        height:100px;
         display:flex;
         flex-direction: row;
         justify-content: space-evenly;
@@ -89,11 +97,19 @@ export const BodyInfo = styled.div`
         margin-top: 5px;
 
     }
+    .upper-items{
+        margin-top:20px;
+        font-size:14px;
+    }
+    .data{
+        font-size:16px;
+    }
+    
 `  
 /*------------------- Bood pressure ---------------------*/ 
 export const bloodPressure = styled.div`
         background-color:white;
-        height: 60px;
+        height: 120px;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4);
         margin:10px;
         text-align:left;
@@ -101,6 +117,10 @@ export const bloodPressure = styled.div`
     #bp2{
         margin-left:80px;
         color:purple;
+    }
+    .blood-title{
+        margin-top:5px;
+        font-size:12px;
     }
 `  
 /*-------------------- Allergy--------------------------------------*/
@@ -131,7 +151,7 @@ export const Allergy = styled.div`
 
 `   
 export const History = styled.div`
-    height:180px;
+    height:285px;
     background-color:white;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4);
     margin-top:10px;
@@ -147,7 +167,7 @@ export const History = styled.div`
         margin: 5px;
     }
     p{
-        font-size:16px;
+        font-size:12px;
         padding-top:5px;
     }
     
@@ -155,29 +175,59 @@ export const History = styled.div`
 export const Proccedures = styled.div`
     width: 49%;
     margin-top: 10px;
-    height:150px;
+    height:350px;
     background-color:white;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4);
+    font-size:10px;
     .pline{
         border-bottom: 1px solid #D6DCE1;
+        font-size:14px;
     }
     p{
-        font-size:14 px;
+        font-size:12 px;
         padding-top:5px;
+    }
+    .title{
+        color: purple;
+    }
+    .date{
+        margin-left:100px;
+        color: gray;
+    }
+    .show-more{
+        margin-left:340px;
+        color:#b6c0c9;
+        font-size:10px;
+    }
+    button{
+        text-align:center;
     }
 `
 export const LabResults = styled.div`
     width: 49%;
     margin-top: 10px;
     margin-left: 2%;
-    height:150px;
+    height:350px;
     background-color:white;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4);
     .pline{
         border-bottom: 1px solid #D6DCE1;
+        font-size:14px;
     }
     p{
-        font-size:14px;
+        font-size:12px;
         padding-top:5px;
+    }
+    .title{
+        color: purple;
+    }
+    .date{
+        margin-left:100px;
+        color: gray;
+    }
+    .show-more{
+        margin-left:340px;
+        font-size:10px;
+        color: #b6c0c9;
     }
 `

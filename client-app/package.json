@@ -25,6 +25,8 @@
     "framer-motion": "^4.1.2",
     "google-maps-react": "^2.0.6",
     "mdbreact": "^5.0.2",
+    "mobx": "^6.3.2",
+    "mobx-react-lite": "^3.2.0",
     "node-sass": "^6.0.0",
     "react": "^17.0.2",
     "react-bootstrap": "^1.6.0",
