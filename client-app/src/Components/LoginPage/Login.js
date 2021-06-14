@@ -3,8 +3,15 @@ import {Link} from 'react-router-dom'
 import welcomeImage from "../../assets/welcome-img.png";
 import backgroundImage from "../../assets/background-img.jpg";
 import * as s from "./Login.styles";
+import { ErrorMessage, Form, Formik } from 'formik';
+import MyTextInput from "./MyTextInput";
+import { useStore } from "../../stores/store";
+import { observer } from "mobx-react-lite";
+import { Label, Button } from "semantic-ui-react";
 
-const Login = () => {
+export default observer(function Login() {
+
+  const {userStore} = useStore();
   return (
     <s.LoginContainer>
       <img class="background-img" src={backgroundImage} alt=""></img>
@@ -27,32 +34,46 @@ const Login = () => {
               style={{ width: "80%", borderColor: "black", borderTop: "none" }}
             ></hr>
           </div>
-          <form action="">
-            <p>
-              <b>Username*</b>
-            </p>
-            <input type="username" placeholder="username"></input>
-            <p>
-              <b>Password*</b>
-            </p>
-            <input type="password" placeholder="password"></input>
-            <div class="menu-crf">
-              <input
-                class="checkbox"
-                type="checkbox"
-                style={{ width: "12px", height: "12px", marginRight: "5px" }}
-              ></input>
-              <p>remember me</p>
-              <p style={{ marginLeft: "40px" }}> forgot password?</p>
-            </div>
-            <Link to='/dashboard'>
-            <button style={{ marginTop: "25px",backgroundColor: "#A071FF",color: "white",}}>Log In</button>
-            </Link>
-          </form>
+          <Formik
+            initialValues={{email: '', password: '', error: null}} 
+            onSubmit={(values, {setErrors}) => userStore.login(values).catch(error => setErrors({error: 'Invalid email or password'}))}
+          >
+            {({handleSubmit, isSubmitting, errors})=>(
+              <Form onSubmit={handleSubmit} autoComplete='off'>
+                  <p>
+                    <b>Email*</b>
+                  </p>
+                  <MyTextInput name='email' placeholder='Email'/>
+                  <p>
+                    <b>Password*</b>
+                  </p>
+                  <MyTextInput name='password' placeholder='Password' type='password'/>
+                  <ErrorMessage
+                    name= 'error' render={()=> 
+                    <Label style={{marginBottom: 10}} basic color='red' content={errors.error}/>}
+                  />
+                  <div class="menu-crf">
+                    <input
+                      class="checkbox"
+                      type="checkbox"
+                      style={{ width: "12px", height: "12px", marginRight: "5px" }}
+                    ></input>
+                    <p>remember me</p>
+                    <p style={{ marginLeft: "40px" }}> forgot password?</p>
+                  </div>
+                  {/*<Link to='/dashboard'>*/}
+                  <Button loading={isSubmitting} content='Login' type="submit" style={{ marginTop: "25px",backgroundColor: "#A071FF",color: "white"}}/>
+                  {/*</Link>*/}
+              </Form>
+            )}
+            
+
+          </Formik>
+          
         </div>
       </div>
     </s.LoginContainer>
   );
-};
+});
 
-export default Login;
+

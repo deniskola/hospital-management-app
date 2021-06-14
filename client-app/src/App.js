@@ -3,20 +3,35 @@ import * as s from "./App.styles";
 import * as Palette from "./colors";
 import {Route} from 'react-router-dom';
 import {ToastProvider,useToasts} from "react-toast-notifications";
+import { observer } from "mobx-react-lite";
 
 // Components
 import Sidebar from "./Components/Sidebar/Sidebar";
 import MainView from "./Components/MainView/MainView";
 import Login from "./Components/LoginPage/Login";
 import { Fragment } from "react";
+import { useStore } from "./stores/store";
+import LoadingComponent from "./LoadingComponent";
 
-const App = () => {
+function App() {
+  const {commonStore, userStore} = useStore();
+
+  useEffect(() =>{
+    if(commonStore.token){
+      userStore.getUser().finally(()=> commonStore.setAppLoaded());
+    } else {
+      commonStore.setAppLoaded();
+    }
+  }, [commonStore, userStore]) 
+
+  if(!commonStore.appLoaded) return <LoadingComponent content="Loading..."/>
 
   const sidebarHeader = {
     fullName: "Hospital X",
     shortName: "X",
     }
-
+  
+  
   const menuItems = [
     {
       name: "Dashboard",
@@ -89,4 +104,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default observer(App);
