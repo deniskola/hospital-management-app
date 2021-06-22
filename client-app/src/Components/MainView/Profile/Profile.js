@@ -11,12 +11,15 @@ import { Button } from 'semantic-ui-react';
 import agent from '../../../api/agent';
 import {v4 as uuid} from 'uuid';
 import AllergiesModalForm from './Form/AllergiesModalForm';
+import { useStore } from '../../../stores/store';
 
 const Profile = () => {
    const [allergies, setAllergies]=useState([]);
    const [selectedAllergy, setSelectedAllergy]=useState(undefined);
    const [editMode, setEditMode]=useState(false);
    const [submitting, setSubmitting] = useState(false);
+   const {userStore} = useStore();
+   const {user} = userStore;
 
    useEffect(() => {
       axios.get('http://localhost:5000/API/PAllergies').then(response =>{
@@ -73,7 +76,7 @@ const Profile = () => {
         <div class="left-container">
           <p.PersonalInfo>
             <div class="first-container">
-            <p class="f-name">Full Name</p>
+            <p class="f-name">{user.displayName}</p>
             <p>Id #12345</p>
             <img src="https://www.ajaydubedi.com/wp-content/uploads/2016/06/user-add-icon.png" alt=" " width="100px" height="100px"/>
             <p>Gender</p>
@@ -84,7 +87,7 @@ const Profile = () => {
             <p>Prishtine, Kosove</p>
             <h4>CONTACT DETAILS</h4>
             <p>+383 123-456</p>
-            <p>albionaberish@gmail.com</p>
+            <p>{user.email}</p>
             <p style={{marginTop:'10px'}}><span style={{color:'purple'}}>Last visited:</span> 14 days ago</p>
             </div>
             <div class="third-container">

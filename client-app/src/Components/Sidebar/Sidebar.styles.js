@@ -16,7 +16,6 @@ export const SidebarContainer = styled.div`
 export const SidebarHeader = styled.h3`
   padding: 20px 0;
   text-align: center;
-  margin-bottom: 50px;
   letter-spacing: 6px;
   font-family: ${p => p.font}
 `
@@ -77,7 +76,6 @@ export const Icon = styled.img`
 export const TogglerContainer = styled.div`
   position: absolute;
   width: 30%;
-  bottom: 10%;
   left: 0;
   right: 0;
   margin: 0 auto;

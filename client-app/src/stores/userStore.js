@@ -44,9 +44,7 @@ export default class UserStore {
     register = async (creds) => {
         try {
             const user = await agent.Account.register(creds);
-            stores.commonStore.setToken(user.token);
             runInAction(() =>this.user = user);
-            history.push('/profile');
         } catch(error){
             throw error;
         }

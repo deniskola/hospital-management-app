@@ -7,8 +7,8 @@ import { observer } from "mobx-react-lite";
 
 
 function About() {
-  const { aboutStore } = useStore();
-  
+  const { aboutStore,userStore } = useStore();
+  const {user} = userStore;
 
   useEffect(() => {
     aboutStore.loadAbout();
@@ -19,8 +19,9 @@ function About() {
   return (
     <div>
           <div> 
-            
+            {user.role === "admin" &&
             <Button onClick={() => aboutStore.openForm()} color="black" content="+" floated="left"/>
+            }
             <AboutDash />
           </div> 
     </div>

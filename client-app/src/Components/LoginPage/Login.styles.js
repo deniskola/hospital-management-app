@@ -120,6 +120,9 @@ export const LoginContainer = styled.div`
   button:hover {
     cursor: pointer;
   }
+  input {
+    font-size: 11px;
+  }
 
   input:focus {
     outline: none;

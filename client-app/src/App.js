@@ -70,8 +70,8 @@ function App() {
       subMenuItems: [],
     },
     {
-      name: "Contact Us",
-      to: "/contacts",
+      name: "Test",
+      to: "/test",
       icon: "/icons/contactus.png",
       subMenuItems: [],
     },

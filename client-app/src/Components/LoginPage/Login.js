@@ -26,7 +26,7 @@ export default observer(function Login() {
           <img src={welcomeImage} alt=""></img>
         </div>
         <div class="login-form">
-          <div class="logo"></div>
+          
           <div class="login-header">
             <h3>Login</h3>
             <p>Login to your account</p>

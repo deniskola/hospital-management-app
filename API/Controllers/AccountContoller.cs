@@ -60,14 +60,20 @@ namespace API.Controllers
             {
                 DisplayName = registerDto.DisplayName,
                 Email = registerDto.Email,
-                UserName = registerDto.Username
+                UserName = registerDto.Username,
+                Role = registerDto.Role
             };
 
             var result = await _userManager.CreateAsync(user, registerDto.Password);
 
             if (result.Succeeded)
             {
-                return CreateUserObject(user);
+                return new UserDto
+                {
+                    DisplayName = user.DisplayName,
+                    Image = null,
+                    Username = user.UserName
+                };
             }
 
             return BadRequest("Problem registering user");
@@ -75,11 +81,18 @@ namespace API.Controllers
 
         [Authorize]
         [HttpGet]
-        public async Task<ActionResult<UserDto>> GetCurrentUser()
+        public async Task<ActionResult<RUserDto>> GetCurrentUser()
         {
             var user = await _userManager.FindByEmailAsync(User.FindFirstValue(ClaimTypes.Email));
 
-            return CreateUserObject(user);
+            return new RUserDto
+            {
+                DisplayName = user.DisplayName,
+                Image = null,
+                Role = user.Role,
+                Email = user.Email,
+                Username = user.UserName
+            };
         }
 
         private UserDto CreateUserObject(AppUser user)

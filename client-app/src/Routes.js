@@ -8,7 +8,7 @@ import Activity from './Components/MainView/Activity/Activity';
 import Appointments from './Components/MainView/Appointments/Appointments';
 import About from './Components/MainView/About/About';
 import Services from './Components/MainView/Services/Services';
-import Contacts from './Components/MainView/Contacts/Contacts';
+import Test from './Components/MainView/Test/Test';
 import Profile from './Components/MainView/Profile/Profile';
 
 
@@ -24,7 +24,7 @@ const Routes = () => {
     <Route exact path='/about' component={About} />
     <Route exact path='/profile' component={Profile}/>
     <Route exact path='/services' component={Services} />
-    <Route exact path='/contacts' component={Contacts} />
+    <Route exact path='/test' component={Test} />
   </Switch>
   )
 }
