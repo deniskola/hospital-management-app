@@ -16,8 +16,7 @@ namespace Persistence
         public DbSet<AboutUs> SAboutUs { get; set; }
         public DbSet<AddAppointment> Appointments { get; set; }
         public DbSet<Activity> Activities { get; set; }
-
-
-
+        public DbSet<Doctor> Doctors{get;set;}
+        public DbSet<Patient> Patients{get;set;}
     }
 }

@@ -21,7 +21,6 @@ namespace API.Controllers
         public AccountController(UserManager<AppUser> userManager,
         SignInManager<AppUser> signInManager, TokenService tokenService)
         {
-
             _signInManager = signInManager;
             _userManager = userManager;
             _tokenService = tokenService;
@@ -62,6 +61,7 @@ namespace API.Controllers
                 Email = registerDto.Email,
                 UserName = registerDto.Username,
                 Role = registerDto.Role
+
             };
 
             var result = await _userManager.CreateAsync(user, registerDto.Password);
@@ -93,8 +93,8 @@ namespace API.Controllers
                 Email = user.Email,
                 Username = user.UserName
             };
-        }
 
+		}
         private UserDto CreateUserObject(AppUser user)
         {
             return new UserDto
