@@ -94,10 +94,12 @@ export const LoginContainer = styled.div`
     border-radius: 50px;
     border: none;
     padding-left: 20px;
+    font-size: 12px;
+    border-radius: 50px !important;
   }
 
   button {
-    border-radius: 50px;
+    border-radius: 50px !important;
     width: 250px;
     height: 40px;
     border: none;
@@ -119,9 +121,6 @@ export const LoginContainer = styled.div`
   .checkbox:hover,
   button:hover {
     cursor: pointer;
-  }
-  input {
-    font-size: 11px;
   }
 
   input:focus {

@@ -1,12 +1,12 @@
-import React, { useState } from "react";
-import { Form, Segment, Button } from "semantic-ui-react";
-import { useStore } from "../../../../stores/store";
-import { observer } from "mobx-react-lite";
+import React, {useState} from "react";
+import {Form, Segment, Button} from "semantic-ui-react";
+import {useStore} from "../../../../stores/store";
+import {observer} from "mobx-react-lite";
 
 export default observer(function AboutForm() {
-
   const {aboutStore} = useStore();
-  const {selectedAbout, closeForm, createAbout, updateAbout, loading} = aboutStore;
+  const {selectedAbout, closeForm, createAbout, updateAbout, loading} =
+    aboutStore;
   const initialState = selectedAbout ?? {
     id: "",
     title: "",
@@ -20,12 +20,12 @@ export default observer(function AboutForm() {
   }
 
   function handleInputChange(event) {
-    const { name, value } = event.target;
-    setAbout({ ...ab, [name]: value });
+    const {name, value} = event.target;
+    setAbout({...ab, [name]: value});
   }
 
   return (
-    <Segment clearing>
+    <Segment clearing style={{position: "fixed"}}>
       <Form onSubmit={handleSubmit} autoComplete="off">
         <Form.Input
           placeholder="Title"
@@ -55,4 +55,4 @@ export default observer(function AboutForm() {
       </Form>
     </Segment>
   );
-})
+});

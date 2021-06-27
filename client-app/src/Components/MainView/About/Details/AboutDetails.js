@@ -1,15 +1,15 @@
 import React from "react";
-import { Button, Card } from "semantic-ui-react";
+import {Button, Card} from "semantic-ui-react";
 import LoadingComponent from "../../../../LoadingComponent";
-import { useStore } from "../../../../stores/store";
+import {useStore} from "../../../../stores/store";
 
 export default function AboutDetails() {
-  const {aboutStore} =useStore();
+  const {aboutStore} = useStore();
   const {selectedAbout: ab, openForm, cancelSelectedAbout} = aboutStore;
 
-  if(!ab) return <LoadingComponent/> ;
+  if (!ab) return <LoadingComponent />;
   return (
-    <Card fluid>
+    <Card fluid style={{position: "fixed", width: "18%"}}>
       <Card.Content>
         <Card.Header>{ab.title}</Card.Header>
         <Card.Description>{ab.description}</Card.Description>

@@ -57,11 +57,13 @@ namespace API.Controllers
 
             var user = new AppUser
             {
-                DisplayName = registerDto.DisplayName,
+                FirstName = registerDto.FirstName,
+                LastName = registerDto.LastName,
                 Email = registerDto.Email,
                 UserName = registerDto.Username,
-                Role = registerDto.Role
-
+                Role = registerDto.Role,
+                Gender = registerDto.Gender,
+                DateOfBirth = registerDto.DateOfBirth
             };
 
             var result = await _userManager.CreateAsync(user, registerDto.Password);
@@ -70,7 +72,6 @@ namespace API.Controllers
             {
                 return new UserDto
                 {
-                    DisplayName = user.DisplayName,
                     Image = null,
                     Username = user.UserName
                 };
@@ -81,25 +82,17 @@ namespace API.Controllers
 
         [Authorize]
         [HttpGet]
-        public async Task<ActionResult<RUserDto>> GetCurrentUser()
+        public async Task<ActionResult<AppUser>> GetCurrentUser()
         {
             var user = await _userManager.FindByEmailAsync(User.FindFirstValue(ClaimTypes.Email));
 
-            return new RUserDto
-            {
-                DisplayName = user.DisplayName,
-                Image = null,
-                Role = user.Role,
-                Email = user.Email,
-                Username = user.UserName
-            };
+            return user;
 
-		}
+        }
         private UserDto CreateUserObject(AppUser user)
         {
             return new UserDto
             {
-                DisplayName = user.DisplayName,
                 Image = null,
                 Token = _tokenService.CreateToken(user),
                 Username = user.UserName

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { stores } from '../stores/store'
+import { stores } from "../stores/store";
 
 const sleep = (delay) => {
   return new Promise((resolve) => {
@@ -9,18 +9,18 @@ const sleep = (delay) => {
 
 axios.defaults.baseURL = "http://localhost:5000/api";
 
-axios.interceptors.request.use(config => {
+axios.interceptors.request.use((config) => {
   const token = stores.commonStore.token;
-  if(token) config.headers.Authorization = `Bearer ${token}`
+  if (token) config.headers.Authorization = `Bearer ${token}`;
   return config;
-})
+});
 
 axios.interceptors.response.use(async (response) => {
   try {
     await sleep(1000);
     return response;
   } catch (error) {
-    console.log(error); 
+    console.log(error);
     return await Promise.reject(error);
   }
 });
@@ -47,28 +47,37 @@ const ProfileA = {
   details: (id) => requests.get(`/allergies/${id}`),
   create: (allergy) => axios.post(`/allergies`, allergy),
   update: (allergy) => axios.put(`/allergies/${allergy.id}`, allergy),
-  delete: (id) => axios.delete(`/allergies/${id}`)
+  delete: (id) => axios.delete(`/allergies/${id}`),
 };
 
 const Appointments = {
-  table: () => requests.get('/appointments'),
+  table: () => requests.get("/appointments"),
   details: (id) => requests.get(`/appointments/${id}`),
-  create: (appointment) => axios.post('/appointments',appointment),
-  update: (appointment) => axios.put(`/appointments/${appointment.id}`,appointment),
-  delete: (id) => axios.delete(`/appointments/${id}`)
+  create: (appointment) => axios.post("/appointments", appointment),
+  update: (appointment) =>
+    axios.put(`/appointments/${appointment.id}`, appointment),
+  delete: (id) => axios.delete(`/appointments/${id}`),
 };
 
 const Account = {
-  current: () =>  requests.get('/account'),
-  login: (user) => requests.post('/account/login', user),
-  register: (user) => requests.post('/account/register', user)
-}
+  current: () => requests.get("/account"),
+  login: (user) => requests.post("/account/login", user),
+  register: (user) => requests.post("/account/register", user),
+};
+
+const Users = {
+  list: () => requests.get("/user"),
+  update: (user) => axios.put(`/user/${user.id}`, user),
+  delete: (id) => axios.delete(`/user/${id}`),
+  details: (id) => requests.get(`/user/${id}`),
+};
 
 const agent = {
   Abouts,
   Appointments,
   ProfileA,
-  Account
+  Account,
+  Users,
 };
 
 export default agent;
