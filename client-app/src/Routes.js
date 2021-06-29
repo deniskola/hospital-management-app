@@ -10,13 +10,14 @@ import About from './Components/MainView/About/About';
 import Services from './Components/MainView/Services/Services';
 import Test from './Components/MainView/Test/Test';
 import Profile from './Components/MainView/Profile/Profile';
+import HRmanagerDoctor from './Components/MainView/HRmanager/Doctor';
+import HRmanagerPatient from './Components/MainView/HRmanager/Patient';
 
 
 const Routes = () => {
   return (
     <Switch>
     <Route exact path='/' component={Login}/>
-    
 
     <Route exact path='/dashboard' component={Dashboard} />
     <Route exact path='/activity' component={Activity} />
@@ -25,6 +26,9 @@ const Routes = () => {
     <Route exact path='/profile' component={Profile}/>
     <Route exact path='/services' component={Services} />
     <Route exact path='/test' component={Test} />
+    <Route exact path='/hrmanageraddDoctor' component={HRmanagerDoctor}/>
+    <Route exact path='/hrmanageraddPatient' component={HRmanagerPatient}/>
+
   </Switch>
   )
 }

@@ -70,8 +70,32 @@ export const Icon = styled.img`
   height: 16px;
   width: 16px;
 `
+export const SubMenuItemContainer=styled.div`
+    font-size:14px;
+    ${p=>p.isSideBarOpen && 'padding-left:15%'};
+    ${p=>!p.isSideBarOpen && 'text-align:center'};
+`;
 
+export const subMenuItem=styled.p`
+    color:${p=>p.selected?p.colorPalette.fontColorSelected:p.colorPalette.fontColor};
+    ${p=>p.selected && 'font-weight:bold; letter-spacing:2px;'};
+    transition:.2s;
 
+    &:hover{
+      color:${p=>p.colorPalette.fontColorSelected}
+    }
+`;
+
+export const DropdownIcon=styled.span`
+    position:absolute;
+    top:${p=>p.isOpen?'16px':'12px'};
+    right:24px;
+    border: solid ${p=>p.selected?p.colorPalette.fontColorSelected :p.colorPalette.fontColor};
+    border-width:0 1px 1px 0;
+    padding:3px;
+    transform:${p=>p.isOpen?'rotate(-135deg)':'rotate(45deg)'};
+    transition:.4s;
+`;
 
 export const TogglerContainer = styled.div`
   position: absolute;

@@ -101,7 +101,7 @@ const Dashboard=({classes,...props})=>{
 }
 
 const mapStateToProps=state=>({
-  dReminderList:state.dReminder.list
+  dReminderList:state.dReminders.list
 })
 
 const mapActionToProps = {

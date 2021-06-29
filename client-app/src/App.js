@@ -70,6 +70,15 @@ function App() {
       subMenuItems: [],
     },
     {
+      name: "HR Manager",
+      to: "/hrmanager",
+      icon: "/icons/services.png",
+      subMenuItems: [
+        {name:'Add Doctor',to:'addDoctor'},
+        {name:'Add Patient',to:'addPatient'}
+      ],
+    },
+    {
       name: "Test",
       to: "/test",
       icon: "/icons/contactus.png",

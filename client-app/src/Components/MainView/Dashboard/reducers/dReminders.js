@@ -1,10 +1,10 @@
 import { ACTION_TYPES } from "../actions/dReminder";
+
 const initialState = {
     list: []
 }
 
-
-export const dReminder = (state = initialState, action) => {
+export const dReminders = (state = initialState, action) => {//what if we replace the dReminders with only reducer and then make it reusable for patient and doctor too the same fvckin file
 
     switch (action.type) {
         case ACTION_TYPES.FETCH_ALL:

@@ -64,11 +64,20 @@ const Account = {
   register: (user) => requests.post('/account/register', user)
 }
 
+const HrDoctor={
+  list: () => requests.get('/doctor'),
+  details: (id) => requests.get(`/doctor/${id}`),
+  create: (appointment) => axios.post('/doctor',appointment),
+  update: (appointment) => axios.put(`/doctor/${appointment.id}`,appointment),
+  delete: (id) => axios.delete(`/doctor/${id}`)
+}
+
 const agent = {
   Abouts,
   Appointments,
   ProfileA,
-  Account
+  Account,
+  HrDoctor,
 };
 
 export default agent;
