@@ -3,7 +3,7 @@ import bodyHeight from "./bodyHeight.PNG";
 import AllergiesIcon from "./AllergiesIcon.png";
 import bloodP from "./bloodP.PNG";
 import history from "./history.PNG";
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState} from "react";
 import {
   ButtonGroup,
   Table,
@@ -13,20 +13,20 @@ import {
   TableHead,
 } from "@material-ui/core";
 import axios from "axios";
-import { Button } from "semantic-ui-react";
+import {Button} from "semantic-ui-react";
 //import AllergiesDashboard from './ProfileDashboard/AllergiesDashboard';
 import agent from "../../../api/agent";
-import { v4 as uuid } from "uuid";
+import {v4 as uuid} from "uuid";
 import AllergiesModalForm from "./Form/AllergiesModalForm";
-import { useStore } from "../../../stores/store";
+import {useStore} from "../../../stores/store";
 
 const Profile = () => {
   const [allergies, setAllergies] = useState([]);
   const [selectedAllergy, setSelectedAllergy] = useState(undefined);
   const [editMode, setEditMode] = useState(false);
   const [submitting, setSubmitting] = useState(false);
-  const { userStore } = useStore();
-  const { user } = userStore;
+  const {userStore} = useStore();
+  const {user} = userStore;
 
   useEffect(() => {
     axios.get("http://localhost:5000/API/PAllergies").then((response) => {
@@ -100,11 +100,10 @@ const Profile = () => {
               <p>Leke Dukagjini, 03 L5, Dardani</p>
               <p>Prishtine, Kosove</p>
               <h4>CONTACT DETAILS</h4>
-              <p>+383 123-456</p>
+              <p>{user.phoneNumber}</p>
               <p>{user.email}</p>
-              <p style={{ marginTop: "10px" }}>
-                <span style={{ color: "purple" }}>Last visited:</span> 14 days
-                ago
+              <p style={{marginTop: "10px"}}>
+                <span style={{color: "purple"}}>Last visited:</span> 14 days ago
               </p>
             </div>
             <div class="third-container">
@@ -180,13 +179,13 @@ const Profile = () => {
               <img
                 src={AllergiesIcon}
                 alt="logo"
-                style={{ marginTop: "5px", marginLeft: "5px" }}
+                style={{marginTop: "5px", marginLeft: "5px"}}
               />
               <p>
                 <b>Allergies</b>
                 <i class="angle down icon"></i>
               </p>
-              <Button basic color="purple" style={{ marginLeft: "70%" }}>
+              <Button basic color="purple" style={{marginLeft: "70%"}}>
                 + Add Allergy
               </Button>
             </div>
@@ -234,7 +233,7 @@ const Profile = () => {
                 <TableRow>
                   <TableCell>
                     <Button color="purple">New</Button>
-                    <p style={{ fontSize: "10px", marginLeft: "10px" }}>
+                    <p style={{fontSize: "10px", marginLeft: "10px"}}>
                       24/05/2021
                     </p>
                   </TableCell>
@@ -252,7 +251,7 @@ const Profile = () => {
                 <TableRow>
                   <TableCell>
                     <Button color="purple">New</Button>
-                    <p style={{ fontSize: "10px", marginLeft: "10px" }}>
+                    <p style={{fontSize: "10px", marginLeft: "10px"}}>
                       24/05/2021
                     </p>
                   </TableCell>
@@ -270,7 +269,7 @@ const Profile = () => {
                 <TableRow>
                   <TableCell>
                     <Button color="purple">New</Button>
-                    <p style={{ fontSize: "10px", marginLeft: "10px" }}>
+                    <p style={{fontSize: "10px", marginLeft: "10px"}}>
                       24/05/2021
                     </p>
                   </TableCell>
@@ -312,13 +311,13 @@ const Profile = () => {
                   </p>
                   <p class="date">
                     Date of procedure:
-                    <span style={{ color: "black" }}>
+                    <span style={{color: "black"}}>
                       <b> 20/05/2021</b>
                     </span>
                   </p>
                   <p class="date">
                     Location on body:
-                    <span style={{ color: "black" }}>
+                    <span style={{color: "black"}}>
                       <b> chest</b>
                     </span>
                   </p>
@@ -328,7 +327,7 @@ const Profile = () => {
                 <TableCell>
                   <Button
                     color="purple"
-                    style={{ borderRadius: "50%", width: "20px" }}
+                    style={{borderRadius: "50%", width: "20px"}}
                   >
                     {" "}
                     2{" "}
@@ -340,13 +339,13 @@ const Profile = () => {
                   </p>
                   <p class="date">
                     Date of procedure:{" "}
-                    <span style={{ color: "black" }}>
+                    <span style={{color: "black"}}>
                       <b> 01/05/2021</b>
                     </span>
                   </p>
                   <p class="date">
                     Location on body:
-                    <span style={{ color: "black" }}>
+                    <span style={{color: "black"}}>
                       <b> arm</b>
                     </span>
                   </p>
@@ -356,7 +355,7 @@ const Profile = () => {
                 <TableCell>
                   <Button
                     color="purple"
-                    style={{ borderRadius: "50%", width: "20px" }}
+                    style={{borderRadius: "50%", width: "20px"}}
                   >
                     {" "}
                     3{" "}
@@ -368,13 +367,13 @@ const Profile = () => {
                   </p>
                   <p class="date">
                     Date of procedure:{" "}
-                    <span style={{ color: "black" }}>
+                    <span style={{color: "black"}}>
                       <b> 13/04/2021</b>
                     </span>
                   </p>
                   <p class="date">
                     Location on body:
-                    <span style={{ color: "black" }}>
+                    <span style={{color: "black"}}>
                       <b> arm</b>
                     </span>
                   </p>
@@ -394,13 +393,13 @@ const Profile = () => {
                   </p>
                   <p class="date">
                     Date of procedure:{" "}
-                    <span style={{ color: "black" }}>
+                    <span style={{color: "black"}}>
                       <b> 20/05/2021</b>
                     </span>
                   </p>
                   <p class="date">
                     Location on body:{" "}
-                    <span style={{ color: "black" }}>
+                    <span style={{color: "black"}}>
                       <b> chest</b>
                     </span>
                   </p>
@@ -413,13 +412,13 @@ const Profile = () => {
                   </p>
                   <p class="date">
                     Date of procedure:{" "}
-                    <span style={{ color: "black" }}>
+                    <span style={{color: "black"}}>
                       <b> 01/05/2021</b>
                     </span>
                   </p>
                   <p class="date">
                     Location on body:{" "}
-                    <span style={{ color: "black" }}>
+                    <span style={{color: "black"}}>
                       <b> arm</b>
                     </span>
                   </p>
@@ -432,13 +431,13 @@ const Profile = () => {
                   </p>
                   <p class="date">
                     Date of procedure:{" "}
-                    <span style={{ color: "black" }}>
+                    <span style={{color: "black"}}>
                       <b> 13/03/2021</b>
                     </span>
                   </p>
                   <p class="date">
                     Location on body:{" "}
-                    <span style={{ color: "black" }}>
+                    <span style={{color: "black"}}>
                       <b> arm </b>
                     </span>
                   </p>

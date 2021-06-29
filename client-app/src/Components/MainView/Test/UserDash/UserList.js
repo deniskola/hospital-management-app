@@ -1,11 +1,11 @@
-import React, { useState } from "react";
-import { Button, Item, Segment, Grid } from "semantic-ui-react";
-import { useStore } from "../../../../stores/store";
-import { observer } from "mobx-react-lite";
+import React, {useState} from "react";
+import {Button, Item, Segment, Grid} from "semantic-ui-react";
+import {useStore} from "../../../../stores/store";
+import {observer} from "mobx-react-lite";
 
-export default observer(function UserList() {
-  const { userStore } = useStore();
-  const { deleteUser, userByUsername, loading } = userStore;
+export default observer(function UserList(props) {
+  const {userStore} = useStore();
+  const {deleteUser, userByUsername, loading} = userStore;
   const [target, setTarget] = useState("");
 
   function handleUserDelete(e, id) {
@@ -17,14 +17,14 @@ export default observer(function UserList() {
     <Segment>
       <Item.Group divided>
         {userByUsername
-          .filter((users) => users.role === "admin")
+          .filter((users) => users.role === props.roleName)
           .map((user) => (
             <Item key={user.id}>
               <Item.Content>
-                <Item.Header style={{ width: "100%", textAlign: "left" }}>
+                <Item.Header style={{width: "100%", textAlign: "left"}}>
                   {user.firstName} {user.lastName}
                 </Item.Header>
-                <Item.Description style={{ width: "100%", textAlign: "left" }}>
+                <Item.Description style={{width: "100%", textAlign: "left"}}>
                   {user.email}
                 </Item.Description>
 

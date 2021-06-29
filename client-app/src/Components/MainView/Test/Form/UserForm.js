@@ -1,19 +1,19 @@
-import React, { useState } from "react";
-import { Form, Segment, Button } from "semantic-ui-react";
-import { useStore } from "../../../../stores/store";
-import { observer } from "mobx-react-lite";
+import React, {useState} from "react";
+import {Form, Segment, Button} from "semantic-ui-react";
+import {useStore} from "../../../../stores/store";
+import {observer} from "mobx-react-lite";
 
 export default observer(function UserForm() {
-  const { userStore } = useStore();
-  const { selectedUser, closeForm, updateUser, loading } = userStore;
+  const {userStore} = useStore();
+  const {selectedUser, closeForm, updateUser, loading} = userStore;
   const initialState = selectedUser ?? {
     id: "",
     firstName: "",
     lastName: "",
     dateOfBirth: "",
     gender: "",
-    userName: "",
     email: "",
+    phoneNumber: "",
   };
 
   const [user, setUser] = useState(initialState);
@@ -23,14 +23,14 @@ export default observer(function UserForm() {
   }
 
   function handleInputChange(event) {
-    const { name, value } = event.target;
-    setUser({ ...user, [name]: value });
+    const {name, value} = event.target;
+    setUser({...user, [name]: value});
   }
 
   return (
-    <Segment clearing style={{ position: "fixed" }}>
+    <Segment clearing style={{position: "fixed"}}>
       <Form
-        style={{ textAlign: "left" }}
+        style={{textAlign: "left"}}
         onSubmit={handleSubmit}
         autoComplete="off"
       >
@@ -62,11 +62,11 @@ export default observer(function UserForm() {
           name="gender"
           onChange={handleInputChange}
         />
-        <label>Username</label>
+        <label>Phone Number</label>
         <Form.Input
-          placeholder="Username"
-          value={user.userName}
-          name="userName"
+          placeholder="Phone Number"
+          value={user.phoneNumber}
+          name="phoneNumber"
           onChange={handleInputChange}
         />
 

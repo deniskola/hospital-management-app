@@ -1,56 +1,82 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { ErrorMessage, Form, Formik } from "formik";
+import {Link} from "react-router-dom";
+import {ErrorMessage, Form, Formik} from "formik";
 import MyTextInput from "../../FormInputs/MyTextInput";
 import MySelectInput from "../../FormInputs/MySelectInput";
 import MyDateInput from "../../FormInputs/MyDatePicker";
-import { useStore } from "../../../stores/store";
-import { observer } from "mobx-react-lite";
-import { Label, Button, Segment, Header, Radio } from "semantic-ui-react";
+import {useStore} from "../../../stores/store";
+import {observer} from "mobx-react-lite";
+import {Label, Button, Segment, Header, Radio} from "semantic-ui-react";
 
-export default observer(function Test() {
-  const { userStore } = useStore();
+export default observer(function RegisterForm() {
+  const {userStore} = useStore();
+
+  const roleOptions = [
+    {text: "Admin", value: "admin"},
+    {text: "SuperAdmin", value: "superadmin"},
+    {text: "Receptionist", value: "receptionist"},
+  ];
+  const options = [{text: "Hey", value: "hey"}];
 
   const genderOptions = [
-    { text: "Male", value: "male" },
-    { text: "Female", value: "female" },
+    {text: "Male", value: "male"},
+    {text: "Female", value: "female"},
   ];
 
+  const initialValues = {
+    firstName: "",
+    lastName: "",
+    username: "",
+    email: "",
+    password: "",
+    gender: "",
+    dateOfBirth: "",
+    phoneNumber: "",
+    role: "",
+    error: null,
+  };
+
   return (
-    <Segment clearing style={{ position: "fixed" }}>
+    <Segment clearing>
       <div>
-        <Header>Register a new Admin</Header>
+        <p>Register a new User</p>
 
         <Formik
-          initialValues={{
-            firstName: "",
-            lastName: "",
-            username: "",
-            email: "",
-            password: "",
-            gender: "",
-            dateOfBirth: "",
-            role: "admin",
-            error: null,
-          }}
-          onSubmit={(values, { setErrors }) =>
+          initialValues={initialValues}
+          onSubmit={(values, {setErrors}) =>
             userStore
               .register(values)
-              .catch((error) => setErrors({ error: "Invalid input!" }))
+              .catch((error) => setErrors({error: "Invalid input!"}))
           }
         >
-          {({ handleSubmit, isSubmitting, errors }) => (
+          {({handleSubmit, isSubmitting, errors}) => (
             <Form onSubmit={handleSubmit} autoComplete="off">
               <MyTextInput
-                style={{ marginBottom: "20px" }}
+                style={{marginBottom: "10px"}}
                 name="firstName"
                 placeholder="Firstname"
               />
 
               <MyTextInput
-                style={{ marginBottom: "20px" }}
+                style={{marginBottom: "10px"}}
                 name="lastName"
                 placeholder="Lastname"
+              />
+              <MyTextInput
+                style={{marginBottom: "10px"}}
+                name="username"
+                placeholder="Username"
+              />
+
+              <MyTextInput
+                style={{marginBottom: "10px"}}
+                name="email"
+                placeholder="Email"
+              />
+              <MyTextInput
+                style={{marginBottom: "10px"}}
+                name="phoneNumber"
+                placeholder="Phone Number"
               />
 
               <MyDateInput
@@ -68,30 +94,19 @@ export default observer(function Test() {
                 options={genderOptions}
               />
 
-              <MyTextInput
-                style={{ marginBottom: "20px" }}
-                name="username"
-                placeholder="Username"
+              <MySelectInput
+                name="role"
+                placeholder="Role"
+                options={roleOptions}
               />
 
               <MyTextInput
-                style={{ marginBottom: "20px" }}
-                name="email"
-                placeholder="Email"
-              />
-
-              <MyTextInput
-                style={{ marginBottom: "20px" }}
+                style={{marginBottom: "10px"}}
                 name="password"
                 placeholder="Password"
                 type="password"
               />
 
-              <MyTextInput
-                style={{ display: "none" }}
-                name="role"
-                placeholder="Role"
-              />
               <ErrorMessage
                 name="error"
                 render={() => (
