@@ -13,5 +13,6 @@ namespace Domain
         public string Specialist{get;set;}
         public string BloodGroup{get;set;}
         public string Degree{get;set;}
+        public virtual DeathRaport DeathRaport{get;set;}
     }
 }
