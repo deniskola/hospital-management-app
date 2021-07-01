@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {Button, Item, Segment, Grid} from "semantic-ui-react";
-import {useStore} from "../../../../stores/store";
+import {useStore} from "../../../../../stores/store";
 import {observer} from "mobx-react-lite";
 
 export default observer(function UserList(props) {

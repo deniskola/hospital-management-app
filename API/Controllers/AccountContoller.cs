@@ -64,7 +64,8 @@ namespace API.Controllers
                 Role = registerDto.Role,
                 Gender = registerDto.Gender,
                 DateOfBirth = registerDto.DateOfBirth,
-                PhoneNumber = registerDto.PhoneNumber
+                PhoneNumber = registerDto.PhoneNumber,
+                Country = registerDto.Country
             };
 
             var result = await _userManager.CreateAsync(user, registerDto.Password);

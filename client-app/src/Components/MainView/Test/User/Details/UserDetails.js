@@ -1,7 +1,7 @@
 import React from "react";
 import {Button, Item, Segment} from "semantic-ui-react";
-import LoadingComponent from "../../../../LoadingComponent";
-import {useStore} from "../../../../stores/store";
+import LoadingComponent from "../../../../../LoadingComponent";
+import {useStore} from "../../../../../stores/store";
 
 export default function UserDetails() {
   const {userStore} = useStore();

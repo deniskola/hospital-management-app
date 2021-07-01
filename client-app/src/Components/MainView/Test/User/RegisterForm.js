@@ -1,27 +1,28 @@
 import React from "react";
 import {Link} from "react-router-dom";
 import {ErrorMessage, Form, Formik} from "formik";
-import MyTextInput from "../../FormInputs/MyTextInput";
-import MySelectInput from "../../FormInputs/MySelectInput";
-import MyDateInput from "../../FormInputs/MyDatePicker";
-import {useStore} from "../../../stores/store";
+import MyTextInput from "../../../FormInputs/MyTextInput";
+import MySelectInput from "../../../FormInputs/MySelectInput";
+import MyDateInput from "../../../FormInputs/MyDatePicker";
+import {useStore} from "../../../../stores/store";
 import {observer} from "mobx-react-lite";
 import {Label, Button, Segment, Header, Radio} from "semantic-ui-react";
 
 export default observer(function RegisterForm() {
-  const {userStore} = useStore();
+  const {userStore, countryStore} = useStore();
 
   const roleOptions = [
     {text: "Admin", value: "admin"},
     {text: "SuperAdmin", value: "superadmin"},
     {text: "Receptionist", value: "receptionist"},
   ];
-  const options = [{text: "Hey", value: "hey"}];
 
   const genderOptions = [
     {text: "Male", value: "male"},
     {text: "Female", value: "female"},
   ];
+
+  const countryOptions = countryStore.countryByName;
 
   const initialValues = {
     firstName: "",
@@ -33,6 +34,7 @@ export default observer(function RegisterForm() {
     dateOfBirth: "",
     phoneNumber: "",
     role: "",
+    country: "",
     error: null,
   };
 
@@ -86,6 +88,12 @@ export default observer(function RegisterForm() {
                 timeCaption="time"
                 type="date"
                 dateFormat="MMMM d, yyyy "
+              />
+
+              <MySelectInput
+                name="country"
+                placeholder="Country"
+                options={countryOptions}
               />
 
               <MySelectInput

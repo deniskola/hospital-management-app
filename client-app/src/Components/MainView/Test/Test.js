@@ -1,14 +1,15 @@
 import React, {useEffect} from "react";
-import UserDash from "./UserDash/UserDash";
-import {Button, Tab, Grid} from "semantic-ui-react";
+import UserDash from "./User/UserDash/UserDash";
+import {Button, Tab, Grid, Divider} from "semantic-ui-react";
 import {useStore} from "../../../stores/store";
 import {observer} from "mobx-react-lite";
-import RegisterForm from "./RegisterForm";
+import RegisterForm from "./User/RegisterForm";
+import CountryDash from "./Country/CountryDash/CountryDash";
 
 //import LoadingComponent from "../../../LoadingComponent";
 
 function Test() {
-  const {userStore} = useStore();
+  const {userStore, countryStore} = useStore();
   const userRoles = [
     {
       roleNr: 0,
@@ -59,6 +60,28 @@ function Test() {
     },
   ];
 
+  const panes2 = [
+    {
+      menuItem: "Countries",
+      render: () => (
+        <Tab.Pane style={{height: "85vh", overflowY: "auto"}}>
+          <CountryDash />
+        </Tab.Pane>
+      ),
+    },
+    {
+      menuItem: "Cities",
+      render: () => (
+        <Tab.Pane style={{height: "85vh", overflowY: "auto"}}>
+          Tab 2 Content
+        </Tab.Pane>
+      ),
+    },
+  ];
+  useEffect(() => {
+    countryStore.loadCountry();
+  }, [countryStore]);
+
   useEffect(() => {
     userStore.loadUser();
   }, [userStore]);
@@ -68,12 +91,23 @@ function Test() {
   return (
     <div>
       <Grid>
-        <Grid.Column width="5">
-          <RegisterForm />
-        </Grid.Column>
-        <Grid.Column width="11">
-          <Tab panes={panes} />
-        </Grid.Column>
+        <Grid.Row>
+          <Grid.Column width="5">
+            <RegisterForm />
+          </Grid.Column>
+          <Grid.Column width="11">
+            <Tab menu={{secondary: true, pointing: true}} panes={panes} />
+          </Grid.Column>
+        </Grid.Row>
+        <Divider />
+        <Grid.Row>
+          <Grid.Column width="16">
+            <Tab
+              menu={{fluid: true, vertical: true, tabular: true}}
+              panes={panes2}
+            />
+          </Grid.Column>
+        </Grid.Row>
       </Grid>
     </div>
   );

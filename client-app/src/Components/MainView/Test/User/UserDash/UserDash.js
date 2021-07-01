@@ -3,7 +3,7 @@ import {Grid, List} from "semantic-ui-react";
 import UserDetails from "../Details/UserDetails";
 import UserList from "./UserList";
 import UserForm from "../Form/UserForm";
-import {useStore} from "../../../../stores/store";
+import {useStore} from "../../../../../stores/store";
 import {observer} from "mobx-react-lite";
 import RegisterForm from "../RegisterForm";
 

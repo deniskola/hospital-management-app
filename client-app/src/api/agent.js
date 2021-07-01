@@ -80,6 +80,14 @@ const HrDoctor = {
   delete: (id) => axios.delete(`/doctor/${id}`),
 };
 
+const Countries = {
+  list: () => requests.get("/countries"),
+  details: (id) => requests.get(`/countries/${id}`),
+  create: (country) => axios.post("/countries", country),
+  update: (country) => axios.put(`/countries/${country.id}`, country),
+  delete: (id) => axios.delete(`/countries/${id}`),
+};
+
 const agent = {
   Abouts,
   Appointments,
@@ -87,6 +95,7 @@ const agent = {
   Account,
   Users,
   HrDoctor,
+  Countries,
 };
 
 export default agent;
