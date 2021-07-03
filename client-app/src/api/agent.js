@@ -50,37 +50,37 @@ const PAllergy = {
   delete: (id) => axios.delete(`/PAllergies/${id}`),
 };
 
-const BodyInfos ={
-  list : () => requests.get("/BodyInfos"),
+const BodyInfos = {
+  list: () => requests.get("/BodyInfos"),
   details: (id) => requests.get(`/BodyInfos/${id}`),
   create: (bodyinfo) => axios.post(`/BodyInfos`, bodyinfo),
   update: (bodyinfo) => axios.put(`/BodyInfos/${bodyinfo.id}`, bodyinfo),
   delete: (id) => axios.delete(`/BodyInfos/${id}`),
 };
 
-const PatientHistories ={
-  list : () => requests.get("/PatientHistory"),
+const PatientHistories = {
+  list: () => requests.get("/PatientHistory"),
   details: (id) => requests.get(`/PatientHistory/${id}`),
   create: (patientHistory) => axios.post(`/PatientHistory`, patientHistory),
-  update: (patientHistory) => axios.put(`/PatientHistory/${patientHistory.id}`, patientHistory),
+  update: (patientHistory) =>
+    axios.put(`/PatientHistory/${patientHistory.id}`, patientHistory),
   delete: (id) => axios.delete(`/PatientHistory/${id}`),
 };
 
-const LabTests ={
-  list : () => requests.get("/LabTests"),
+const LabTests = {
+  list: () => requests.get("/LabTests"),
   details: (id) => requests.get(`/LabTests/${id}`),
   create: (labtest) => axios.post(`/LabTests`, labtest),
   update: (labtest) => axios.put(`/LabTests/${labtest.id}`, labtest),
   delete: (id) => axios.delete(`/LabTests/${id}`),
 };
 
-const Procedures ={
-  list : () => requests.get("/Procedures"),
+const Procedures = {
+  list: () => requests.get("/Procedures"),
   details: (id) => requests.get(`/Procedures/${id}`),
   create: (procedure) => axios.post(`/Procedures`, procedure),
   update: (procedure) => axios.put(`/Procedures/${procedure.id}`, procedure),
   delete: (id) => axios.delete(`/Procedures/${id}`),
-
 };
 
 const Appointments = {
@@ -125,16 +125,26 @@ const WorkingHours = {
   list: () => requests.get("/workinghours"),
   details: (id) => requests.get(`/workinghours/${id}`),
   create: (workinghour) => requests.post("/workinghours", workinghour),
-  update: (workinghour) => axios.put(`/workinghours/${workinghour.id}`, workinghour),
+  update: (workinghour) =>
+    axios.put(`/workinghours/${workinghour.id}`, workinghour),
   delete: (id) => axios.delete(`/workinghours/${id}`),
 };
 
-const Achievements ={
+const Achievements = {
   list: () => requests.get("/achievements"),
   details: (id) => requests.get(`/achievements/${id}`),
   create: (achievement) => requests.post("/achievements", achievement),
-  update: (achievement) => axios.put(`/achievements/${achievement.id}`, achievement),
+  update: (achievement) =>
+    axios.put(`/achievements/${achievement.id}`, achievement),
   delete: (id) => axios.delete(`/achievements/${id}`),
+};
+
+const Cities = {
+  list: () => requests.get("/cities"),
+  details: (id) => requests.get(`/cities/${id}`),
+  create: (city) => axios.post("/cities", city),
+  update: (city) => axios.put(`/cities/${city.id}`, city),
+  delete: (id) => axios.delete(`/cities/${id}`),
 };
 
 const agent = {
@@ -151,6 +161,7 @@ const agent = {
   Countries,
   WorkingHours,
   Achievements,
+  Cities,
 };
 
 export default agent;

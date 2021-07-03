@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Persistence.Migrations
 {
-    public partial class initialCreate : Migration
+    public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -122,6 +122,20 @@ namespace Persistence.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_BodyInfos", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Cities",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Text = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Value = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Country = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Cities", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -453,6 +467,9 @@ namespace Persistence.Migrations
 
             migrationBuilder.DropTable(
                 name: "BodyInfos");
+
+            migrationBuilder.DropTable(
+                name: "Cities");
 
             migrationBuilder.DropTable(
                 name: "Countries");

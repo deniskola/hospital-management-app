@@ -10,8 +10,8 @@ using Persistence;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20210703140542_initialCreate")]
-    partial class initialCreate
+    [Migration("20210703202336_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -223,6 +223,26 @@ namespace Persistence.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("BodyInfos");
+                });
+
+            modelBuilder.Entity("Domain.City", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Country")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Text")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Value")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Cities");
                 });
 
             modelBuilder.Entity("Domain.Country", b =>

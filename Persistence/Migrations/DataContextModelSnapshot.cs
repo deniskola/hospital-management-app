@@ -223,6 +223,26 @@ namespace Persistence.Migrations
                     b.ToTable("BodyInfos");
                 });
 
+            modelBuilder.Entity("Domain.City", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Country")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Text")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Value")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Cities");
+                });
+
             modelBuilder.Entity("Domain.Country", b =>
                 {
                     b.Property<Guid>("Id")
