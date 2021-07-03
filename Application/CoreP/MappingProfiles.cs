@@ -8,6 +8,10 @@ namespace Application.CoreP
         public MappingProfiles ()
         {
             CreateMap<PAllergies, PAllergies>();
+            CreateMap<BodyInfo, BodyInfo>();
+            CreateMap<PatientHistory, PatientHistory>();
+            CreateMap<LabTest, LabTest>();
+            CreateMap<Procedure, Procedure>();
         }
     }
 }

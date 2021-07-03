@@ -1,31 +1,32 @@
 import React from 'react';
 import { Grid } from "semantic-ui-react";
 import AllergiesList from './AllergiesList';
-import AllergiesModalForm from '../Form/AllergiesModalForm';
+import AllergiesForm from '../Form/AllergiesForm';
 
 export default function AllergiesDashboard({allergies, selectedAllergy, selectAllergy, cancelSelectAllergy, editMode, 
-    deleteAllergy, openModalForm, closeModalForm,createOrEdit, submitting}){
+    deleteAllergy, openForm, closeForm,createOrEdit, submitting}){
     return (
         <Grid>
             <Grid.Column width='17'>
-                    <AllergiesList
+                   <AllergiesList
                         allergies={allergies}
                         selectAllergy={selectAllergy}
                         deleteAllergy={deleteAllergy}
                         submitting={submitting}
 
-                    />
+                   />
                     {selectedAllergy && !editMode && (
-                        <AllergiesModalForm
-                        allergy={selectedAllergy}
+                        <AllergiesForm
+                        pAllergies={selectedAllergy}
                         cancelSelectAllergy={cancelSelectAllergy}
-                        openModalForm={openModalForm}
+                        openForm={openForm}
+                        submitting={submitting}
                         />
                     )}
                     {editMode && (
-                        <AllergiesModalForm
-                        closeModalForm={closeModalForm}
-                        allergy={selectedAllergy}
+                        <AllergiesForm
+                        closeForm={closeForm}
+                        pAllergies={selectedAllergy}
                         createOrEdit={createOrEdit}
                         submitting={submitting}
                         />

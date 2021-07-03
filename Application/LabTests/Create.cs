@@ -1,37 +1,30 @@
 using System.Threading;
 using System.Threading.Tasks;
-using AutoMapper;
 using Domain;
 using MediatR;
 using Persistence;
 
-namespace Application.ProfileA
+namespace Application.LabTests
 {
-    public class EditAllergies
+    public class Create
     {
         public class Command : IRequest
         {
-            public PAllergies PAllergies { get; set; }
+            public LabTest LabTest { get; set; }
         }
 
         public class Handler : IRequestHandler<Command>
         {
             private readonly DataContext context;
-            private readonly IMapper mapper;
-            public Handler(DataContext context, IMapper mapper)
+            public Handler(DataContext context)
             {
-                this.mapper = mapper;
                 this.context = context;
             }
 
             public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
             {
-                var pAllergies = await context.PAllergies.FindAsync(request.PAllergies.Id);
-
-                mapper.Map(request.PAllergies, pAllergies);
-
+                context.LabTests.Add(request.LabTest);
                 await context.SaveChangesAsync();
-
                 return Unit.Value;
             }
         }

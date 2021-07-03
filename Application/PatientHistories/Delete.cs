@@ -1,18 +1,17 @@
+using System;
 using System.Threading;
 using System.Threading.Tasks;
-using Domain;
 using MediatR;
 using Persistence;
 
-namespace Application.ProfileA
+namespace Application.PatientHistories
 {
-    public class CreateAllergies
+   public class Delete
     {
         public class Command : IRequest
         {
-            public PAllergies PAllergies { get; set; }
+            public Guid Id { get; set; }
         }
-
         public class Handler : IRequestHandler<Command>
         {
             private readonly DataContext context;
@@ -23,8 +22,12 @@ namespace Application.ProfileA
 
             public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
             {
-                context.PAllergies.Add(request.PAllergies);
+                var patienthistories = await context.PatientHistories.FindAsync(request.Id);
+
+                context.Remove(patienthistories);
+
                 await context.SaveChangesAsync();
+
                 return Unit.Value;
             }
         }

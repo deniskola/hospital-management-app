@@ -42,12 +42,45 @@ const Abouts = {
   delete: (id) => axios.delete(`/about/${id}`),
 };
 
-const ProfileA = {
-  list: () => requests.get("/allergies"),
-  details: (id) => requests.get(`/allergies/${id}`),
-  create: (allergy) => axios.post(`/allergies`, allergy),
-  update: (allergy) => axios.put(`/allergies/${allergy.id}`, allergy),
-  delete: (id) => axios.delete(`/allergies/${id}`),
+const PAllergy = {
+  list: () => requests.get("/PAllergies"),
+  details: (id) => requests.get(`/PAllergies/${id}`),
+  create: (pAllergies) => axios.post(`/PAllergies`, pAllergies),
+  update: (pAllergies) => axios.put(`/PAllergies/${pAllergies.id}`, pAllergies),
+  delete: (id) => axios.delete(`/PAllergies/${id}`),
+};
+
+const BodyInfos ={
+  list : () => requests.get("/BodyInfos"),
+  details: (id) => requests.get(`/BodyInfos/${id}`),
+  create: (bodyinfo) => axios.post(`/BodyInfos`, bodyinfo),
+  update: (bodyinfo) => axios.put(`/BodyInfos/${bodyinfo.id}`, bodyinfo),
+  delete: (id) => axios.delete(`/BodyInfos/${id}`),
+};
+
+const PatientHistories ={
+  list : () => requests.get("/PatientHistory"),
+  details: (id) => requests.get(`/PatientHistory/${id}`),
+  create: (patientHistory) => axios.post(`/PatientHistory`, patientHistory),
+  update: (patientHistory) => axios.put(`/PatientHistory/${patientHistory.id}`, patientHistory),
+  delete: (id) => axios.delete(`/PatientHistory/${id}`),
+};
+
+const LabTests ={
+  list : () => requests.get("/LabTests"),
+  details: (id) => requests.get(`/LabTests/${id}`),
+  create: (labtest) => axios.post(`/LabTests`, labtest),
+  update: (labtest) => axios.put(`/LabTests/${labtest.id}`, labtest),
+  delete: (id) => axios.delete(`/LabTests/${id}`),
+};
+
+const Procedures ={
+  list : () => requests.get("/Procedures"),
+  details: (id) => requests.get(`/Procedures/${id}`),
+  create: (procedure) => axios.post(`/Procedures`, procedure),
+  update: (procedure) => axios.put(`/Procedures/${procedure.id}`, procedure),
+  delete: (id) => axios.delete(`/Procedures/${id}`),
+
 };
 
 const Appointments = {
@@ -75,9 +108,13 @@ const Users = {
 const agent = {
   Abouts,
   Appointments,
-  ProfileA,
+  PAllergy,
   Account,
   Users,
+  BodyInfos,
+  PatientHistories,
+  LabTests,
+  Procedures,
 };
 
 export default agent;

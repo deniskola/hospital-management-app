@@ -27,6 +27,67 @@ namespace Persistence
 
             await context.PAllergies.AddRangeAsync(allergies);
             await context.SaveChangesAsync();
+
+
+            if (context.BodyInfos.Any()) {
+
+            var bodyinfos = new List<BodyInfo>
+            {
+                new BodyInfo
+                {
+                    Mosha=50,
+                    Pesha= 76.5,
+                    GrupiGjakut="AB+",
+                    Gjatesia=1.70
+                }
+
+            };
+            await context.BodyInfos.AddRangeAsync(bodyinfos);
+            await context.SaveChangesAsync();
+            }
+
+            if (context.PatientHistories.Any()) {
+
+            var patienthistories = new List<PatientHistory>
+            {
+                new PatientHistory
+                {
+                    Date="24-06-2021",
+                    Descritpion="Asthmna Undergoing for the pas 3 years."
+                },
+                 new PatientHistory
+                {
+                    Date="24-09-2021",
+                    Descritpion="Cereals containing gluten allergy."
+                }
+
+            };
+            await context.PatientHistories.AddRangeAsync(patienthistories);
+            await context.SaveChangesAsync();
+            }
+
+            if (context.LabTests.Any()) {
+
+            var labtests = new List<LabTest>
+            {
+                new LabTest
+                {
+                    Name="Bood test",
+                    Date="20/05/2021",
+                    Location="Arm"
+                },
+                 new LabTest
+                {
+                    Name="RAST test",
+                    Date="01/05/2021",
+                    Location="Arm"
+                }
+
+            };
+            await context.LabTests.AddRangeAsync(labtests);
+            await context.SaveChangesAsync();
+            }
+
         }
     }
 }

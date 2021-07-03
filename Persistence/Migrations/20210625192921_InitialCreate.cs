@@ -123,6 +123,62 @@ namespace Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "LabTests",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Date = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Location = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_LabTests", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "BodyInfos",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Mosha = table.Column<int>(type: "int", nullable: false),
+                    Pesha = table.Column<double>(type: "float", nullable: false),
+                    GrupiGjakut = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Gjatesia = table.Column<double>(type: "float", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_BodyInfos", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Procedures",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Date = table.Column<DateTime>(type: "nvarchar(max)", nullable: true),
+                    LocationOnBody = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Procedures", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "PatientHistories",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Date = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Descritpion = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PatientHistories", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "SAboutUs",
                 columns: table => new
                 {
@@ -369,6 +425,18 @@ namespace Persistence.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "LabTests");
+
+            migrationBuilder.DropTable(
+                name: "BodyInfos");
+            
+            migrationBuilder.DropTable(
+                name: "PatientHistories");
+
+            migrationBuilder.DropTable(
+                name: "Procedures");
         }
     }
 }

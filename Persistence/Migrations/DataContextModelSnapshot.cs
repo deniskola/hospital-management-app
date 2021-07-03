@@ -112,9 +112,6 @@ namespace Persistence.Migrations
                     b.Property<string>("DateOfBirth")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("DisplayName")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Email")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
@@ -180,6 +177,29 @@ namespace Persistence.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
+            modelBuilder.Entity("Domain.BodyInfo", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<double>("Gjatesia")
+                        .HasColumnType("float");
+
+                    b.Property<string>("GrupiGjakut")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Mosha")
+                        .HasColumnType("int");
+
+                    b.Property<double>("Pesha")
+                        .HasColumnType("float");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("BodyInfos");
+                });
+
             modelBuilder.Entity("Domain.DReminder", b =>
                 {
                     b.Property<int>("id")
@@ -198,6 +218,26 @@ namespace Persistence.Migrations
                     b.ToTable("DReminders");
                 });
 
+            modelBuilder.Entity("Domain.LabTest", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Date")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Location")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("LabTests");
+                });
+
             modelBuilder.Entity("Domain.PAllergies", b =>
                 {
                     b.Property<Guid>("Id")
@@ -213,6 +253,23 @@ namespace Persistence.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("PAllergies");
+                });
+
+            modelBuilder.Entity("Domain.PatientHistory", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Date")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Descritpion")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("PatientHistories");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

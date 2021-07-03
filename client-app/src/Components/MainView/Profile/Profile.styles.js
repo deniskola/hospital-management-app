@@ -17,11 +17,7 @@ export const ProfileContainer = styled.div`
         display:flex;
         flex-direction: column;
         width:70%;
-        height:100%;
-    }
-    .third-div{
-        display:flex;
-        flex-direction: row;
+        height:auto;
     }
 `
 /*----------------- Personal information div --------------*/
@@ -68,48 +64,22 @@ export const PersonalInfo = styled.div`
 
 /*-------------- Body Information div -------------------- */
 export const BodyInfo = styled.div`
-        height: 200px;
+        height: auto;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4);
         margin:10px; 
+        padding-left: 30px;
         background-color:white;
 
-    .vertical-line{
-        border-left: 1px solid #D6DCE1;
-        height : 100px;
-    }
+    
     p{
         padding-left: 10px;
         padding-top: 5px;
     }
-    .body-first-container{
-        height:100px;
-        display:flex;
-        flex-direction: row;
-        justify-content: space-evenly;
-        border: 1px solid #D6DCE1;
-    }
-    .body-second-container{
-        height:68px;
-        display:flex;
-        flex-direction: row;
-        justify-content: space-evenly;
-        padding-left:150px;
-        margin-top: 5px;
-
-    }
-    .upper-items{
-        margin-top:20px;
-        font-size:14px;
-    }
-    .data{
-        font-size:16px;
-    }
-    
 `  
 /*------------------- Bood pressure ---------------------*/ 
 export const bloodPressure = styled.div`
         background-color:white;
-        height: 120px;
+        height: auto;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4);
         margin:10px;
         text-align:left;
@@ -134,12 +104,13 @@ export const Allergy = styled.div`
         margin-top:5px;
         display: flex;
         flex-direction: row;
+        background-color: #e6e6ff;
     }
     .upper-container img {
         height: 25px;
         width: 25px;
         align-items: left;
-        margin-right: 5px;
+        margin: 5px 10px 0px 10px;
     }
     p{
         font-size:16px;
@@ -151,7 +122,7 @@ export const Allergy = styled.div`
 
 `   
 export const History = styled.div`
-    height:285px;
+    height:auto;
     background-color:white;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4);
     margin-top:10px;
@@ -159,75 +130,73 @@ export const History = styled.div`
     .upper-container{
         display: flex;
         flex-direction: row;
+        background-color: #e6e6ff;
     }
     .upper-container img {
         height: 25px;
         width: 25px;
         align-items: left;
-        margin: 5px;
+        margin: 5px 10px 0px 10px;
     }
     p{
-        font-size:12px;
+        font-size:16px;
         padding-top:5px;
     }
     
 `
 export const Proccedures = styled.div`
-    width: 49%;
     margin-top: 10px;
-    height:350px;
+    height:auto;
+    margin:10px;
     background-color:white;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4);
-    font-size:10px;
-    .pline{
-        border-bottom: 1px solid #D6DCE1;
-        font-size:14px;
+    
+    .tabela{
+        font-size:12px;
+    }
+    .upper-container{
+        display: flex;
+        flex-direction: row;
+        background-color: #e6e6ff;
+
     }
     p{
-        font-size:12 px;
+        font-size: 12px;
         padding-top:5px;
+    }
+    .pline{
+        font-size:16px;
+        margin-left:5px;
+
     }
     .title{
         color: purple;
     }
-    .date{
-        margin-left:100px;
-        color: gray;
-    }
-    .show-more{
-        margin-left:340px;
-        color:#b6c0c9;
-        font-size:10px;
-    }
-    button{
-        text-align:center;
-    }
+
 `
 export const LabResults = styled.div`
-    width: 49%;
+
     margin-top: 10px;
-    margin-left: 2%;
-    height:350px;
+    height:auto;
     background-color:white;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4);
-    .pline{
-        border-bottom: 1px solid #D6DCE1;
-        font-size:14px;
+
+    
+    .upper-container{
+        display: flex;
+        flex-direction: row;
+        background-color: #e6e6ff;
+        margin-bottom:15px;
     }
     p{
-        font-size:12px;
+        font-size:16px;
         padding-top:5px;
+        margin-left:20px;
     }
-    .title{
-        color: purple;
+    .lower-container{
+        width:100%;
+        height:auto;
+        margin-left:2%;
     }
-    .date{
-        margin-left:100px;
-        color: gray;
-    }
-    .show-more{
-        margin-left:340px;
-        font-size:10px;
-        color: #b6c0c9;
-    }
+
 `
