@@ -121,21 +121,36 @@ const Countries = {
   delete: (id) => axios.delete(`/countries/${id}`),
 };
 
+const WorkingHours = {
+  list: () => requests.get("/workinghours"),
+  details: (id) => requests.get(`/workinghours/${id}`),
+  create: (workinghour) => requests.post("/workinghours", workinghour),
+  update: (workinghour) => axios.put(`/workinghours/${workinghour.id}`, workinghour),
+  delete: (id) => axios.delete(`/workinghours/${id}`),
+};
+
+const Achievements ={
+  list: () => requests.get("/achievements"),
+  details: (id) => requests.get(`/achievements/${id}`),
+  create: (achievement) => requests.post("/achievements", achievement),
+  update: (achievement) => axios.put(`/achievements/${achievement.id}`, achievement),
+  delete: (id) => axios.delete(`/achievements/${id}`),
+};
+
 const agent = {
   Abouts,
   Appointments,
   PAllergy,
   Account,
   Users,
-<<<<<<< HEAD
   BodyInfos,
   PatientHistories,
   LabTests,
   Procedures,
-=======
   HrDoctor,
   Countries,
->>>>>>> a887d1be86194c48e3e1789c138fd26f8c81c73a
+  WorkingHours,
+  Achievements,
 };
 
 export default agent;

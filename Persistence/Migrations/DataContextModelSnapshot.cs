@@ -53,6 +53,26 @@ namespace Persistence.Migrations
                     b.ToTable("SAboutUs");
                 });
 
+            modelBuilder.Entity("Domain.Achievement", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Photo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Achievements");
+                });
+
             modelBuilder.Entity("Domain.Activity", b =>
                 {
                     b.Property<Guid>("Id")
@@ -112,12 +132,9 @@ namespace Persistence.Migrations
                     b.Property<string>("Country")
                         .HasColumnType("nvarchar(max)");
 
-<<<<<<< HEAD
-=======
                     b.Property<string>("DateOfBirth")
                         .HasColumnType("nvarchar(max)");
 
->>>>>>> a887d1be86194c48e3e1789c138fd26f8c81c73a
                     b.Property<string>("Email")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
@@ -183,17 +200,12 @@ namespace Persistence.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-<<<<<<< HEAD
             modelBuilder.Entity("Domain.BodyInfo", b =>
-=======
-            modelBuilder.Entity("Domain.Country", b =>
->>>>>>> a887d1be86194c48e3e1789c138fd26f8c81c73a
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-<<<<<<< HEAD
                     b.Property<double>("Gjatesia")
                         .HasColumnType("float");
 
@@ -209,7 +221,14 @@ namespace Persistence.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("BodyInfos");
-=======
+                });
+
+            modelBuilder.Entity("Domain.Country", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("Flag")
                         .HasColumnType("nvarchar(max)");
 
@@ -222,7 +241,6 @@ namespace Persistence.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Countries");
->>>>>>> a887d1be86194c48e3e1789c138fd26f8c81c73a
                 });
 
             modelBuilder.Entity("Domain.DReminder", b =>
@@ -295,6 +313,47 @@ namespace Persistence.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("PatientHistories");
+                });
+
+            modelBuilder.Entity("Domain.Procedure", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("LocationOnBody")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Procedures");
+                });
+
+            modelBuilder.Entity("Domain.WorkingHour", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("From")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("To")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("WorkingHours");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

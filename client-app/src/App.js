@@ -49,7 +49,9 @@ function App() {
       name: "Appointments",
       to: "/appointments",
       icon: "/icons/appointment.png",
-      subMenuItems: [],
+      subMenuItems: [
+        {name:'Working Hours',to:'workingHours', icon: "/icons/workinghours.png"}
+      ],
     },
     {
       name: "Profile",
@@ -77,6 +79,12 @@ function App() {
         {name:'Add Doctor',to:'addDoctor'},
         {name:'Add Patient',to:'addPatient'}
       ],
+    },
+    {
+      name: "Achievements",
+      to: "/achievements",
+      icon: "/icons/achievements.png",
+      subMenuItems: [],
     },
     {
       name: "Test",

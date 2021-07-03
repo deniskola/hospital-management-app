@@ -70,7 +70,7 @@ function Appointments(openForm) {
       <AppointmentsContainer>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
         <div className='header'>
-          <button className='lefth'><i class="fa fa-sort"></i>&nbsp;&nbsp;DATE</button>
+        <button className='lefth'><i class="fa fa-sort"></i>&nbsp;&nbsp;DATE</button>
             &nbsp;&nbsp;&nbsp;
           <button className='lefth'><i class="fa fa-sort"></i>&nbsp;&nbsp;DOCTOR</button>
             &nbsp;&nbsp;&nbsp;

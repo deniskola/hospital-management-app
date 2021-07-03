@@ -19,15 +19,12 @@ namespace Persistence
         public DbSet<AppUser> AppUsers { get; set; }
         public DbSet<Doctor> Doctors { get; set; }
         public DbSet<Patient> Patients { get; set; }
-<<<<<<< HEAD
         public DbSet<BodyInfo> BodyInfos {get ; set ;}
         public DbSet<PatientHistory> PatientHistories {get; set;}
         public DbSet<LabTest> LabTests {get; set; }
-
         public DbSet<Procedure> Procedures {get; set;}
-=======
-
         public DbSet<Country> Countries { get; set; }
->>>>>>> a887d1be86194c48e3e1789c138fd26f8c81c73a
+        public DbSet<WorkingHour> WorkingHours { get; set; }
+        public DbSet<Achievement> Achievements { get; set; }
     }
 }

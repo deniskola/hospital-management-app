@@ -3,7 +3,6 @@ import bodyHeight from "./bodyHeight.PNG";
 import AllergiesIcon from "./AllergiesIcon.png";
 import bloodP from "./bloodP.PNG";
 import history from "./history.PNG";
-<<<<<<< HEAD
 import LabTestIcon from "./LabTestIcon.png";
 import Procedure from "./Procedure.png";
 import React, { useEffect, useState } from "react";
@@ -21,24 +20,6 @@ import PatientHistoryFrom from "./Form/PatientHistoryFrom";
 import BodyInfoFrom from "./Form/BodyInfoFrom";
 import { useStore } from "../../../stores/store";
 import {Modal} from 'react-bootstrap';
-=======
-import React, {useEffect, useState} from "react";
-import {
-  ButtonGroup,
-  Table,
-  TableBody,
-  TableRow,
-  TableCell,
-  TableHead,
-} from "@material-ui/core";
-import axios from "axios";
-import {Button} from "semantic-ui-react";
-//import AllergiesDashboard from './ProfileDashboard/AllergiesDashboard';
-import agent from "../../../api/agent";
-import {v4 as uuid} from "uuid";
-import AllergiesModalForm from "./Form/AllergiesModalForm";
-import {useStore} from "../../../stores/store";
->>>>>>> a887d1be86194c48e3e1789c138fd26f8c81c73a
 
 const Profile = () => {
 
@@ -51,12 +32,9 @@ const Profile = () => {
   const [submitting, setSubmitting] = useState(false);
   const {userStore} = useStore();
   const {user} = userStore;
-<<<<<<< HEAD
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-=======
->>>>>>> a887d1be86194c48e3e1789c138fd26f8c81c73a
 
  
   useEffect(() => {
@@ -436,7 +414,6 @@ const Profile = () => {
         </div>
 
         <div class="right-container">
-<<<<<<< HEAD
         <p.Allergy onClick={handleShow}>
             <div>
               <div class="upper-container" >
@@ -456,22 +433,6 @@ const Profile = () => {
               deleteAllergy={handleDeleteAllergy}
               submitting={submitting}
             />
-=======
-          <p.Allergy openModalForm={handleModalFormOpen}>
-            <div class="upper-container">
-              <img
-                src={AllergiesIcon}
-                alt="logo"
-                style={{marginTop: "5px", marginLeft: "5px"}}
-              />
-              <p>
-                <b>Allergies</b>
-                <i class="angle down icon"></i>
-              </p>
-              <Button basic color="purple" style={{marginLeft: "70%"}}>
-                + Add Allergy
-              </Button>
->>>>>>> a887d1be86194c48e3e1789c138fd26f8c81c73a
             </div>
                 {/*<Modal show={show} onHide={handleClose}>
                     <Modal.Header closeButton>
@@ -498,7 +459,6 @@ const Profile = () => {
               <Button onClick={handleFormHistoryOpen}  color="blue">+ Add</Button>
             </div>
             <div class="lower-container">
-<<<<<<< HEAD
             <PatientHistoryDashboard
               patienthistories={patienthistories}
               selectedPatientHistory={selectedPatientHistory}
@@ -537,227 +497,6 @@ const Profile = () => {
               </div>
             </div>
       </p.LabResults>   
-=======
-              <Table striped bordered hover size="sm">
-                <TableRow>
-                  <TableCell>
-                    <Button color="purple">New</Button>
-                    <p style={{fontSize: "10px", marginLeft: "10px"}}>
-                      24/05/2021
-                    </p>
-                  </TableCell>
-                  <TableCell>
-                    Asthmna Undergoing for the pas 3 years{" "}
-                    <p>Asthmna Undergoing for the pas 3 years</p>
-                  </TableCell>
-                  <TableCell>
-                    <i class="stethoscope icon"></i>Dr. Astrit Gashi
-                  </TableCell>
-                  <TableCell>
-                    <Button color="purple">View Details</Button>
-                  </TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell>
-                    <Button color="purple">New</Button>
-                    <p style={{fontSize: "10px", marginLeft: "10px"}}>
-                      24/05/2021
-                    </p>
-                  </TableCell>
-                  <TableCell>
-                    Cereals containing gluten allergy{" "}
-                    <p>Asthmna Undergoing for the pas 3 years</p>
-                  </TableCell>
-                  <TableCell>
-                    <i class="stethoscope icon"></i>Dr. Astrit Gashi
-                  </TableCell>
-                  <TableCell>
-                    <Button color="purple">View Details</Button>
-                  </TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell>
-                    <Button color="purple">New</Button>
-                    <p style={{fontSize: "10px", marginLeft: "10px"}}>
-                      24/05/2021
-                    </p>
-                  </TableCell>
-                  <TableCell>
-                    Rhinitis Undergoing treatment for the past 4 years{" "}
-                    <p>Undergoing treatment for the past 4 years</p>
-                  </TableCell>
-                  <TableCell>
-                    <i class="stethoscope icon"></i>Dr. Astrit Gashi
-                  </TableCell>
-                  <TableCell>
-                    <Button color="purple">View Details</Button>
-                  </TableCell>
-                </TableRow>
-              </Table>
-            </div>
-          </p.History>
-
-          <div class="third-div">
-            <p.Proccedures>
-              <p class="pline">Procedures</p>
-              <TableRow>
-                <TableCell>
-                  <Button
-                    color="purple"
-                    style={{
-                      borderRadius: "50%",
-                      width: "20px",
-                      alignItems: "center",
-                    }}
-                  >
-                    {" "}
-                    1{" "}
-                  </Button>
-                </TableCell>
-                <TableCell>
-                  <p class="title">
-                    <b>Electrography</b>
-                  </p>
-                  <p class="date">
-                    Date of procedure:
-                    <span style={{color: "black"}}>
-                      <b> 20/05/2021</b>
-                    </span>
-                  </p>
-                  <p class="date">
-                    Location on body:
-                    <span style={{color: "black"}}>
-                      <b> chest</b>
-                    </span>
-                  </p>
-                </TableCell>
-              </TableRow>
-              <TableRow>
-                <TableCell>
-                  <Button
-                    color="purple"
-                    style={{borderRadius: "50%", width: "20px"}}
-                  >
-                    {" "}
-                    2{" "}
-                  </Button>
-                </TableCell>
-                <TableCell>
-                  <p class="title">
-                    <b>Blood Transfusion</b>
-                  </p>
-                  <p class="date">
-                    Date of procedure:{" "}
-                    <span style={{color: "black"}}>
-                      <b> 01/05/2021</b>
-                    </span>
-                  </p>
-                  <p class="date">
-                    Location on body:
-                    <span style={{color: "black"}}>
-                      <b> arm</b>
-                    </span>
-                  </p>
-                </TableCell>
-              </TableRow>
-              <TableRow>
-                <TableCell>
-                  <Button
-                    color="purple"
-                    style={{borderRadius: "50%", width: "20px"}}
-                  >
-                    {" "}
-                    3{" "}
-                  </Button>
-                </TableCell>
-                <TableCell>
-                  <p class="title">
-                    <b>Radio Surgery</b>
-                  </p>
-                  <p class="date">
-                    Date of procedure:{" "}
-                    <span style={{color: "black"}}>
-                      <b> 13/04/2021</b>
-                    </span>
-                  </p>
-                  <p class="date">
-                    Location on body:
-                    <span style={{color: "black"}}>
-                      <b> arm</b>
-                    </span>
-                  </p>
-                </TableCell>
-              </TableRow>
-              <p class="show-more">
-                Show more <i class="angle down icon"></i>
-              </p>
-            </p.Proccedures>
-
-            <p.LabResults>
-              <p class="pline">Lab test Results</p>
-              <TableRow>
-                <TableCell>
-                  <p class="title">
-                    <b>Blood Test</b>
-                  </p>
-                  <p class="date">
-                    Date of procedure:{" "}
-                    <span style={{color: "black"}}>
-                      <b> 20/05/2021</b>
-                    </span>
-                  </p>
-                  <p class="date">
-                    Location on body:{" "}
-                    <span style={{color: "black"}}>
-                      <b> chest</b>
-                    </span>
-                  </p>
-                </TableCell>
-              </TableRow>
-              <TableRow>
-                <TableCell>
-                  <p class="title">
-                    <b>Blood Test</b>
-                  </p>
-                  <p class="date">
-                    Date of procedure:{" "}
-                    <span style={{color: "black"}}>
-                      <b> 01/05/2021</b>
-                    </span>
-                  </p>
-                  <p class="date">
-                    Location on body:{" "}
-                    <span style={{color: "black"}}>
-                      <b> arm</b>
-                    </span>
-                  </p>
-                </TableCell>
-              </TableRow>
-              <TableRow>
-                <TableCell>
-                  <p class="title">
-                    <b>RAST Test</b>
-                  </p>
-                  <p class="date">
-                    Date of procedure:{" "}
-                    <span style={{color: "black"}}>
-                      <b> 13/03/2021</b>
-                    </span>
-                  </p>
-                  <p class="date">
-                    Location on body:{" "}
-                    <span style={{color: "black"}}>
-                      <b> arm </b>
-                    </span>
-                  </p>
-                </TableCell>
-              </TableRow>
-              <p class="show-more">
-                Show more <i class="angle down icon"></i>
-              </p>
-            </p.LabResults>
-          </div>
->>>>>>> a887d1be86194c48e3e1789c138fd26f8c81c73a
         </div>
       </p.ProfileContainer>
     </div>
