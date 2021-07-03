@@ -1,12 +1,12 @@
-import { useField } from "formik";
+import {useField} from "formik";
 import React from "react";
-import { Form, Label } from "semantic-ui-react";
+import {Form, Label} from "semantic-ui-react";
 
 export default function MyDateInput(props) {
   const [field, meta] = useField(props.name);
   return (
     <Form.Field
-      style={{ marginBottom: "20px" }}
+      style={{marginBottom: "10px"}}
       error={meta.touched && !!meta.error}
     >
       <label>{props.label}</label>

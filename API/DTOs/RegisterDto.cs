@@ -23,7 +23,9 @@ namespace API.DTOs
         [Required]
         public string Role { get; set; }
 
+        public string PhoneNumber { get; set; }
 
+        public string Country { get; set; }
         public string Gender { get; set; }
 
         public string DateOfBirth { get; set; }

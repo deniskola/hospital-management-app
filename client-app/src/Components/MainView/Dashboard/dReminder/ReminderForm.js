@@ -2,7 +2,7 @@ import React ,{useState,useEffect} from 'react';
 import { Grid, InputAdornment,withStyles,MenuItem,ButtonGroup,Button as MuiButton, TextField,} from '@material-ui/core';
 import useForm from "./useForm";
 import  {connect} from "react-redux";
-import * as actions from "../actions/dReminder";
+import * as actions from "../../HRmanager/Actions/hrDoctor";
 import {ToastProvider,useToasts} from "react-toast-notifications";
 import {Input,Select,Button} from "../controls";
 import ReplayIcon from '@material-ui/icons/Replay';
@@ -31,7 +31,7 @@ const styles=theme=>({
 
 const initialFieldValues = {
     reminderTitle:'',
-    reminderDate:''
+    reminderDate:'',
 }
 
 const ReminderForm=({classes,...props})=>{
@@ -132,7 +132,7 @@ const ReminderForm=({classes,...props})=>{
 }
 
 const mapStateToProps=state=>({
-    dReminderList:state.dReminder.list
+    dReminderList:state.dReminders.list
 })
 
 const mapActionToProps={
@@ -141,37 +141,3 @@ const mapActionToProps={
 }
 
 export default connect(mapStateToProps,mapActionToProps)(withStyles(styles)(ReminderForm))
-
-/*
-
-                        
-
-
-                        <TextField
-                        name="reminderDate"
-                        label="Date"
-                        value={values.date}
-                        type="date"
-                        defaultValue="2021-06-04"
-                        className={classes.textField}
-                        InputLabelProps={{
-                        shrink: true,
-                        }}
-                        {...(errors.reminderDate && {error: true, helperText:errors.reminderDate})}
-                    />
-
-
-
-                    <Input
-                        label="Date"
-                        name="reminderDate"
-                        value={values.date}
-                        onChange={handleInputChange}
-                        InputProps={{
-                            startAdornment:<InputAdornment
-                            className={classes.adornmentText}
-                            position="start">#</InputAdornment>
-                        }}
-                        {...(errors.reminderDate && {error: true, helperText:errors.reminderDate})}
-                        />
-*/

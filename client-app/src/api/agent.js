@@ -1,5 +1,5 @@
 import axios from "axios";
-import { stores } from "../stores/store";
+import {stores} from "../stores/store";
 
 const sleep = (delay) => {
   return new Promise((resolve) => {
@@ -105,16 +105,37 @@ const Users = {
   details: (id) => requests.get(`/user/${id}`),
 };
 
+const HrDoctor = {
+  list: () => requests.get("/doctor"),
+  details: (id) => requests.get(`/doctor/${id}`),
+  create: (appointment) => axios.post("/doctor", appointment),
+  update: (appointment) => axios.put(`/doctor/${appointment.id}`, appointment),
+  delete: (id) => axios.delete(`/doctor/${id}`),
+};
+
+const Countries = {
+  list: () => requests.get("/countries"),
+  details: (id) => requests.get(`/countries/${id}`),
+  create: (country) => axios.post("/countries", country),
+  update: (country) => axios.put(`/countries/${country.id}`, country),
+  delete: (id) => axios.delete(`/countries/${id}`),
+};
+
 const agent = {
   Abouts,
   Appointments,
   PAllergy,
   Account,
   Users,
+<<<<<<< HEAD
   BodyInfos,
   PatientHistories,
   LabTests,
   Procedures,
+=======
+  HrDoctor,
+  Countries,
+>>>>>>> a887d1be86194c48e3e1789c138fd26f8c81c73a
 };
 
 export default agent;

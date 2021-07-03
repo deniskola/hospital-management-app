@@ -109,9 +109,15 @@ namespace Persistence.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Country")
+                        .HasColumnType("nvarchar(max)");
+
+<<<<<<< HEAD
+=======
                     b.Property<string>("DateOfBirth")
                         .HasColumnType("nvarchar(max)");
 
+>>>>>>> a887d1be86194c48e3e1789c138fd26f8c81c73a
                     b.Property<string>("Email")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
@@ -177,12 +183,17 @@ namespace Persistence.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
+<<<<<<< HEAD
             modelBuilder.Entity("Domain.BodyInfo", b =>
+=======
+            modelBuilder.Entity("Domain.Country", b =>
+>>>>>>> a887d1be86194c48e3e1789c138fd26f8c81c73a
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+<<<<<<< HEAD
                     b.Property<double>("Gjatesia")
                         .HasColumnType("float");
 
@@ -198,6 +209,20 @@ namespace Persistence.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("BodyInfos");
+=======
+                    b.Property<string>("Flag")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Text")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Value")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Countries");
+>>>>>>> a887d1be86194c48e3e1789c138fd26f8c81c73a
                 });
 
             modelBuilder.Entity("Domain.DReminder", b =>
