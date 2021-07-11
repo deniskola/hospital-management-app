@@ -6,10 +6,10 @@ import MySelectInput from "../../../FormInputs/MySelectInput";
 import MyDateInput from "../../../FormInputs/MyDatePicker";
 import {useStore} from "../../../../stores/store";
 import {observer} from "mobx-react-lite";
-import {Label, Button, Segment, Header, Radio} from "semantic-ui-react";
+import {Label, Button, Segment, Header, Divider} from "semantic-ui-react";
 
 export default observer(function RegisterForm() {
-  const {userStore, countryStore} = useStore();
+  const {userStore, countryStore, cityStore} = useStore();
 
   const roleOptions = [
     {text: "Admin", value: "admin"},
@@ -23,6 +23,7 @@ export default observer(function RegisterForm() {
   ];
 
   const countryOptions = countryStore.countryByName;
+  const cityOptions = cityStore.cityByName;
 
   const initialValues = {
     firstName: "",
@@ -35,13 +36,14 @@ export default observer(function RegisterForm() {
     phoneNumber: "",
     role: "",
     country: "",
+    city: "",
     error: null,
   };
 
   return (
     <Segment clearing>
       <div>
-        <p>Register a new User</p>
+        <p style={{marginBottom: "10px"}}>Register a new User</p>
 
         <Formik
           initialValues={initialValues}
@@ -70,17 +72,6 @@ export default observer(function RegisterForm() {
                 placeholder="Username"
               />
 
-              <MyTextInput
-                style={{marginBottom: "10px"}}
-                name="email"
-                placeholder="Email"
-              />
-              <MyTextInput
-                style={{marginBottom: "10px"}}
-                name="phoneNumber"
-                placeholder="Phone Number"
-              />
-
               <MyDateInput
                 placeholderText="Date"
                 name="dateOfBirth"
@@ -89,11 +80,18 @@ export default observer(function RegisterForm() {
                 type="date"
                 dateFormat="MMMM d, yyyy "
               />
+              <Divider />
 
               <MySelectInput
                 name="country"
                 placeholder="Country"
                 options={countryOptions}
+              />
+
+              <MySelectInput
+                name="city"
+                placeholder="City"
+                options={cityOptions}
               />
 
               <MySelectInput
@@ -106,6 +104,18 @@ export default observer(function RegisterForm() {
                 name="role"
                 placeholder="Role"
                 options={roleOptions}
+              />
+              <Divider />
+              <MyTextInput
+                style={{marginBottom: "10px"}}
+                name="phoneNumber"
+                placeholder="Phone Number"
+              />
+
+              <MyTextInput
+                style={{marginBottom: "10px"}}
+                name="email"
+                placeholder="Email"
               />
 
               <MyTextInput

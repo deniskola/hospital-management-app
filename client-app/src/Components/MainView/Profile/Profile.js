@@ -13,12 +13,14 @@ import ProceduresDashboard from "./ProfileDashboard/ProceduresDashboard";
 import { useStore } from "../../../stores/store";
 import {observer} from "mobx-react-lite";
 
+
 function Profile() {
 /*--------------- Allergies ------------------------- */
   const {allergiesStore} = useStore();
   const {openAllergyForm}=allergiesStore;
   const {userStore} = useStore();
   const {user} = userStore;
+
   useEffect(() => {
     allergiesStore.loadPAllergy();
   }, [allergiesStore])
@@ -99,7 +101,7 @@ function Profile() {
                 <p><b>Allergies</b></p>
                 <Button onClick={() => allergiesStore.openAllergyForm()}  color='blue' style={{marginLeft:'71%'}}>+ Add Allergy</Button>
               </div>
-            <AllergiesDashboard />
+              <AllergiesDashboard />
             </div>
         </p.Allergy>
         <p.History>
@@ -117,8 +119,9 @@ function Profile() {
                 <Button onClick={() => labTestStore.openForm()} color='blue' style={{marginLeft:'68%'}}><b>+ Add </b> </Button>
               </div>
               <LabTestDashboard/>   
-          </p.LabResults>       
-        </div>
+        </p.LabResults>       
+   
+      </div>
       </p.ProfileContainer>
     </div>
   );

@@ -5,11 +5,11 @@ import {useStore} from "../../../stores/store";
 import {observer} from "mobx-react-lite";
 import RegisterForm from "./User/RegisterForm";
 import CountryDash from "./Country/CountryDash/CountryDash";
-
-//import LoadingComponent from "../../../LoadingComponent";
+import CityDash from "./City/CityDash/CityDash";
+import LoadingComponent from "../../../LoadingComponent";
 
 function Test() {
-  const {userStore, countryStore} = useStore();
+  const {userStore, countryStore, cityStore} = useStore();
   const userRoles = [
     {
       roleNr: 0,
@@ -73,7 +73,7 @@ function Test() {
       menuItem: "Cities",
       render: () => (
         <Tab.Pane style={{height: "85vh", overflowY: "auto"}}>
-          Tab 2 Content
+          <CityDash />
         </Tab.Pane>
       ),
     },
@@ -83,10 +83,19 @@ function Test() {
   }, [countryStore]);
 
   useEffect(() => {
+    cityStore.loadCity();
+  }, [cityStore]);
+
+  useEffect(() => {
     userStore.loadUser();
   }, [userStore]);
 
-  //if (aboutStore.loadingInitial) return <LoadingComponent content='Loading app' />
+  if (userStore.loadingInitial)
+    return <LoadingComponent content="Loading app..." />;
+  if (countryStore.loadingInitial)
+    return <LoadingComponent content="Loading app..." />;
+  if (cityStore.loadingInitial)
+    return <LoadingComponent content="Loading app..." />;
 
   return (
     <div>

@@ -37,7 +37,9 @@ namespace API
                 await SeedActivity.SeedData(context);
                 await SeedAbout.SeedData(context);
                 await SeedCountry.SeedData(context);
-
+                await SeedWorkingHours.SeedData(context);
+                await SeedAchievement.SeedData(context);
+                await SeedCity.SeedData(context);
             }
             catch (Exception ex)
             {
