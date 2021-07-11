@@ -2,37 +2,24 @@ import React from 'react';
 import { Grid } from "semantic-ui-react";
 import PatientHistoryList from './PatientHistoryList';
 import PatientHistoryFrom from '../Form/PatientHistoryFrom';
+import { useStore } from "../../../../stores/store";
+import { observer } from "mobx-react-lite";
 
+export default observer(function PatientHistoryDashboard(){
+    const {patientHistoryStore}= useStore();
+    const {selectedPatientHistory, editMode}=patientHistoryStore;
 
-export default function PatientHistoryDashboard({patienthistories, selectedPatientHistory, selectPatientHistory,cancelSelectPatientHistory, 
-    editHistoryMode, openHistoryForm, closeHistoryForm, deletePatientHistory,createOrEdit, submittingHistory}){
     return (
         <Grid>
-            <Grid.Column>
-                   <PatientHistoryList
-                        patienthistories={patienthistories}
-                        selectPatientHistory={selectPatientHistory}
-                        deletePatientHistory={deletePatientHistory}
-                        submittingHistory={submittingHistory}
-                   />
-                   
-                   {selectedPatientHistory && !editHistoryMode && (
-                    <PatientHistoryFrom
-                        patientHistory={selectedPatientHistory}
-                        cancelSelectPatientHistory={cancelSelectPatientHistory}
-                        openHistoryForm={openHistoryForm}
-                    />
+                   <PatientHistoryList />
+
+                   {selectedPatientHistory && !editMode && (
+                    <PatientHistoryFrom />
                    )}
                     
-                    {editHistoryMode && (
-                        <PatientHistoryFrom
-                        closeHistoryForm={closeHistoryForm}
-                        patientHistory={selectedPatientHistory}
-                        createOrEdit={createOrEdit}
-                        submittingHistory={submittingHistory}
-                        />
+                    {editMode && (
+                        <PatientHistoryFrom />
                     )}
-            </Grid.Column>
         </Grid>
     );
-}
+})

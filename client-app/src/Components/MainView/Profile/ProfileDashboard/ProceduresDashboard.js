@@ -2,37 +2,24 @@ import React from 'react';
 import { Grid } from "semantic-ui-react";
 import ProceduresList from './ProceduresList';
 import ProceduresForm from '../Form/ProceduresForm';
+import { useStore } from "../../../../stores/store";
+import { observer } from "mobx-react-lite";
 
+export default observer(function ProceduresDashboard(){
+    const {proceduresStore}= useStore();
+    const {selectedProcedure, editMode}=proceduresStore;
 
-export default function ProceduresDashboard({procedures, selectedProcedure, selectProcedure,cancelSelectProcedure, 
-    editProcedureMode, openProcedureForm, closeProcedureForm, deleteProcedure,createOrEditProcedure, submittingProcedure}){
     return (
         <Grid>
             <Grid.Column>
-                   <ProceduresList
-                        procedures={procedures}
-                        selectProcedure={selectProcedure}
-                        deleteProcedure={deleteProcedure}
-                        submittingProcedure={submittingProcedure}
-                   />
-                   
-                   {selectedProcedure && !editProcedureMode && (
-                    <ProceduresForm
-                        procedure={selectedProcedure}
-                        cancelSelectProcedure={cancelSelectProcedure}
-                        openProcedureForm={openProcedureForm}
-                    />
+                   <ProceduresList/>
+                   {selectedProcedure && !editMode && (
+                    <ProceduresForm />
                    )}
-                    
-                    {editProcedureMode && (
-                        <ProceduresForm
-                        closeProcedureForm={closeProcedureForm}
-                        patientProcedure={selectedProcedure}
-                        createOrEditProcedure={createOrEditProcedure}
-                        submittingProcedure={submittingProcedure}
-                        />
+                    {editMode && (
+                        <ProceduresForm />
                     )}
             </Grid.Column>
         </Grid>
     );
-}
+})

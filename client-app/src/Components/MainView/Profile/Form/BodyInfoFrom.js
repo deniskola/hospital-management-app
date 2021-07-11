@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import { Button, Form} from 'semantic-ui-react';
+import { useStore } from "../../../../stores/store";
+import {observer} from "mobx-react-lite";
 
-export default function BodyInfoFrom ({bodyinfo: selectedBodyInfo, createOrEdit, closeBodyInfoForm, submittingBodyInfo}){
+export default observer(function BodyInfoFrom (){
+    const{bodyInfoStore} = useStore();
+    const {selectedBodyInfo, cancelSelectedBodyInfo, createBodyInfo, updateBodyInfo, loading} = bodyInfoStore;
 
     const initialState = selectedBodyInfo ?? {
         id: "",
@@ -10,11 +14,10 @@ export default function BodyInfoFrom ({bodyinfo: selectedBodyInfo, createOrEdit,
         grupiGjakut: "",
         gjatesia: ""
     };
-
     const [bodyinfo, setBodyInfos] = useState(initialState);
 
     function handleSubmit() {
-        createOrEdit(bodyinfo);
+        bodyinfo.id ? updateBodyInfo(bodyinfo) : createBodyInfo(bodyinfo);
     }
 
     function handleInputChange(event) {
@@ -23,25 +26,22 @@ export default function BodyInfoFrom ({bodyinfo: selectedBodyInfo, createOrEdit,
     }
 
     return (
-        <Form onSubmit={handleSubmit} autoComplete="off">
+        <Form onSubmit={handleSubmit} autoComplete="off" style={{width:'350px', margin:'0px 13px 13px 13px',padding:'20px', marginBottom:'10px'}}>
         <Form.Field >
-            <label>Age</label>
             <input placeholder='Age...' name='age' value={bodyinfo.mosha} onChange={handleInputChange}/>
         </Form.Field>
         <Form.Field >
-            <label>Weight</label>
             <input placeholder='Weight...'  name='weight' value={bodyinfo.pesha} onChange={handleInputChange}/>
         </Form.Field>
         <Form.Field >
-            <label>Blood Group</label>
             <input placeholder='Bood Group...'  name='grupiGjakut' value={bodyinfo.grupiGjakut} onChange={handleInputChange}/>
         </Form.Field>
-        <Form.Field o>
-            <label>Height</label>
+        <Form.Field>
             <input placeholder='Height...'  name='gjatesia' value={bodyinfo.gajtesia} onChange={handleInputChange}/>
         </Form.Field> 
-        <Button onClick={submittingBodyInfo} type='submit' color="green">Submit</Button>
-        <Button onClick={closeBodyInfoForm} type='button' color="gray">Cancel</Button>
-    </Form>
+        <Button loading={loading}  type='submit' color="green">Submit</Button>
+        <Button onClick={cancelSelectedBodyInfo} type='button' color="gray">Cancel</Button>
+        </Form>
+
     )
-}
+})

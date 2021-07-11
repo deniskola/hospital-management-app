@@ -474,6 +474,88 @@ namespace Persistence.Migrations
                         .OnDelete(DeleteBehavior.ClientCascade)
                         .IsRequired();
                 });
+
+            modelBuilder.Entity("Domain.BodyInfo", b => 
+            {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("Mosha")
+                        .HasColumnType("int");
+
+                    b.Property<double>("Pesha")
+                        .HasColumnType("float");
+
+                    b.Property<string>("GrupiGjakut")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("Gjatesia")
+                        .HasColumnType("float");
+
+
+                    b.HasKey("Id");
+
+                    b.ToTable("BodyInfos");
+            });
+            
+            modelBuilder.Entity("Domain.LabTest", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+                        
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Date")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Location")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("LabTests");
+                });
+
+            modelBuilder.Entity("Domain.Procedure", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime");
+
+                    b.Property<string>("LocationOnBody")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Procedures");
+                });
+
+            modelBuilder.Entity("Domain.PatientHistory", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Date")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Descritpion")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("PatientHistories");
+                });
+
 #pragma warning restore 612, 618
         }
     }

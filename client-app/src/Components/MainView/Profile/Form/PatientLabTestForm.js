@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import { Button, Form, Segment, TableRow} from 'semantic-ui-react';
+import { useStore } from "../../../../stores/store";
+import {observer} from "mobx-react-lite";
 
-
-export default function PatientLabTestFrom({ labtest: selectedLabTest, closeLabTestForm, createOrEdit, submittingLabTest }){
+export default observer (function PatientLabTestFrom(){
+    const{labTestStore} = useStore();
+    const {selectedLabTest, cancelSelectedLabTest, createLabTest, updateLabTest, loading} = labTestStore;
 
     const initialState = selectedLabTest ?? {
         id: '',
@@ -14,7 +17,7 @@ export default function PatientLabTestFrom({ labtest: selectedLabTest, closeLabT
     const [labtest, setLabTests] = useState(initialState);
 
     function handleSubmit() {
-       createOrEdit(labtest);
+       labtest.id ? updateLabTest(labtest) : createLabTest(labtest);
     }
 
     function handleInputChange(event) {
@@ -23,8 +26,8 @@ export default function PatientLabTestFrom({ labtest: selectedLabTest, closeLabT
     }
 
     return (
-        <Segment>
-        <Form onSubmit={handleSubmit} autoComplete='off' style={{width:'auto', backgroundColor:'#e6e6ff', padding:'10px'}}>
+        <Segment style={{marginLeft:'14px', marginBottom:'15px'}}>
+        <Form onSubmit={handleSubmit} autoComplete='off' style={{width:'830px', backgroundColor:'#e6e6ff', padding:'10px 40px 10px 40px'}}>
             <TableRow style={{display:'flex', flexDirection:'row', width:'100%'}}>
                 <Form.Field>
                     <input placeholder='Name of Test..'  value={labtest.name}  name='name' onChange={handleInputChange}/>
@@ -36,30 +39,10 @@ export default function PatientLabTestFrom({ labtest: selectedLabTest, closeLabT
                     <textarea placeholder='Results of test...' style={{width:'350px', marginLeft:'30px', height:'40px', marginBottom:'20px'}} value={labtest.location} name='location' onChange={handleInputChange}/>
                 </Form.Field>   
             </TableRow>
-            <Button onClick={submittingLabTest} type='submit' variant="primary" color="green">Submit</Button>
-            <Button onClick={closeLabTestForm} type="button" color="gray">Cancel</Button>
+            <Button loading={loading} type='submit' variant="primary" color="green">Submit</Button>
+            <Button onClick={cancelSelectedLabTest}  type="button" color="gray">Cancel</Button>
         </Form>
         </Segment>
     )
-}
+})
 
-/* return (
-        <Segment>
-        <Form onSubmit={handleSubmit} autoComplete='off' style={{width:'400px', backgroundColor:'#e6e6ff', padding:'40px'}}>
-            <Form.Field>
-                <label>Name</label>
-                <input placeholder='Name of Test..'  value={labtest.name}  name='name' onChange={handleInputChange}/>
-            </Form.Field>
-            <Form.Field>
-                    <label>Date</label>
-                    <input placeholder='Date of Test...' value={labtest.date} name='date' onChange={handleInputChange}/>
-            </Form.Field> 
-            <Form.Field>
-                    <label>Results</label>
-                    <textarea placeholder='Results of test...' value={labtest.location} name='location' onChange={handleInputChange}/>
-            </Form.Field>   
-            <Button onClick={submittingLabTest} type='submit' variant="primary" color="green">Submit</Button>
-            <Button onClick={closeLabTestForm} type="button" color="gray">Cancel</Button>
-        </Form>
-        </Segment>
-    ) */

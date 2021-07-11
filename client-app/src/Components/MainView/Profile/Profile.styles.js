@@ -67,7 +67,6 @@ export const BodyInfo = styled.div`
         height: auto;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4);
         margin:10px; 
-        padding-left: 30px;
         background-color:white;
 
     
@@ -101,7 +100,6 @@ export const Allergy = styled.div`
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4);
 
     .upper-container{
-        margin-top:5px;
         display: flex;
         flex-direction: row;
         background-color: #e6e6ff;
@@ -175,13 +173,12 @@ export const Proccedures = styled.div`
 
 `
 export const LabResults = styled.div`
-
-    margin-top: 10px;
     height:auto;
     background-color:white;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4);
+    margin-top:10px;
 
-    
+
     .upper-container{
         display: flex;
         flex-direction: row;
@@ -193,10 +190,6 @@ export const LabResults = styled.div`
         padding-top:5px;
         margin-left:20px;
     }
-    .lower-container{
-        width:100%;
-        height:auto;
-        margin-left:2%;
-    }
+
 
 `

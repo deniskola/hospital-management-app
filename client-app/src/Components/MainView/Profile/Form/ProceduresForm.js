@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import { Button, Form, Segment} from 'semantic-ui-react';
+import { useStore } from "../../../../stores/store";
+import {observer} from "mobx-react-lite";
 
-
-export default function ProceduresForm({ procedure: selectedProcedure, closeProcedureForm, createOrEditProcedure, submittingProcedure }){
+export default observer(function ProceduresForm(){
+    const{proceduresStore} = useStore();
+    const {selectedProcedure, cancelSelectedProcedure, createProcedure, updateProcedure, loading} = proceduresStore;
 
     const initialState = selectedProcedure ?? {
         id: '',
@@ -13,9 +16,9 @@ export default function ProceduresForm({ procedure: selectedProcedure, closeProc
 
     const [procedure, setProcedures] = useState(initialState);
 
-    function handleSubmitProcedure() {
-       createOrEditProcedure(procedure);
-    }
+    function handleSubmit() {
+        procedure.id ? updateProcedure(procedure) : createProcedure(procedure);
+     }
 
     function handleInputChange(event) {
         const { name, value } = event.target;
@@ -24,7 +27,7 @@ export default function ProceduresForm({ procedure: selectedProcedure, closeProc
 
     return (
         <Segment>
-        <Form onSubmit={handleSubmitProcedure} autoComplete='off' style={{width:'300px'}}>
+        <Form onSubmit={handleSubmit} autoComplete='off' style={{width:'300px'}}>
             <Form.Field>
                 <input placeholder='Name of Procedure..'  value={procedure.name}  name='name' onChange={handleInputChange}/>
             </Form.Field>
@@ -34,9 +37,9 @@ export default function ProceduresForm({ procedure: selectedProcedure, closeProc
             <Form.Field>
                     <input placeholder='Location on body...' value={procedure.locationOnBody} name='locationOnBody' onChange={handleInputChange}/>
             </Form.Field>   
-            <Button onClick={submittingProcedure} type='submit' variant="primary" color="green">Submit</Button>
-            <Button onClick={closeProcedureForm} type="button" color="gray">Cancel</Button>
+            <Button loading={loading} type='submit' variant="primary" color="green">Submit</Button>
+            <Button onClick={cancelSelectedProcedure} type="button" color="gray">Cancel</Button>
         </Form>
         </Segment>
     )
-}
+})

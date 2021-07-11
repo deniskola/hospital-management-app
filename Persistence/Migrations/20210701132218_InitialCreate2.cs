@@ -171,7 +171,7 @@ namespace Persistence.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Date = table.Column<DateTime>(type: "nvarchar(max)", nullable: true),
+                    Date = table.Column<DateTime>(type: "datetime", nullable: true),
                     LocationOnBody = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>

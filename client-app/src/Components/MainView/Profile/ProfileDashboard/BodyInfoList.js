@@ -1,58 +1,65 @@
 import React, { useState } from "react";
 import {Segment, Button} from 'semantic-ui-react';
 import { Table, TableBody, TableCell, TableHead, TableRow, ButtonGroup } from '@material-ui/core'; 
-import {Modal} from 'react-bootstrap';
-import BodyInfoFrom from '../Form/BodyInfoFrom';
+import bodyHeight from "../bodyHeight.PNG";
+import { useStore } from "../../../../stores/store";
+import { observer } from "mobx-react-lite";
 
-export function BodyInfoList ({bodyinfos, openBodyInfoForm, selectBodyInfo}){
-    const [show, setShow] = useState(false);
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+export default observer(function BodyInfoList (){
+    const {bodyInfoStore} = useStore();
+    const { bodyinfosByAge, loading} = bodyInfoStore;
+    const { userStore } = useStore();
+    const { user } = userStore;
+ 
     return(
-        <Segment clearing>
+        <Segment style={{margin:'12px 0px 13px 14px', width:'350px'}} >
             <Table/>
-                  <TableBody>
+                  <TableBody style={{marginTop:'0px'}}>
                     {
-                     bodyinfos.map(bodyinfo => (
-                          <TableRow>
+                    bodyinfosByAge.map(bodyinfo => (
+                        <div>
                                 <TableRow key={bodyinfo.id}> 
-                                    <TableCell><b>Age:</b></TableCell>
-                                    <TableCell>{bodyinfo.mosha}</TableCell>
+                                    <TableCell style={{width:'100px'}}> 
+                                        <TableRow>
+                                            <TableRow><b>Age:</b></TableRow><br></br>
+                                            <TableRow>{bodyinfo.mosha}</TableRow>
+                                        </TableRow>
+                                    </TableCell>
+                                    <TableCell style={{width:'110px'}}>
+                                        <TableRow>
+                                            <TableRow><b>Weight:</b></TableRow><br></br>
+                                            <TableRow>{bodyinfo.pesha}</TableRow>
+                                        </TableRow>
+                                    </TableCell>
+                                    <TableCell style={{width:'110px'}}>
+                                        <TableRow>
+                                            <TableRow><b>Blood group:</b></TableRow><br></br>
+                                            <TableRow>{bodyinfo.grupiGjakut}</TableRow>
+                                        </TableRow>
+                                    </TableCell>
+                                </TableRow>
+                                <TableRow>
+                                    <TableCell>
+                                        <div>
+                                            <img src={bodyHeight}/>
+                                        </div>
+                                    </TableCell>
+                                    <TableCell>
+                                        <TableRow>
+                                            <TableRow><b>Height:</b></TableRow><br></br>
+                                            <TableRow>{bodyinfo.gjatesia}</TableRow>
+                                        </TableRow>
+                                    </TableCell>
+                                    {user.role === "admin" && (
                                     <ButtonGroup>
-                                        <Button basic onClick={() => handleShow(bodyinfo.id)} color='black' style={{marginTop:'5px', marginLeft:'100%'}}><i class="edit icon"></i></Button>
+                                        <Button basic  onClick={() => bodyInfoStore.selectBodyInfo(bodyinfo.id)} color='black' style={{marginTop:'70px', marginLeft:'40px'}}><i class="edit icon">Edit </i></Button>
                                     </ButtonGroup>
+                                    )}
                                 </TableRow>
-                                <TableRow >
-                                    <TableCell><b>Weight:</b></TableCell>
-                                    <TableCell>{bodyinfo.pesha}</TableCell>
-                                </TableRow>
-                                <TableRow>
-                                    <TableCell><b>Blood group:</b></TableCell>
-                                    <TableCell>{bodyinfo.grupiGjakut}</TableCell>
-                                </TableRow>
-                                <TableRow>
-                                    <TableCell><b>Height:</b></TableCell>
-                                    <TableCell>{bodyinfo.gjatesia}</TableCell>
-                                </TableRow>
-                          </TableRow>
+                        </div>
+                          
                       ))}
                   </TableBody>
-
-                  <Modal show={show} onHide={handleClose}>
-                    <Modal.Header closeButton>
-                          <Modal.Title>
-                           Body Informations
-                          </Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                      <BodyInfoFrom />
-                    </Modal.Body>
-                    <Modal.Footer>
-                        <Button variant="secondary" onClick={handleClose}>
-                          Close
-                        </Button>
-                    </Modal.Footer>
-                  </Modal>
         </Segment>
     )
-}
+})

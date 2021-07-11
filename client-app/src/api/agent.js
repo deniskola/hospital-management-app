@@ -67,11 +67,11 @@ const PatientHistories ={
 };
 
 const LabTests ={
-  list : () => requests.get("/LabTests"),
-  details: (id) => requests.get(`/LabTests/${id}`),
-  create: (labtest) => axios.post(`/LabTests`, labtest),
-  update: (labtest) => axios.put(`/LabTests/${labtest.id}`, labtest),
-  delete: (id) => axios.delete(`/LabTests/${id}`),
+  list : () => requests.get("/labtests"),
+  details: (id) => requests.get(`/labtests/${id}`),
+  create: (labtest) => axios.post(`/labtests`, labtest),
+  update: (labtest) => axios.put(`/labtests/${labtest.id}`, labtest),
+  delete: (id) => axios.delete(`/labtests/${id}`),
 };
 
 const Procedures ={
@@ -127,15 +127,12 @@ const agent = {
   PAllergy,
   Account,
   Users,
-<<<<<<< HEAD
   BodyInfos,
   PatientHistories,
   LabTests,
   Procedures,
-=======
   HrDoctor,
   Countries,
->>>>>>> a887d1be86194c48e3e1789c138fd26f8c81c73a
 };
 
 export default agent;

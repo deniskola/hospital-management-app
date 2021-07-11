@@ -1,37 +1,24 @@
-import React, { useState } from "react";
+import React from "react";
 import { Grid } from "semantic-ui-react";
 import LabTestList from './LabTestList';
 import PatientLabTestForm from '../Form/PatientLabTestForm'
+import { useStore } from "../../../../stores/store";
+import { observer } from "mobx-react-lite";
 
-export default function LabTestDashboard ({labtests, selectedLabTest, selectLabTest,cancelSelectLabTest, 
-    editLabTestMode, openLabTestForm, closeLabTestForm, deleteLabTest,createOrEdit, submittingLabTest}){
+export default observer (function LabTestDashboard (){
+    const {labTestStore}= useStore();
+    const {selectedLabTest,editMode}=labTestStore;
+
     return (
         <Grid>
-           <LabTestList
-                labtests={labtests}
-                selectLabTest={selectLabTest}
-                deleteLabTest={deleteLabTest}
-                submittingLabTest={submittingLabTest}
-                createOrEdit={createOrEdit}
-            />
+           <LabTestList />
                    
-            {selectedLabTest && !editLabTestMode && (
-                <PatientLabTestForm
-                        labtest={selectedLabTest}
-                        cancelSelectLabTest={cancelSelectLabTest}
-                        openLabTestForm={openLabTestForm}
-                />
+            {selectedLabTest && !editMode && (
+                <PatientLabTestForm/>
+            )}        
+            {editMode && (
+                <PatientLabTestForm />
             )}
-                    
-            {editLabTestMode && (
-                <PatientLabTestForm
-                    closeLabTestForm={closeLabTestForm}
-                    labtest={selectedLabTest}
-                    createOrEdit={createOrEdit}
-                    submittingLabTest={submittingLabTest}
-                />
-            )}
-
         </Grid>
-    )
-}
+    );
+});

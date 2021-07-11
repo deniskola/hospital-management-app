@@ -2,36 +2,24 @@ import React from 'react';
 import { Grid } from "semantic-ui-react";
 import AllergiesList from './AllergiesList';
 import AllergiesForm from '../Form/AllergiesForm';
+import { useStore } from "../../../../stores/store";
+import { observer } from "mobx-react-lite";
 
-export default function AllergiesDashboard({allergies, selectedAllergy, selectAllergy, cancelSelectAllergy, editMode, 
-    deleteAllergy, openForm, closeForm,createOrEdit, submitting}){
+export default observer(function AllergiesDashboard(){
+    const {allergiesStore}= useStore();
+    const {selectedAllergy,editMode}=allergiesStore;
+
     return (
         <Grid>
             <Grid.Column width='17'>
-                   <AllergiesList
-                        allergies={allergies}
-                        selectAllergy={selectAllergy}
-                        deleteAllergy={deleteAllergy}
-                        submitting={submitting}
-
-                   />
+                   <AllergiesList/>
                     {selectedAllergy && !editMode && (
-                        <AllergiesForm
-                        pAllergies={selectedAllergy}
-                        cancelSelectAllergy={cancelSelectAllergy}
-                        openForm={openForm}
-                        submitting={submitting}
-                        />
+                        <AllergiesForm />
                     )}
                     {editMode && (
-                        <AllergiesForm
-                        closeForm={closeForm}
-                        pAllergies={selectedAllergy}
-                        createOrEdit={createOrEdit}
-                        submitting={submitting}
-                        />
+                        <AllergiesForm />
                     )}
             </Grid.Column>
         </Grid>
     );
-}
+});
