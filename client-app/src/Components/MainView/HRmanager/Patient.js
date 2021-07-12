@@ -1,18 +1,20 @@
-import React, {useEffect,useState} from 'react';
+import React, {useState,useEffect} from 'react';
 import PatientForm from './PatientForm';
-import PageHeader from './Components/PageHeader';
+import PageHeader from '../mainComponents/Components/PageHeader';
 import PeopleOutLineTwoToneIcon from '@material-ui/icons/PeopleOutlineTwoTone';
 import { Paper,makeStyles,TableBody,TableRow,TableCell,Toolbar,withStyles,InputAdornment,TableHead} from '@material-ui/core';
-import useTable from "./Components/useTable";
-import Controls from "./controls/Controls";
+import useTable from "../mainComponents/Components/useTable";
+import Controls from "../mainComponents/controls/Controls";
 import {Search} from '@material-ui/icons';
 import AddIcon from '@material-ui/icons/Add';
-import Popup from './Components/Popup';
+import Popup from '../mainComponents/Components/Popup';
 import EditOutlinedIcon from "@material-ui/icons/EditOutlined";
 import CloseIcon from '@material-ui/icons/Close';
 import {connect} from "react-redux";
-import * as actions from "./ActionsPatient/Patients";
+import * as actions from "./Actions/Patients";
 import {ToastProvider,useToasts} from "react-toast-notifications";
+import {Input} from "../Dashboard/controls";
+import api from "../Dashboard/actions/api";
 
 const styles=makeStyles(theme=>({
     pageContent:{
@@ -37,36 +39,37 @@ const headCells=[
 
 const Patient = ({classes , ...props}) => {
     const [currentId,setCurrentId]=useState(0)  
-    const [records,setRecords]=useState()
-    const [filterFn,setFilterFn]=useState()
     const [openPopup,setOpenPopup]=useState(false);
-    const [notify,setNotify]=useState({isOpen:false,message:'',type:''})
-    const [confirmDialog,setConfirmDialog]=useState({isOpen:false,title:'',subTitle:''})
-
+    const [loadPatients,setLoadPatients]=useState([]);
+    const [refreshKey,setRefreshKey]=useState(0);
+    
     useEffect(()=>{
-        props.fetchAllPatients()
-    },[])
+        api.Patients().fetchAll().then(
+            (response)=>{
+                return response.data;
+            }
+        ).then((data)=>{
+            const patients=[];
+            for(const key in data){
+                const patient={
+                    id:key,
+                    ...data[key],
+                };
+                console.log(patient);
+                patients.push(patient); //here we stopped check again
+            }
+            setLoadPatients(patients);
+        });
+    },[refreshKey])
 
     const{addToast}=useToasts()
+    
 
     const {
         TblContainer,
         TblPagination,
-        recordsAfterPagingAndSorting
-    } = useTable(records, headCells, filterFn);
+    } = useTable(headCells);
 
-
-    const handleSearch = e => {
-        let target = e.target;
-        setFilterFn({
-            fn: items => {
-                if (target.value == "")
-                    return items;
-                else
-                    return items.filter(x => x.fullName.toLowerCase().includes(target.value))
-            }
-        })
-    }
 
     const onDelete=id=>{
         if(window.confirm('Are you sure to delete this record?'))
@@ -78,15 +81,15 @@ const Patient = ({classes , ...props}) => {
             <PageHeader title="New Patient" subTitle="Manage Patients" icon={<PeopleOutLineTwoToneIcon fontSize="large"/>}/>
             <Paper className={classes.pageContent}>
             <Toolbar>
-                    <Controls.Input
-                        label="Search Employees"
+                    <Input
+                        label="Search Patients"
                         className={classes.searchInput}
                         InputProps={{
                             startAdornment: (<InputAdornment position="start">
                                 <Search />
                             </InputAdornment>)
                         }}
-                        onChange={handleSearch}
+                        //onChange={handleSearch}
                     />
                     <Controls.Button
                         text="Add New"
@@ -106,14 +109,14 @@ const Patient = ({classes , ...props}) => {
                     </TableHead>
                         <TableBody>
                                 {
-                                    props.patientList.map((record,index)=>{
+                                    loadPatients.map((record,index)=>{
                                         return(
                                             <TableRow key={index} hover>
                                                 <TableCell>{record.firstName}</TableCell>
                                                 <TableCell>{record.lastName}</TableCell>
                                                 <TableCell>{record.gender}</TableCell>
                                                 <TableCell>{record.bloodGroup}</TableCell>
-
+                                                {console.log(loadPatients)}
                                                 <TableCell>
                                                     <Controls.ActionButton color="primary">
                                                         <EditOutlinedIcon fontSize="small" onClick={()=>{setCurrentId(record.id)}}/>
@@ -136,7 +139,7 @@ const Patient = ({classes , ...props}) => {
                 openPopup={openPopup}
                 setOpenPopup={setOpenPopup}
             >
-                <PatientForm/>
+                <PatientForm {...({currentId,setCurrentId})}/>
             </Popup>
             
         </>
@@ -145,7 +148,6 @@ const Patient = ({classes , ...props}) => {
 
 const mapStateToProp =state => ({
     patientList:state.dReminders.list
-    //Patient the name of the reducer
 })
 
 const mapActionToProp={

@@ -7,7 +7,7 @@ import {Input,Select} from "../Dashboard/controls";
 import * as actions from "./Actions/hrDoctor";
 import ReplayIcon from '@material-ui/icons/Replay';
 import {ToastProvider,useToasts} from "react-toast-notifications";
-import Controls from './controls/Controls';
+import Controls from '../mainComponents/controls/Controls';
 
 const genderItems=[
     {id:'male',title:'Male'},
@@ -33,6 +33,12 @@ const styles=theme=>({
         }
     }
 })
+const bloodGroup=[
+    {id:'A',title:'A'},
+    {id:'AB',title:'AB'},
+    {id:'B',title:'B'},
+    {id:'0',title:'0'}
+]
 
 const initialFieldValues = {
     firstName:'',
@@ -47,20 +53,31 @@ const initialFieldValues = {
     specialist:'',
     bloodgroup:'',
     degree:'',
-    gender:''
+    gender:'',
+    password:''
 }
 
 const DoctorForm=({classes,...props})=>{
     const{addToast}=useToasts()
     
+
     const validate=(fieldValues=values)=>{
         let temp={...errors}
-        if('asd' in fieldValues)
-            temp.reminderDate=fieldValues.reminderDate?"":"This field is required."
+        if('firstName' in fieldValues)
+            temp.firstName=fieldValues.firstName ? "":"This field is required."
+        if('lastName' in fieldValues)
+            temp.lastName=fieldValues.lastName ? "":"This field is required."
+        if('email' in fieldValues)
+            temp.email=(/$^|.+@.+..+/).test(fieldValues.email)? "":"Email is not valid"
+            temp.email=fieldValues.email?"":"This field is required"
+        if('password' in fieldValues)
+            temp.password=fieldValues.password.length > 8 ? "":"Minimum 8 chars required"
+        if('department' in fieldValues)
+            temp.department=fieldValues.department ? "":"This field is required."
+        if('specialist' in fieldValues)
+            temp.specialist=fieldValues.specialist ? "":"This field is required."
 
-        setErrors({
-            ...temp
-        })
+        setErrors({...temp})
 
         if(fieldValues==values)
             return Object.values(temp).every(x=>x=="")
@@ -78,9 +95,9 @@ const DoctorForm=({classes,...props})=>{
                 addToast("Submitted successfully",{appearance:'success'})
             }
             if(props.currentId==0)
-                props.createDReminder(values,onSuccess)
+                props.createDoctor(values,onSuccess)
             else
-                props.updateDReminder(props.currentId,values,onSuccess)
+                props.updateDoctor(props.currentId,values,onSuccess)
         }
     }
 
@@ -101,44 +118,34 @@ const DoctorForm=({classes,...props})=>{
                 <Input name="firstName" label="First Name" value={values.fullName} onChange={handleInputChange} {...(errors.firstName
                          && {error:true,helperText:errors.firstName})}/>
                 <Input name="lastName" label="Last Name" value={values.lastName} onChange={handleInputChange} {...(errors.lastName
-                         && {error:true,helperText:errors.firstName})}/>
+                         && {error:true,helperText:errors.lastName})}/>
                 <Input name="userName" label="User Name" value={values.userName} onChange={handleInputChange} {...(errors.userName
                          && {error:true,helperText:errors.userName})}/>
                 <Input name="email" label="Email" value={values.email} onChange={handleInputChange} {...(errors.email
                          && {error:true,helperText:errors.email})}/>
-
-                <Input name="address" label="Address" value={values.address} onChange={handleInputChange} {...(errors.email
-                         && {error:true,helperText:errors.email})}/>
-
+                <Input name="password" label="Password" type="password" value={values.password} onChange={handleInputChange}   {...(errors.password
+                        && {error:true,helperText:errors.password})} />
+                <Input name="address" label="Address" value={values.address} onChange={handleInputChange} {...(errors.address
+                         && {error:true,helperText:errors.address})}/>
                 <Controls.RadioGroup name="gender" label="Gender" value={values.gender} onChange={handleInputChange} items={genderItems} 
                         {...(errors.gender && {error:true,helperText:errors.gender})}/>
 
                 </Grid>
                 <Grid item xs={4} >
-                <TextField
-                        name="date"
-                        label="Date"
-                        variant="outlined"
-                        value={values.date}
-                        type="date"
-                        className={classes.textField}
-                        onChange={handleInputChange}
-                        InputLabelProps={{
-                        shrink: true,
-                        }}
-                        {...(errors.reminderDate && {error: true, helperText:errors.reminderDate})}/>
+                <TextField name="date" label="Date"
+                        variant="outlined" value={values.date} type="date" className={classes.textField} onChange={handleInputChange} 
+                        InputLabelProps={{shrink: true, }} {...(errors.date && {error: true, helperText:errors.date})}/>    
 
-                <Input name="department" label="Department" value={values.departmnet} onChange={handleInputChange} {...(errors.email
-                         && {error:true,helperText:errors.email})} />
-                <Input name="designation" label="Designation" value={values.designation} onChange={handleInputChange} {...(errors.email
-                         && {error:true,helperText:errors.email})}/>
-                <Input name="specialist" label="Specialist" value={values.specialist} onChange={handleInputChange} {...(errors.email
-                         && {error:true,helperText:errors.email})}/>
-                <Input name="bloodgroup" label="Blood Group" value={values.bloodgroup} onChange={handleInputChange} {...(errors.email
-                         && {error:true,helperText:errors.email})}/>
-                <Input name="degree" label="Degree" value={values.degree} onChange={handleInputChange} {...(errors.email
-                         && {error:true,helperText:errors.email})}/>
-                
+                <Input name="department" label="Department" value={values.departmnet} onChange={handleInputChange} {...(errors.department
+                         && {error:true,helperText:errors.department})} />
+                <Input name="designation" label="Designation" value={values.designation} onChange={handleInputChange} {...(errors.designation
+                         && {error:true,helperText:errors.designation})}/>
+                <Input name="specialist" label="Specialist" value={values.specialist} onChange={handleInputChange} {...(errors.specialist
+                         && {error:true,helperText:errors.specialist})}/>
+                <Input name="degree" label="Degree" value={values.degree} onChange={handleInputChange} {...(errors.degree
+                         && {error:true,helperText:errors.degree})}/>
+                <Select label="Blood Group" name="bloodgroup" value={values.bloodgroup} options={bloodGroup} onChange={handleInputChange} 
+                        {...(errors.bloodgroup && {error:true,helperText:errors.bloodgroup})}/>
                 <ButtonGroup className={classes.submitButtonGroup}>
                     <Button size="large" type="submit"> Submit</Button>    
                     <Button size="small" onClick={resetForm} startIcon={<ReplayIcon/>} />                       
@@ -155,8 +162,8 @@ const mapStateToProps=state=>({
 })
 
 const mapActionToProps={
-    createDReminder:actions.create,
-    updateDReminder:actions.update
+    createDoctor:actions.create,
+    updateDoctor:actions.update
 }
 
 export default connect(mapStateToProps,mapActionToProps)(withStyles(styles)(DoctorForm))

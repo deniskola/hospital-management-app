@@ -1,5 +1,6 @@
 using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Domain
 {
@@ -7,10 +8,9 @@ namespace Domain
     {
         [Key]
         public int id{ get;set; }
-
         public string reminderTitle{get;set;}
-
-        public string reminderDate{get;set;}
+        [Column(TypeName="Date")]
+        public DateTime reminderDate{get;set;}
         
     }
 }

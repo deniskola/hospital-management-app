@@ -14,6 +14,8 @@ import HRmanagerDoctor from './Components/MainView/HRmanager/Doctor';
 import HRmanagerPatient from './Components/MainView/HRmanager/Patient';
 import WorkingHours from './Components/MainView/WorkingHours/WorkingHours';
 import Achievements from './Components/MainView/Achievements/Achievements';
+import HRmanagerBirthRaport from './Components/MainView/HRmanager/BirthRaport';
+import HRmanagerDeathRaport from './Components/MainView/HRmanager/DeathRaport';
 
 
 const Routes = () => {
@@ -30,9 +32,11 @@ const Routes = () => {
     <Route exact path='/test' component={Test} />
     <Route exact path='/hrmanageraddDoctor' component={HRmanagerDoctor}/>
     <Route exact path='/hrmanageraddPatient' component={HRmanagerPatient}/>
+    <Route exact path='/hrmanageraddBirthRaport' component={HRmanagerBirthRaport}/>
+    <Route exact path='/hrmanageraddDeathRaport' component={HRmanagerDeathRaport}/>
     <Route exact path='/appointmentsworkingHours' component={WorkingHours}/>
     <Route exact path='/achievements' component={Achievements}/>
-
+     
   </Switch>
   )
 }

@@ -7,7 +7,6 @@ import {Button} from "semantic-ui-react";
 
 const Sidebar = (props) => {
   const {
-    backgroundImage = "",
     sidebarHeader = {
       fullName: "",
       shortName: "",

@@ -200,32 +200,60 @@ namespace Persistence.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("Domain.BodyInfo", b => 
-            {
+            modelBuilder.Entity("Domain.BirthRaport", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("PatientId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime>("birthDate")
+                        .HasColumnType("Date");
+
+                    b.Property<string>("childName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("fatherName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("gender")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("weight")
+                        .HasColumnType("float");
+
+                    b.HasKey("id");
+
+                    b.HasIndex("PatientId");
+
+                    b.ToTable("BirthRaports");
+                });
+
+            modelBuilder.Entity("Domain.BodyInfo", b =>
+                {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("Mosha")
-                        .HasColumnType("int");
-
-                    b.Property<double>("Pesha");
-
                     b.Property<double>("Gjatesia")
-
                         .HasColumnType("float");
 
                     b.Property<string>("GrupiGjakut")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<double>("Gjatesia")
-                        .HasColumnType("float");
+                    b.Property<int>("Mosha")
+                        .HasColumnType("int");
 
+                    b.Property<double>("Pesha")
+                        .HasColumnType("float");
 
                     b.HasKey("Id");
 
                     b.ToTable("BodyInfos");
-            });
+                });
 
             modelBuilder.Entity("Domain.City", b =>
                 {
@@ -274,8 +302,8 @@ namespace Persistence.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("reminderDate")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTime>("reminderDate")
+                        .HasColumnType("Date");
 
                     b.Property<string>("reminderTitle")
                         .HasColumnType("nvarchar(max)");
@@ -285,14 +313,29 @@ namespace Persistence.Migrations
                     b.ToTable("DReminders");
                 });
 
+            modelBuilder.Entity("Domain.DeathRaport", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("causeOfDeath")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("deathDate")
+                        .HasColumnType("Date");
+
+                    b.HasKey("id");
+
+                    b.ToTable("DeathRaports");
+                });
+
             modelBuilder.Entity("Domain.LabTest", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
-                        
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Date")
                         .HasColumnType("nvarchar(max)");
@@ -300,29 +343,12 @@ namespace Persistence.Migrations
                     b.Property<string>("Location")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
-
-                    b.ToTable("LabTests");
-                });
-
-             modelBuilder.Entity("Domain.Procedure", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime");
-
-                    b.Property<string>("LocationOnBody")
-                        .HasColumnType("nvarchar(max)");
-
                     b.HasKey("Id");
 
-                    b.ToTable("Procedures");
+                    b.ToTable("LabTests");
                 });
 
             modelBuilder.Entity("Domain.PAllergies", b =>
@@ -569,6 +595,15 @@ namespace Persistence.Migrations
                     b.ToTable("Patients");
                 });
 
+            modelBuilder.Entity("Domain.BirthRaport", b =>
+                {
+                    b.HasOne("Domain.Patient", "Patients")
+                        .WithMany("BirthRaports")
+                        .HasForeignKey("PatientId");
+
+                    b.Navigation("Patients");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -636,6 +671,11 @@ namespace Persistence.Migrations
                         .HasForeignKey("Domain.Patient", "Id")
                         .OnDelete(DeleteBehavior.ClientCascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Domain.Patient", b =>
+                {
+                    b.Navigation("BirthRaports");
                 });
 #pragma warning restore 612, 618
         }

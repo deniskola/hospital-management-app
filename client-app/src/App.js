@@ -77,7 +77,9 @@ function App() {
       icon: "/icons/services.png",
       subMenuItems: [
         {name:'Add Doctor',to:'addDoctor'},
-        {name:'Add Patient',to:'addPatient'}
+        {name:'Add Patient',to:'addPatient'},
+        {name:'Add BirthRaport',to:'addBirthRaport'},
+        {name:'Add DeathRaport',to:'addDeathRaport'}
       ],
     },
     {

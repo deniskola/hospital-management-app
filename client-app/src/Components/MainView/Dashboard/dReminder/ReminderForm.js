@@ -2,7 +2,7 @@ import React ,{useState,useEffect} from 'react';
 import { Grid, InputAdornment,withStyles,MenuItem,ButtonGroup,Button as MuiButton, TextField,} from '@material-ui/core';
 import useForm from "./useForm";
 import  {connect} from "react-redux";
-import * as actions from "../../HRmanager/Actions/hrDoctor";
+import * as actions from "../actions/dReminder";
 import {ToastProvider,useToasts} from "react-toast-notifications";
 import {Input,Select,Button} from "../controls";
 import ReplayIcon from '@material-ui/icons/Replay';
@@ -87,7 +87,7 @@ const ReminderForm=({classes,...props})=>{
                 <Input
                         label="Title"
                         name="reminderTitle"
-                        value={values.title}
+                        value={values.reminderTitle}
                         onChange={handleInputChange}
                         InputProps={{
                             startAdornment:<InputAdornment
@@ -102,7 +102,7 @@ const ReminderForm=({classes,...props})=>{
                         name="reminderDate"
                         label="Date"
                         variant="outlined"
-                        value={values.date}
+                        value={values.reminderDate}
                         type="date"
                         className={classes.textField}
                         onChange={handleInputChange}
@@ -111,14 +111,7 @@ const ReminderForm=({classes,...props})=>{
                         }}
                         {...(errors.reminderDate && {error: true, helperText:errors.reminderDate})}
                     />
-
-                    <Select 
-                        label="Patient"
-                        name="patientName"
-                        value={values.patient}
-                        onChange={handleInputChange}
-                        options={props.dReminderList}
-                    />
+            
 
                 </Grid>
                 <ButtonGroup className={classes.submitButtonGroup}>

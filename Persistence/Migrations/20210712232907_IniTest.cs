@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Persistence.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class IniTest : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -153,13 +153,27 @@ namespace Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "DeathRaports",
+                columns: table => new
+                {
+                    id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    deathDate = table.Column<DateTime>(type: "Date", nullable: false),
+                    causeOfDeath = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_DeathRaports", x => x.id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "DReminders",
                 columns: table => new
                 {
                     id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     reminderTitle = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    reminderDate = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    reminderDate = table.Column<DateTime>(type: "Date", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -212,7 +226,7 @@ namespace Persistence.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Date = table.Column<DateTime>(type: "datetime", nullable: true),
+                    Date = table.Column<DateTime>(type: "datetime2", nullable: false),
                     LocationOnBody = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
@@ -396,6 +410,30 @@ namespace Persistence.Migrations
                         onDelete: ReferentialAction.Restrict);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "BirthRaports",
+                columns: table => new
+                {
+                    id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    childName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    gender = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    weight = table.Column<double>(type: "float", nullable: false),
+                    birthDate = table.Column<DateTime>(type: "Date", nullable: false),
+                    fatherName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PatientId = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_BirthRaports", x => x.id);
+                    table.ForeignKey(
+                        name: "FK_BirthRaports_Patients_PatientId",
+                        column: x => x.PatientId,
+                        principalTable: "Patients",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -434,6 +472,11 @@ namespace Persistence.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_BirthRaports_PatientId",
+                table: "BirthRaports",
+                column: "PatientId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -466,6 +509,9 @@ namespace Persistence.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "BirthRaports");
+
+            migrationBuilder.DropTable(
                 name: "BodyInfos");
 
             migrationBuilder.DropTable(
@@ -473,6 +519,9 @@ namespace Persistence.Migrations
 
             migrationBuilder.DropTable(
                 name: "Countries");
+
+            migrationBuilder.DropTable(
+                name: "DeathRaports");
 
             migrationBuilder.DropTable(
                 name: "Doctors");
@@ -490,9 +539,6 @@ namespace Persistence.Migrations
                 name: "PatientHistories");
 
             migrationBuilder.DropTable(
-                name: "Patients");
-
-            migrationBuilder.DropTable(
                 name: "Procedures");
 
             migrationBuilder.DropTable(
@@ -503,6 +549,9 @@ namespace Persistence.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
+
+            migrationBuilder.DropTable(
+                name: "Patients");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");

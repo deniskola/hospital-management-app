@@ -206,7 +206,7 @@ function chartOptions() {
         },
       },
       doughnut: {
-        cutoutPercentage: 83,
+        cutoutPercentage: 55,
         legendCallback: function (chart) {
           var data = chart.data;
           var content = "";
@@ -288,7 +288,7 @@ let chartExample1 = {
         {
           gridLines: {
             color: colors.gray[900],
-            zeroLineColor: colors.gray[900],
+            zeroLineColor: "#FECB90",
           },
           ticks: {
             callback: function (value) {
@@ -334,11 +334,17 @@ let chartExample1 = {
       datasets: [
         {
           label: "Performance",
-          data: [40,27,32,38,28,50],
+          data: [40,27,32,42,28,50],
+          fill:true,
+          backgroundColor:"rgba(254,203,144,0.2)",
+          borderColor: "#fecb90",
         },
         {
           label:"Test",
-          data: [25,12,18,22,16,40]
+          data: [25,12,18,28,16,40],
+          fill:true,
+          backgroundColor:"rgba(142,89,250,0.2)",
+          borderColor:"#8e59fa"
         }
       ],
     };

@@ -54,12 +54,12 @@ namespace Persistence
                 new DReminder
                 {
                     reminderTitle = "Surgery for patient Jane ",
-                    reminderDate = "2021-2-2",
+                    reminderDate = DateTime.Now.AddDays(+10),
                 },
                 new DReminder
                 {
                     reminderTitle = "Surgery for patient John",
-                    reminderDate = "2021-2-2",
+                    reminderDate = DateTime.Now.AddDays(+10),
                 }
             };
 

@@ -18,6 +18,17 @@ export const fetchAll = () => dispatch => {
         .catch(err => console.log(err))
 }
 
+/*
+export const fetchAll=()=>async(dispatch)=>{
+    const result= await api.dReminder().fetchAll();
+    const data=await result.text(JSON.stringify(('form').serializeObject()));
+        dispatch({
+            type:ACTION_TYPES.FETCH_ALL,
+            payload:data.values
+        })
+    .catch(err=>console.log(err))
+}*/
+
 export const create = (data, onSuccess) => dispatch => {
     api.dReminder().create(data)
         .then(res => {

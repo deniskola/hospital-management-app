@@ -1,17 +1,17 @@
 import React, {useEffect,useState} from 'react';
-import DoctorForm from './DoctorForm';
+import BirthRaportForm from './BirthRaportForm';
 import PageHeader from '../mainComponents/Components/PageHeader';
 import PeopleOutLineTwoToneIcon from '@material-ui/icons/PeopleOutlineTwoTone';
 import { Paper,makeStyles,TableBody,TableRow,TableCell,TableHead,Toolbar,withStyles,InputAdornment} from '@material-ui/core';
 import useTable from "../mainComponents/Components/useTable";
 import Controls from "../mainComponents/controls/Controls";
-import {Input} from "../Dashboard/controls";
+import {Input,Select} from "../Dashboard/controls";
 import {Search} from '@material-ui/icons';
 import AddIcon from '@material-ui/icons/Add';
 import Popup from '../mainComponents/Components/Popup';
 import EditOutlinedIcon from "@material-ui/icons/EditOutlined";
 import CloseIcon from '@material-ui/icons/Close';
-import * as actions from "./Actions/hrDoctor";
+import * as actions from "./Actions/birthRaport";
 import {connect} from "react-redux";
 import {ToastProvider,useToasts} from "react-toast-notifications";
 
@@ -29,22 +29,15 @@ const styles=makeStyles(theme=>({
     }
 }))
 
-const headCells=[
-    {id:'firstName',label:'First Name'},
-    {id:'lastName',label:'Last Name'},
-    {id: 'department',label:'Department'},
-    {id:'specialist',label:'Specialist'},
-    {id:'actions',label:'Actions',disableSorting:true}
-]
 
-const Doctor = ({classes , ...props}) => {
+const BirthRaport = ({classes , ...props}) => {
     
     const [currentId,setCurrentId]=useState(0)
     const [openPopup,setOpenPopup]=useState(false);
 
 
     useEffect(()=>{
-        props.fetchAllDoctors()
+        props.fetchAllBirthRaport()
     },[])
     
     const{addToast}=useToasts()
@@ -52,22 +45,31 @@ const Doctor = ({classes , ...props}) => {
     const {
         TblContainer,
         TblPagination,
-    } = useTable(headCells);
+    } = useTable();
 
+
+    const formatDate=birthDate=>{
+        if(birthDate!=null){
+        const date_array = birthDate.split('T');
+
+        return date_array[0];
+        }
+        return null;
+    }
 
     const onDelete=id=>{
         if(window.confirm('Are you sure to delete this record?'))
-        props.deleteDoctor(id,()=>addToast("Deleted successfully",{appreance:'info'}))
+        props.deleteBirthRaport(id,()=>addToast("Deleted successfully",{appreance:'info'}))
     }
 
     return(
         <>
-            <PageHeader title="New Doctor" subTitle="Manage Doctors"  icon={<PeopleOutLineTwoToneIcon fontSize="large"/>} />
+            <PageHeader title="New Birth Raport" subTitle="Manage Birth Raports"  icon={<PeopleOutLineTwoToneIcon fontSize="large"/>} />
 
             <Paper className={classes.pageContent}>
             <Toolbar>
                     <Input
-                        label="Search Doctors"
+                        label="Search Birth Raports"
                         className={classes.searchInput}
                         InputProps={{
                             startAdornment: (<InputAdornment position="start">
@@ -81,26 +83,28 @@ const Doctor = ({classes , ...props}) => {
                         variant="outlined"
                         startIcon={<AddIcon />}
                         className={classes.newButton}
-                        onClick={() => { setOpenPopup(true);}}
+                        onClick={() => { setOpenPopup(true); }}
                     />
                 </Toolbar>
                 <TblContainer>
                     <TableHead>
-                        <TableCell>First name</TableCell>
-                        <TableCell>Last Name</TableCell>
-                        <TableCell>Department</TableCell>
-                        <TableCell>Specialist</TableCell>
+                        <TableCell>Father Name</TableCell>
+                        <TableCell>Child Name</TableCell>
+                        <TableCell>Weight</TableCell>
+                        <TableCell>Gender</TableCell>
+                        <TableCell>Birth Date</TableCell>
                         <TableCell>Actions</TableCell>
                     </TableHead>
                         <TableBody>
                                 {
-                                    props.doctorList.map((record,index)=>{
+                                    props.birthRaportList.map((record,index)=>{
                                         return(
                                             <TableRow key={index} hover>
-                                                <TableCell>{record.firstName}</TableCell>
-                                                <TableCell>{record.lastName}</TableCell>
-                                                <TableCell>{record.department}</TableCell>
-                                                <TableCell>{record.specialist}</TableCell>
+                                                <TableCell>{record.fatherName}</TableCell>
+                                                <TableCell>{record.childName}</TableCell>
+                                                <TableCell>{record.weight}</TableCell>
+                                                <TableCell>{record.gender}</TableCell>
+                                                <TableCell>{formatDate(record.birthDate)}</TableCell>
                                             <TableCell>
                                                   <Controls.ActionButton color="primary">
                                                       <EditOutlinedIcon fontSize="small" onClick={()=>{setOpenPopup(true);setCurrentId(record.id)}}/>
@@ -118,20 +122,20 @@ const Doctor = ({classes , ...props}) => {
                 <TblPagination />
             </Paper>
             
-            <Popup title="Doctor Form" openPopup={openPopup} setOpenPopup={setOpenPopup}>
-                <DoctorForm {...({currentId,setCurrentId})}/>
+            <Popup title="BirthRaport Form" openPopup={openPopup} setOpenPopup={setOpenPopup}>
+                <BirthRaportForm {...({currentId,setCurrentId})}/>
             </Popup>
         </>
     )
 }
 
 const mapStateToProps=state=>({
-    doctorList: state.dReminders.list
+    birthRaportList: state.dReminders.list
 });
 
 const mapActionToProps={
-    fetchAllDoctors:actions.fetchAll,
-    deleteDoctor:actions.Delete
+    fetchAllBirthRaport:actions.fetchAll,
+    deleteBirthRaport:actions.Delete
 }
 
-export default connect(mapStateToProps,mapActionToProps)(withStyles(styles)(Doctor));
+export default connect(mapStateToProps,mapActionToProps)(withStyles(styles)(BirthRaport));

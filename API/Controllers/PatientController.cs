@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
 using Persistence;
+using AutoMapper;
 
 namespace API.Controllers
 {
@@ -15,9 +16,11 @@ namespace API.Controllers
     public class PatientController:ControllerBase
     {
         private readonly DataContext _context;
-
-        public PatientController(DataContext context){
+        //private readonly IMapper _mapper;
+        public PatientController(DataContext context//,IMapper mapper
+        ){
             _context=context;
+           // _mapper=mapper;
         }
 
         [HttpGet]
@@ -33,6 +36,31 @@ namespace API.Controllers
 
             return patient;
         }
+        /*
+        [HttpGet("getPatientById/{id}")]
+        public async Task<ActionResult<Patient>> getPatientById(string id){
+            /*
+            var _response=_context.Patients.Include(p=>p.BirthRaports)
+                                            .Where(p=>p.Id==id)
+                                            .FirstOrDefault();
+
+            if(_response ==null){
+                return NotFound();
+            }
+            var _response=await _context.Patients.SingleAsync(patient=>patient.Id==id);
+
+            _context.Entry(_response)
+                    .Collection(b=>b.BirthRaports)
+                    .Query()
+                    .Load();
+            if(_response==null){
+                return NotFound();
+            }
+            
+            return  _response;
+        }
+        */
+        
         [HttpPost]
         public async Task<ActionResult<Patient>> PostPatients(Patient patient){
             _context.Patients.Add(patient);
@@ -42,6 +70,7 @@ namespace API.Controllers
         }
         [HttpPut("{id}")]
         public async Task<IActionResult> PutPatient(string id,Patient patient){
+            
             patient.Id=id;
             _context.Entry(patient).State=EntityState.Modified;
             try{

@@ -1,5 +1,3 @@
-using Application.DashboardCore;
-using Application.DReminders;
 using AutoMapper;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -7,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 using Persistence;
+using System.Text.Json.Serialization;
 
 namespace API.Extensions
 {
@@ -29,8 +28,20 @@ namespace API.Extensions
                     .WithOrigins("http://localhost:3000");
                 });
             });
+            
+
+            /*
             services.AddMediatR(typeof(List.Handler).Assembly);
             services.AddAutoMapper(typeof(MappingProfiles).Assembly);
+
+            
+            services.AddControllers().AddJsonOptions(x =>{
+                x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
+                x.JsonSerializerOptions.PropertyNamingPolicy = null;
+                }
+            );*/
+
+            
 
             return services;
         }

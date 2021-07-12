@@ -1,9 +1,9 @@
 import React,{useState,useEffect} from 'react';
 import { List, ListItem ,ListItemText,Paper,InputBase,IconButton,withStyles, ListItemSecondaryAction} from '@material-ui/core';
-import {createAPIEndpoint,ENDPOINTS} from "../api";
 import SearchTwoToneIcon from '@material-ui/icons/SearchTwoTone';
 import {connect} from "react-redux";
 import * as actions from "../actions/dReminder";
+import axios from "axios";
 
 const styles=theme=>({
     searchPaper:{
@@ -48,8 +48,7 @@ const[searchKey,setSearchKey]=useState('');
 const[show,setShow]=useState(false)
 
 useEffect(()=>{
-    createAPIEndpoint(ENDPOINTS.DREMINDER).fetchAll()
-    .then(res=>{
+    axios.get("http://localhost:5000/api/DReminders").then(res=>{
         setReminderList(res.data);
         setSearchList(res.data);
     }).catch(err=>console.log(err))

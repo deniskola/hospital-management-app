@@ -4,7 +4,6 @@ import {
   dangerCardHeader,
   primaryCardHeader,
   whiteColor,
-  purpleColor,
 } from "./material-dashboard-react.js";
 
 const cardHeaderStyle = {

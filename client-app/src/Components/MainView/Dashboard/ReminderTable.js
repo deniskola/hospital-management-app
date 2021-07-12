@@ -6,11 +6,11 @@ import CardBody from '../mainComponents/CardBody.js';
 import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
 import AddIcon from "@material-ui/icons/Add";
-import RemoveOutlinedIcon from '@material-ui/icons/RemoveOutlined';
 import ReminderForm from './dReminder/ReminderForm.js';
 import {ToastProvider,useToasts} from "react-toast-notifications";
 import * as actions from "./actions/dReminder";
 import {connect} from "react-redux";
+import Popup from "../mainComponents/Components/Popup";
 
 const styles=theme=>({
     root:{  
@@ -21,21 +21,33 @@ const styles=theme=>({
   })
 
 function ReminderTable({classes,...props}){
-    const[currentId,setCurrentId]=useState(0)
-    const[show,setShow]=useState(false)
+  const[currentId,setCurrentId]=useState(0)
+  const[show,setShow]=useState(false)
+  const[openPopup,setOpenPopup]=useState(false);
 
-    const{addToast}=useToasts()
+  const{addToast}=useToasts()
 
-    const onDelete=id=>{
+  const onDelete=id=>{
       if(window.confirm('Are you sure to delete this record?'))
       props.deleteDReminder(id,()=>addToast("Deleted successfully",{appearance:'info'}))
-    }
-    
-    useEffect(()=>{
-        props.fetchAllDReminders()
-      },[])
+  }
 
-    return(
+  const formatDate=reminderData=>{
+    if(reminderData!=null){
+      const date_array = reminderData.split('T');
+
+      return date_array[0];
+    }
+
+    return null;
+  }
+    
+  useEffect(()=>{
+        props.fetchAllDReminders()
+  },[])
+
+  return(
+    <>
         <Card>
          <CardHeader color="primary">
             <h4 className>Reminders</h4>
@@ -44,37 +56,20 @@ function ReminderTable({classes,...props}){
             <Table>
                  <TableHead>
                    <TableRow>
-                     <TableCell>Id</TableCell>
                      <TableCell>Name</TableCell>
                      <TableCell>Date</TableCell>
-                     <TableCell><Button onClick={()=>setShow(true)}><AddIcon style={{ color:"#06cf2e" }}/></Button></TableCell>
-                   </TableRow>
-                   <TableRow>
-                   {
-                      show?( 
-                        <Grid container direction="row" justify="flex-start" alignItem="center">
-                        <TableHead>
-                        <TableRow>
-                          <TableCell><ReminderForm
-                            {...({currentId,setCurrentId})}/>
-                          <Button onClick={()=>setShow(false)}><RemoveOutlinedIcon color="secondary"/></Button></TableCell>
-                        </TableRow>
-                        </TableHead>
-                        </Grid>
-                      ):null
-                     }
+                     <TableCell><Button onClick={()=>setOpenPopup(true)}><AddIcon style={{ color:"#06cf2e" }}/></Button></TableCell>
                    </TableRow>
                  </TableHead>
                  <TableBody>
                    {
                      props.dReminderList.map((record,index) => {
                        return (<TableRow key={index} hover>
-                         <TableCell>{record.id}</TableCell>
                          <TableCell>{record.reminderTitle}</TableCell>
-                         <TableCell>{record.reminderDate}</TableCell>
+                         <TableCell>{formatDate(record.reminderDate)}</TableCell>
                          <TableCell>
                            <ButtonGroup variant="text">
-                             <Button><EditIcon color="primary" onClick={()=> {setCurrentId(record.id)}} /></Button>
+                             <Button><EditIcon color="primary" onClick={()=>{setOpenPopup(true);setCurrentId(record.id)}} /></Button>
                              <Button><DeleteIcon color="secondary" onClick={()=> onDelete(record.id)} /></Button>
                            </ButtonGroup>
                          </TableCell>
@@ -85,7 +80,12 @@ function ReminderTable({classes,...props}){
                </Table>
            </CardBody>
          </Card>
-    )
+         <Popup title="Reminder" openPopup={openPopup} setOpenPopup={setOpenPopup}>
+            <ReminderForm {...({currentId,setCurrentId})}/>
+         </Popup>
+    </>
+  )
+    
 }
 const mapStateToProps=state=>({
     dReminderList:state.dReminders.list
@@ -97,3 +97,5 @@ const mapActionToProps = {
 }
   
 export default connect(mapStateToProps,mapActionToProps)(withStyles(styles)(ReminderTable));
+
+//{record.dReminderList[index].reminderTitle}

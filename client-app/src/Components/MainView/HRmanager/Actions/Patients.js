@@ -7,7 +7,7 @@ export const ACTION_TYPES={
     FETCH_ALL:'FETCH_ALL'
 }
 
-export const fetchAll=()=>dispatch=>{//just pass the url at Patients(here) min 39:30 , how to make it api.Doctor/Reminder/Patients
+export const fetchAll=()=>dispatch=>{
     api.Patients().fetchAll().then(
         response=>{
             dispatch({
@@ -17,6 +17,26 @@ export const fetchAll=()=>dispatch=>{//just pass the url at Patients(here) min 3
         }
     ).catch(err=>console.log(err));
 }
+/*
+export const fetchAll=()=>dispatch=>{
+    api.Patients().fetchAll().then(
+        (response)=>{
+            return response.json();
+        }
+    ).then((data)=>{
+        const patients=[];
+        for(const key in data){
+            const patients={
+                id:key,
+                ...data[key],
+            };
+            console.log(patients);
+            patients.push(patients);
+        }
+    })
+    .catch(err=>console.log(err));
+}*/
+
 export const create =(data,onSuccess)=>dispatch=>{
     api.Patients().create(data)
     .then(res=>{

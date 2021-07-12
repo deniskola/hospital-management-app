@@ -1,17 +1,17 @@
 import React, {useEffect,useState} from 'react';
-import DoctorForm from './DoctorForm';
+import DeathRaportForm from './DeathRaportForm';
 import PageHeader from '../mainComponents/Components/PageHeader';
 import PeopleOutLineTwoToneIcon from '@material-ui/icons/PeopleOutlineTwoTone';
 import { Paper,makeStyles,TableBody,TableRow,TableCell,TableHead,Toolbar,withStyles,InputAdornment} from '@material-ui/core';
 import useTable from "../mainComponents/Components/useTable";
 import Controls from "../mainComponents/controls/Controls";
-import {Input} from "../Dashboard/controls";
+import {Input,Select} from "../Dashboard/controls";
 import {Search} from '@material-ui/icons';
 import AddIcon from '@material-ui/icons/Add';
 import Popup from '../mainComponents/Components/Popup';
 import EditOutlinedIcon from "@material-ui/icons/EditOutlined";
 import CloseIcon from '@material-ui/icons/Close';
-import * as actions from "./Actions/hrDoctor";
+import * as actions from "./Actions/deathRaport";
 import {connect} from "react-redux";
 import {ToastProvider,useToasts} from "react-toast-notifications";
 
@@ -29,22 +29,13 @@ const styles=makeStyles(theme=>({
     }
 }))
 
-const headCells=[
-    {id:'firstName',label:'First Name'},
-    {id:'lastName',label:'Last Name'},
-    {id: 'department',label:'Department'},
-    {id:'specialist',label:'Specialist'},
-    {id:'actions',label:'Actions',disableSorting:true}
-]
-
 const Doctor = ({classes , ...props}) => {
     
     const [currentId,setCurrentId]=useState(0)
     const [openPopup,setOpenPopup]=useState(false);
 
-
     useEffect(()=>{
-        props.fetchAllDoctors()
+        props.fetchAllDeathRaport()
     },[])
     
     const{addToast}=useToasts()
@@ -52,55 +43,58 @@ const Doctor = ({classes , ...props}) => {
     const {
         TblContainer,
         TblPagination,
-    } = useTable(headCells);
+    } = useTable();
 
+    const formatDate=deathDate=>{
+        if(deathDate!=null){
+            const date_array = deathDate.split('T');
+            return date_array[0];
+        }
+        return null;
+    }
 
     const onDelete=id=>{
         if(window.confirm('Are you sure to delete this record?'))
-        props.deleteDoctor(id,()=>addToast("Deleted successfully",{appreance:'info'}))
+        props.deleteDeathRaport(id,()=>addToast("Deleted successfully",{appreance:'info'}))
     }
 
     return(
         <>
-            <PageHeader title="New Doctor" subTitle="Manage Doctors"  icon={<PeopleOutLineTwoToneIcon fontSize="large"/>} />
+            <PageHeader title="New Death Raport" subTitle="Manage Death Raports"  icon={<PeopleOutLineTwoToneIcon fontSize="large"/>} />
 
             <Paper className={classes.pageContent}>
             <Toolbar>
                     <Input
-                        label="Search Doctors"
+                        label="Search Death Raport"
                         className={classes.searchInput}
                         InputProps={{
                             startAdornment: (<InputAdornment position="start">
                                 <Search />
                             </InputAdornment>)
                         }}
-                        //onChange={handleSearch}
+                        //onChange={}
                     />
                     <Controls.Button
                         text="Add New"
                         variant="outlined"
                         startIcon={<AddIcon />}
                         className={classes.newButton}
-                        onClick={() => { setOpenPopup(true);}}
+                        onClick={() => { setOpenPopup(true) }}
                     />
                 </Toolbar>
                 <TblContainer>
                     <TableHead>
-                        <TableCell>First name</TableCell>
-                        <TableCell>Last Name</TableCell>
-                        <TableCell>Department</TableCell>
-                        <TableCell>Specialist</TableCell>
+                        <TableCell>Cause Of Death</TableCell>
+                        <TableCell>Death Date</TableCell>
                         <TableCell>Actions</TableCell>
                     </TableHead>
                         <TableBody>
                                 {
-                                    props.doctorList.map((record,index)=>{
+                                    props.deathRaportList.map((record,index)=>{
                                         return(
                                             <TableRow key={index} hover>
-                                                <TableCell>{record.firstName}</TableCell>
-                                                <TableCell>{record.lastName}</TableCell>
-                                                <TableCell>{record.department}</TableCell>
-                                                <TableCell>{record.specialist}</TableCell>
+                                                <TableCell>{record.causeOfDeath}</TableCell>
+                                                <TableCell>{formatDate(record.deathDate)}</TableCell>
                                             <TableCell>
                                                   <Controls.ActionButton color="primary">
                                                       <EditOutlinedIcon fontSize="small" onClick={()=>{setOpenPopup(true);setCurrentId(record.id)}}/>
@@ -118,20 +112,20 @@ const Doctor = ({classes , ...props}) => {
                 <TblPagination />
             </Paper>
             
-            <Popup title="Doctor Form" openPopup={openPopup} setOpenPopup={setOpenPopup}>
-                <DoctorForm {...({currentId,setCurrentId})}/>
+            <Popup title="Death Raport Form" openPopup={openPopup} setOpenPopup={setOpenPopup}>
+                <DeathRaportForm {...({currentId,setCurrentId})}/>
             </Popup>
         </>
     )
 }
 
 const mapStateToProps=state=>({
-    doctorList: state.dReminders.list
+    deathRaportList: state.dReminders.list
 });
 
 const mapActionToProps={
-    fetchAllDoctors:actions.fetchAll,
-    deleteDoctor:actions.Delete
+    fetchAllDeathRaport:actions.fetchAll,
+    deleteDeathRaport:actions.Delete
 }
 
 export default connect(mapStateToProps,mapActionToProps)(withStyles(styles)(Doctor));
