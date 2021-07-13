@@ -1,5 +1,5 @@
 import React from "react";
-import {Button, Item, Segment} from "semantic-ui-react";
+import {Button, Segment} from "semantic-ui-react";
 import LoadingComponent from "../../../../../LoadingComponent";
 import {useStore} from "../../../../../stores/store";
 
@@ -9,10 +9,7 @@ export default function UserDetails() {
 
   if (!user) return <LoadingComponent />;
   return (
-    <Segment
-      clearing
-      style={{position: "fixed", width: "20%", textAlign: "left"}}
-    >
+    <Segment clearing>
       <h2>
         {user.firstName} {user.lastName}
       </h2>

@@ -5,19 +5,18 @@ import UserList from "./UserList";
 import UserForm from "../Form/UserForm";
 import {useStore} from "../../../../../stores/store";
 import {observer} from "mobx-react-lite";
-import RegisterForm from "../RegisterForm";
 
 export default observer(function UserDash(props) {
   const {userStore} = useStore();
   const {selectedUser, editMode} = userStore;
   return (
-    <Grid>
+    <Grid stackable>
       <Grid.Column width="9">
         <List>
           <UserList roleName={props.roleName} />
         </List>
       </Grid.Column>
-      <Grid.Column width="4">
+      <Grid.Column width="6">
         {selectedUser && !editMode && (
           <UserDetails style={{position: "fixed"}} />
         )}

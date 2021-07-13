@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {Button, Item, Flag, Segment} from "semantic-ui-react";
+import {Button, Item, Segment} from "semantic-ui-react";
 import {useStore} from "../../../../../stores/store";
 import {observer} from "mobx-react-lite";
 

@@ -1,14 +1,14 @@
-import React, { useState } from "react";
-import { Button, Item, Segment } from "semantic-ui-react";
-import { useStore } from "../../../../stores/store";
-import { observer } from "mobx-react-lite";
+import React, {useState} from "react";
+import {Button, Item} from "semantic-ui-react";
+import {useStore} from "../../../../stores/store";
+import {observer} from "mobx-react-lite";
 
 export default observer(function AboutList() {
-  const { aboutStore } = useStore();
-  const { deleteAbout, aboutByTitle, loading } = aboutStore;
+  const {aboutStore} = useStore();
+  const {deleteAbout, aboutByTitle, loading} = aboutStore;
   const [target, setTarget] = useState("");
-  const { userStore } = useStore();
-  const { user } = userStore;
+  const {userStore} = useStore();
+  const {user} = userStore;
 
   function handleAboutDelete(e, id) {
     setTarget(e.currentTarget.name);

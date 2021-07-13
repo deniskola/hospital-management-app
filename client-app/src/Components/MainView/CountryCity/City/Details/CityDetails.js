@@ -1,5 +1,5 @@
 import React from "react";
-import {Button, Segment, Flag} from "semantic-ui-react";
+import {Button, Segment} from "semantic-ui-react";
 import LoadingComponent from "../../../../../LoadingComponent";
 import {useStore} from "../../../../../stores/store";
 

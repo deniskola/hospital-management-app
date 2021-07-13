@@ -28,7 +28,7 @@ export default observer(function UserForm() {
   }
 
   return (
-    <Segment clearing style={{position: "fixed"}}>
+    <Segment clearing>
       <Form
         style={{textAlign: "left"}}
         onSubmit={handleSubmit}
