@@ -11,7 +11,7 @@ export default function AppointmentsDetails(){
 
     return(
         <Message>
-            <Message.Header>ARE YOU SURE?</Message.Header>
+            <Message.Header>DO YOU WANT TO CONTINUE EDITING?</Message.Header>
             <Button.Group widths='2'>
                 <Button onClick={() => openForm(appointment.id)} basic color='blue' content='Yes'/>
                 <Button onClick={cancelSelectedAppointment} basic color='red' content='No'/>

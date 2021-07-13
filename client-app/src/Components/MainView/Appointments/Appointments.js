@@ -22,7 +22,7 @@ function Appointments() {
           <button className='lefth'><i class="fa fa-sort"></i>&nbsp;&nbsp;DOCTOR</button>
             &nbsp;&nbsp;&nbsp;
           <button className='lefth'><i class="fa fa-sort"></i>&nbsp;&nbsp;SERVICES</button>
-          {user.role === "Pacient" || user.role === "superadmin"  || user.role === "receptionist" &&(
+          {(user.role === "Patient" || user.role === "superadmin"  || user.role === "receptionist")&&(
             <button className="righth" onClick={() => appointmentsStore.openForm()}><i class="fa fa-plus"></i>&nbsp;&nbsp; ADD APPOINTMENT</button>
           )}
         </div>

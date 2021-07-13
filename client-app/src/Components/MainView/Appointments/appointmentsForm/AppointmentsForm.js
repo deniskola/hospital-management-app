@@ -4,8 +4,9 @@ import { Button, Form, Segment } from 'semantic-ui-react';
 import { useStore } from '../../../../stores/store';
 
 export default observer(function AppointmentsForm() {
-    const { appointmentsStore } = useStore();
+    const { appointmentsStore, userStore } = useStore();
     const { selectedAppointment, closeForm, createAppointment, updateAppointment, loading } = appointmentsStore;
+    const { user } = userStore;
 
     const initialState = selectedAppointment ?? {
         id: "",
@@ -34,7 +35,9 @@ export default observer(function AppointmentsForm() {
                 <Form.Input type='date' placeholder='Appointment Date' value={appointment.appointmentDate} name='appointmentDate' onChange={handleInputChange} />
                 <Form.Input placeholder='Doctor Name' value={appointment.doctorName} name='doctorName' onChange={handleInputChange} />
                 <Form.Input placeholder='Service' value={appointment.service} name='service' onChange={handleInputChange} />
-                <Form.Input placeholder='Status' value={appointment.status} name='status' onChange={handleInputChange} />
+                {(user.role === "superadmin"  || user.role === "receptionist")&&(
+                    <Form.Input placeholder='Status' value={appointment.status} name='status' onChange={handleInputChange} />
+                )}
                 <Button loading={loading} floated='center' positive type='submit' content='Submit' />
                 <Button onClick={closeForm} floated='center' type='submit' content='Cancel' />
             </Form>

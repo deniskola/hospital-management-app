@@ -24,7 +24,7 @@ export default observer(function AppointmentsTable() {
           <th>Doctor Name</th>
           <th>Services</th>
           <th>Status</th>
-          {user.role === "Pacient" || user.role === "superadmin"  || user.role === "receptionist" &&(
+          {(user.role === "Patient" || user.role === "superadmin"  || user.role === "receptionist")&&(
             <>
               <th>Delete</th>
               <th>Edit</th>
@@ -41,7 +41,7 @@ export default observer(function AppointmentsTable() {
             <td>{appointment.doctorName}</td>
             <td>{appointment.service}</td>
             <td>{appointment.status}</td>
-            {user.role === "Pacient" || user.role === "superadmin"  || user.role === "receptionist" &&(
+            {(user.role === "Patient" || user.role === "superadmin"  || user.role === "receptionist")&&(
               <>
               <td><button class="btn"
                 name={appointment.id} 

@@ -29,7 +29,7 @@ export default observer(function PrescriptionsList() {
                         <Table.Cell>{prescription.number}</Table.Cell>
                         <Table.Cell>
                             <Button onClick={() => prescriptionsStore.selectPrescription(prescription.id)} content='View' floated='right' />
-                            {user.role === "Doctor" || user.role === "nurse" || user.role === "superadmin" &&(
+                            {(user.role === "Doctor" || user.role === "nurse" || user.role === "superadmin") &&(
                                 <Button
                                     name={prescription.id}
                                     loading={loading && target === prescription.id}

@@ -32,7 +32,7 @@ export default function PrescriptionsDetails(){
             <Table.Cell>{prescription.customerName}</Table.Cell>
             <Table.Cell>{prescription.doctorName}</Table.Cell>
             <Table.Cell>{prescription.rx}</Table.Cell>
-            {user.role === "Doctor" || user.role === "nurse" || user.role === "superadmin" &&(
+            {(user.role === "Doctor" || user.role === "nurse" || user.role === "superadmin") &&(
               <Table.Cell><Button onClick={() => openForm(prescription.id)}>Edit</Button></Table.Cell>
             )}
             <Table.Cell><Button onClick={cancelSelectedPrescription}>Cancel</Button></Table.Cell>

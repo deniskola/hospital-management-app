@@ -14,7 +14,7 @@ export default observer(function PrescriptionsDashboard() {
     return (
         <Grid>
             <Grid.Row>
-            {user.role === "Doctor" || user.role === "nurse" || user.role === "superadmin" &&(
+            {(user.role === "Doctor" || user.role === "nurse" || user.role === "superadmin") &&(
                     <Button onClick={() => prescriptionsStore.openForm()}>CREATE NEW PRESCRIPTION</Button>
                 )}
                 <PrescriptionsList />
