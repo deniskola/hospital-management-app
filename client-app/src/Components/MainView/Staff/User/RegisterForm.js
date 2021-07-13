@@ -1,12 +1,11 @@
 import React from "react";
-import {Link} from "react-router-dom";
 import {ErrorMessage, Form, Formik} from "formik";
 import MyTextInput from "../../../FormInputs/MyTextInput";
 import MySelectInput from "../../../FormInputs/MySelectInput";
 import MyDateInput from "../../../FormInputs/MyDatePicker";
 import {useStore} from "../../../../stores/store";
 import {observer} from "mobx-react-lite";
-import {Label, Button, Segment, Header, Divider} from "semantic-ui-react";
+import {Button, Segment, Divider} from "semantic-ui-react";
 
 export default observer(function RegisterForm() {
   const {userStore, countryStore, cityStore} = useStore();
@@ -15,6 +14,7 @@ export default observer(function RegisterForm() {
     {text: "Admin", value: "admin"},
     {text: "SuperAdmin", value: "superadmin"},
     {text: "Receptionist", value: "receptionist"},
+    {text: "Nurse", value: "nurse"},
   ];
 
   const genderOptions = [
@@ -43,7 +43,7 @@ export default observer(function RegisterForm() {
   return (
     <Segment clearing>
       <div>
-        <p style={{marginBottom: "10px"}}>Register a new User</p>
+        <p style={{marginBottom: "10px"}}>{userStore.user.role}</p>
 
         <Formik
           initialValues={initialValues}
@@ -66,11 +66,7 @@ export default observer(function RegisterForm() {
                 name="lastName"
                 placeholder="Lastname"
               />
-              <MyTextInput
-                style={{marginBottom: "10px"}}
-                name="username"
-                placeholder="Username"
-              />
+              <MyTextInput name="username" placeholder="Username" />
 
               <MyDateInput
                 placeholderText="Date"

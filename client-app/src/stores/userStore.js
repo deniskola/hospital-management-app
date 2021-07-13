@@ -1,7 +1,7 @@
-import { makeAutoObservable, runInAction } from "mobx";
+import {makeAutoObservable, runInAction} from "mobx";
 import agent from "../api/agent";
-import { stores } from "./store";
-import { history } from "../index";
+import {stores} from "./store";
+import {history} from "../index";
 
 export default class UserStore {
   user = null;

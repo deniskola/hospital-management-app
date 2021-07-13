@@ -7,10 +7,21 @@ import {ErrorMessage, Form, Formik} from "formik";
 import MyTextInput from "../FormInputs/MyTextInput";
 import {useStore} from "../../stores/store";
 import {observer} from "mobx-react-lite";
-import {Label, Button} from "semantic-ui-react";
+import {Button, Divider} from "semantic-ui-react";
+import {useState} from "react";
 
 export default observer(function Login() {
   const {userStore} = useStore();
+  const [passVisibility, setPassVisibility] = useState({showPassword: false});
+
+  const handleClickShowPassword = (event) => {
+    setPassVisibility({
+      ...passVisibility,
+      showPassword: !passVisibility.showPassword,
+    });
+    event.preventDefault();
+  };
+
   return (
     <s.LoginContainer>
       <img class="background-img" src={backgroundImage} alt=""></img>
@@ -40,12 +51,14 @@ export default observer(function Login() {
             <div class="login-header">
               <h3>Login</h3>
               <p>Login to your account</p>
-              <hr
-                style={{width: "80%", borderColor: "black", borderTop: "none"}}
-              ></hr>
+              <Divider style={{width: "80%"}} />
             </div>
             <Formik
-              initialValues={{email: "", password: "", error: null}}
+              initialValues={{
+                email: "",
+                password: "",
+                error: null,
+              }}
               onSubmit={(values, {setErrors}) =>
                 userStore
                   .login(values)
@@ -55,19 +68,33 @@ export default observer(function Login() {
               }
             >
               {({handleSubmit, isSubmitting, errors}) => (
-                <Form onSubmit={handleSubmit} autoComplete="off">
+                <Form
+                  style={{
+                    position: "relative",
+                  }}
+                  onSubmit={handleSubmit}
+                  autoComplete="off"
+                >
                   <p>
                     <b>Email*</b>
                   </p>
-                  <MyTextInput name="email" placeholder="Email" />
+                  <MyTextInput
+                    icon="user"
+                    iconPosition="left"
+                    name="email"
+                    placeholder="Email"
+                  />
                   <p style={{marginTop: "20px"}}>
                     <b>Password*</b>
                   </p>
                   <MyTextInput
+                    icon="lock"
+                    iconPosition="left"
                     name="password"
                     placeholder="Password"
-                    type="password"
+                    type={passVisibility.showPassword ? "text" : "password"}
                   />
+
                   <ErrorMessage
                     name="error"
                     render={() => (
@@ -82,19 +109,8 @@ export default observer(function Login() {
                       </p>
                     )}
                   />
-                  <div class="menu-crf">
-                    <input
-                      class="checkbox"
-                      type="checkbox"
-                      style={{
-                        width: "12px",
-                        height: "12px",
-                        marginRight: "5px",
-                      }}
-                    ></input>
-                    <p>remember me</p>
-                    <p style={{marginLeft: "40px"}}> forgot password?</p>
-                  </div>
+                  <Divider hidden />
+
                   {/*<Link to='/dashboard'>*/}
                   <Button
                     loading={isSubmitting}
@@ -106,6 +122,20 @@ export default observer(function Login() {
                       color: "white",
                     }}
                   />
+                  <Button
+                    icon={passVisibility.showPassword ? "eye" : "hide"}
+                    iconPosition="left"
+                    style={{
+                      position: "absolute",
+                      width: "15px",
+                      top: "96px",
+                      left: "205px",
+                      height: "15px",
+                      backgroundColor: "transparent",
+                    }}
+                    onClick={handleClickShowPassword}
+                  ></Button>
+                  <Divider hidden />
                   {/*</Link>*/}
                 </Form>
               )}

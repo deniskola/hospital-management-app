@@ -12,7 +12,7 @@ export default observer(function CityDash() {
   const {selectedCity, editMode} = cityStore;
 
   return (
-    <Grid>
+    <Grid stackable>
       <Grid.Column width="3">
         <Button onClick={() => cityStore.openForm()} icon="plus" />
       </Grid.Column>

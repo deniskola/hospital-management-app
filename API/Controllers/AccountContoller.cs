@@ -95,6 +95,7 @@ namespace API.Controllers
         {
             return new UserDto
             {
+                Role = user.Role,
                 Image = null,
                 Token = _tokenService.CreateToken(user),
                 Username = user.UserName

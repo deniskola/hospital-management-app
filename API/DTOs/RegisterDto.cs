@@ -20,9 +20,11 @@ namespace API.DTOs
 
         [Required]
         public string Username { get; set; }
+
         [Required]
         public string Role { get; set; }
 
+        [Phone]
         public string PhoneNumber { get; set; }
         public string City { get; set; }
         public string Country { get; set; }

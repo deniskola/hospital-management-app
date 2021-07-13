@@ -4,7 +4,7 @@ export const SidebarContainer = styled.div`
   width: ${(p) => (p.isSidebarOpen ? "20%" : "5%")};
   max-width: 280px;
   min-width: 80px;
-  overflow-y: hidden;
+  overflow-y: auto;
   background-image: linear-gradient(
     315deg,
     ${(p) => p.colorPalette.bgColor1} 0%,

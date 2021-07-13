@@ -1,12 +1,10 @@
 import React, {useState} from "react";
-import {useField} from "formik";
 import {Form, Segment, Button} from "semantic-ui-react";
 import {useStore} from "../../../../../stores/store";
 import {observer} from "mobx-react-lite";
-import MySelectInput from "../../../../FormInputs/MySelectInput";
 
 export default observer(function CityForm() {
-  const {cityStore, countryStore} = useStore();
+  const {cityStore} = useStore();
 
   const {selectedCity, closeForm, createCity, updateCity, loading} = cityStore;
   const initialState = selectedCity ?? {
@@ -17,7 +15,6 @@ export default observer(function CityForm() {
   };
 
   const [city, setCity] = useState(initialState);
-  const countryOptions = countryStore.countryByName;
 
   function handleSubmit() {
     city.id ? updateCity(city) : createCity(city);

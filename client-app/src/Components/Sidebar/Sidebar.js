@@ -202,7 +202,7 @@ const Sidebar = (props) => {
         <s.Toggler />
       </s.TogglerContainer>
       <Button
-        style={{margin: "50px 0 0 25%"}}
+        style={{margin: "70px 0 0 20px"}}
         onClick={logout}
         icon="log out"
       />
