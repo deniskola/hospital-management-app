@@ -40,6 +40,7 @@ namespace API
                 await SeedWorkingHours.SeedData(context);
                 await SeedAchievement.SeedData(context);
                 await SeedCity.SeedData(context);
+                await SeedPrescription.SeedData(context);
             }
             catch (Exception ex)
             {

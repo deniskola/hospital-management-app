@@ -125,8 +125,7 @@ const WorkingHours = {
   list: () => requests.get("/workinghours"),
   details: (id) => requests.get(`/workinghours/${id}`),
   create: (workinghour) => requests.post("/workinghours", workinghour),
-  update: (workinghour) =>
-    axios.put(`/workinghours/${workinghour.id}`, workinghour),
+  update: (workinghour) => axios.put(`/workinghours/${workinghour.id}`, workinghour),
   delete: (id) => axios.delete(`/workinghours/${id}`),
 };
 
@@ -147,6 +146,14 @@ const Cities = {
   delete: (id) => axios.delete(`/cities/${id}`),
 };
 
+const Prescriptions = {
+  list: () => requests.get("/prescriptions"),
+  details: (id) => requests.get(`/prescriptions/${id}`),
+  create: (prescription) => requests.post("/prescriptions", prescription),
+  update: (prescription) => axios.put(`/prescriptions/${prescription.id}`, prescription),
+  delete: (id) => axios.delete(`/prescriptions/${id}`),
+}
+
 const agent = {
   Abouts,
   Appointments,
@@ -162,6 +169,7 @@ const agent = {
   WorkingHours,
   Achievements,
   Cities,
+  Prescriptions,
 };
 
 export default agent;

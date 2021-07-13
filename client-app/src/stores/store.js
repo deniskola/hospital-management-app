@@ -9,6 +9,10 @@ import BodyInfoStore from "./bodyInfoStore";
 import PatientHistoryStore from "./patientHistoryStore";
 import ProcedureStore from "./proceduresStore";
 import CityStore from "./cityStore";
+import AchievementsStore from "./achievementsStore";
+import WorkingHoursStore from "./workingHoursStore";
+import AppointmentsStore from "./appointmentsStore";
+import PrescriptionsStore from "./prescriptionsStore";
 
 
 export const stores = {
@@ -22,7 +26,10 @@ export const stores = {
   patientHistoryStore : new PatientHistoryStore(),
   proceduresStore : new ProcedureStore(),
   cityStore: new CityStore(),
-
+  achievementsStore: new AchievementsStore(),
+  workingHoursStore: new WorkingHoursStore(),
+  appointmentsStore: new AppointmentsStore(),
+  prescriptionsStore: new PrescriptionsStore(),
 };
 
 export const StoreContext = createContext(stores);

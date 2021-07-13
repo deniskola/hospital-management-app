@@ -1,13 +1,14 @@
 import React from 'react';
 import { Card, Button, Image } from 'semantic-ui-react'
+import { useStore } from '../../../../stores/store';
 
+export default function AchievementsDetails() {
+    const {achievementsStore, userStore} = useStore();
+    const {selectedAchievement: achievement, openForm, cancelSelectedAchievement} = achievementsStore;
+    const {user} = userStore;
 
-export default function AchievementsDetails({ 
-    achievement,
-    cancelSelectAchievement,
-    openForm,
+    if(!achievement) return;
 
-}) {
     return (
         <Card fluid>
             <Image src={`/assets/${achievement.photo}.png`} />
@@ -19,8 +20,10 @@ export default function AchievementsDetails({
             </Card.Content>
             <Card.Content extra>
                 <Button.Group widths='2'>
-                    <Button onClick={() => openForm(achievement.id)} basic color='blue' content='Edit'/>
-                    <Button onClick={cancelSelectAchievement} basic color='grey' content='Cancel'/>
+                    {user.role === "superadmin" && (
+                        <Button onClick={() => openForm(achievement.id)} basic color='blue' content='Edit'/>
+                    )}
+                    <Button onClick={cancelSelectedAchievement} basic color='grey' content='Cancel'/>
                 </Button.Group>
             </Card.Content>
         </Card>

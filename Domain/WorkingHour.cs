@@ -7,8 +7,8 @@ namespace Domain
     {
         [Key]
         public int Id { get; set; }
-        public String Name { get; set; }
-        public DateTime From { get; set; }
-        public DateTime To { get; set; }
+        public string Name { get; set; }
+        public string From { get; set; }
+        public string To { get; set; }
     }
 }

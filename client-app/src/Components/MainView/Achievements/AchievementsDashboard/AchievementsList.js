@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
-import { Item, Segment, Button, Label } from 'semantic-ui-react';
+import { useStore } from '../../../../stores/store';
+import { Item, Segment, Button } from 'semantic-ui-react';
+import { observer } from 'mobx-react-lite';
 
-export default function AchievementsList({ 
-    achievements,
-    selectAchievement,
-    deleteAchievement,
-    submitting
-}) {
-
+export default observer(function AchievementsList() {
+    const {achievementsStore, userStore} = useStore();
+    const {deleteAchievement, achievementsByTitle, loading} = achievementsStore;
     const [target, setTarget] = useState('');
+    const {user} = userStore;
 
     function handleAchievementDelete(e, id){
         setTarget(e.currentTarget.name);
@@ -16,23 +15,24 @@ export default function AchievementsList({
     }
 
     return(
-        <Segment>
+        <Segment clearing>
             <Item.Group divided>
-                {achievements.map(achievement => (
+                {achievementsByTitle.map(achievement => (
                     <Item key={achievement.id}>
                         <Item.Content>
                             <Item.Header as='a'>{achievement.title}</Item.Header>
                             <Item.Description>{achievement.description}</Item.Description>
                             <Item.Extra>
-                                <Button onClick={() => selectAchievement(achievement.id)} floated='right' content='View' color='blue' />
+                                <Button onClick={() => achievementsStore.selectAchievement(achievement.id)} floated='right' content='View' color='blue' />
+                                {user.role === "superadmin" && (
                                 <Button 
                                     name={achievement.id}
-                                    loading={submitting && target === achievement.id} 
+                                    loading={loading && target === achievement.id} 
                                     onClick={(e) => handleAchievementDelete(e, achievement.id)} 
                                     floated='right' 
                                     content='Delete' 
                                     color='red'
-                                />
+                                />)}
                             </Item.Extra>
                         </Item.Content>
                     </Item>
@@ -40,4 +40,4 @@ export default function AchievementsList({
             </Item.Group>
         </Segment>
     )
-}
+})

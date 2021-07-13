@@ -18,8 +18,14 @@ namespace Persistence
                 new WorkingHour
                 {
                     Name = "Monday",
-                    From = DateTime.Now.AddMonths(-2),
-                    To = DateTime.Now.AddMonths(-1)
+                    From = "08:00",
+                    To = "16:00"
+                },
+                new WorkingHour
+                {
+                    Name = "Tuesday",
+                    From = "08:00",
+                    To = "16:00"
                 }
             };
 

@@ -31,5 +31,6 @@ namespace Persistence
         public DbSet<City> Cities { get; set; }
         public DbSet<WorkingHour> WorkingHours { get; set; }
         public DbSet<Achievement> Achievements { get; set; }
+        public DbSet<Prescription> Prescriptions { get; set; }
     }
 }

@@ -1,12 +1,11 @@
+import { observer } from 'mobx-react-lite';
 import React, { useState } from 'react';
 import { Segment, Form, Button } from 'semantic-ui-react';
+import { useStore } from '../../../../stores/store';
 
-export default function AchievementsForm({
-    achievement: selectedAchievement,
-    closeForm,
-    createOrEdit,
-    submitting
-}) {
+export default observer(function AchievementsForm() {
+    const {achievementsStore} = useStore();
+    const {selectedAchievement, closeForm, createAchievement, updateAchievement, loading} = achievementsStore;
 
     const initialState = selectedAchievement ?? {
         id: '',
@@ -18,7 +17,7 @@ export default function AchievementsForm({
     const [achievement, setAchievement] = useState(initialState);
 
     function handleSubmit() {
-        createOrEdit(achievement);
+        achievement.id ? updateAchievement(achievement) : createAchievement(achievement);
     }
 
     function handleInputChange(event) {
@@ -32,9 +31,9 @@ export default function AchievementsForm({
                 <Form.Input placeholder='Title' value={achievement.title} name='title' onChange={handleInputChange} />
                 <Form.TextArea placeholder='Description' value={achievement.description} name='description' onChange={handleInputChange} />
                 <Form.Input placeholder='Photo' value={achievement.photo} name='photo' onChange={handleInputChange} />
-                <Button loading={submitting} floated='right' positive type='submit' content='Submit' />
+                <Button loading={loading} floated='right' positive type='submit' content='Submit' />
                 <Button onClick={closeForm} floated='right' type='button' content='Cancel' />
             </Form>
         </Segment>
     )
-}
+})

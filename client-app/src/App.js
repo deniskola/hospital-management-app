@@ -1,36 +1,38 @@
-import React, {useEffect, useState} from "react";
+import React , {useEffect,useState} from "react";
 import * as s from "./App.styles";
 import * as Palette from "./colors";
-import {Route} from "react-router-dom";
-import {ToastProvider, useToasts} from "react-toast-notifications";
-import {observer} from "mobx-react-lite";
+import {Route} from 'react-router-dom';
+import {ToastProvider,useToasts} from "react-toast-notifications";
+import { observer } from "mobx-react-lite";
 
 // Components
 import Sidebar from "./Components/Sidebar/Sidebar";
 import MainView from "./Components/MainView/MainView";
 import Login from "./Components/LoginPage/Login";
-import {Fragment} from "react";
-import {useStore} from "./stores/store";
+import { Fragment } from "react";
+import { useStore } from "./stores/store";
 import LoadingComponent from "./LoadingComponent";
 
 function App() {
   const {commonStore, userStore} = useStore();
   const {user} = userStore;
 
-  useEffect(() => {
-    if (commonStore.token) {
-      userStore.getUser().finally(() => commonStore.setAppLoaded());
+  useEffect(() =>{
+    if(commonStore.token){
+      userStore.getUser().finally(()=> commonStore.setAppLoaded());
     } else {
       commonStore.setAppLoaded();
     }
-  }, [commonStore, userStore]);
+  }, [commonStore, userStore]) 
 
-  if (!commonStore.appLoaded) return <LoadingComponent content="Loading..." />;
+  if(!commonStore.appLoaded) return <LoadingComponent content="Loading..."/>
 
   const sidebarHeader = {
     fullName: "Hospital X",
     shortName: "X",
-  };
+    }
+  
+  
   const menuItems2 = [
     {
       name: "Profile",
@@ -43,14 +45,11 @@ function App() {
       to: "/appointments",
       icon: "/icons/appointment.png",
       subMenuItems: [
-        {
-          name: "Working Hours",
-          to: "workingHours",
-          icon: "/icons/workinghours.png",
-        },
+        {name:'Add Appointment',to:'addAppointments', icon:""},
+        {name:'Working Hours',to:'workingHours', icon: "/icons/workinghours.png"},
+        {name:'Prescriptions',to:'Prescriptions', icon: "/icons/prescription.png"}
       ],
     },
-
     {
       name: "About",
       to: "/about",
@@ -78,38 +77,35 @@ function App() {
       icon: "/icons/dashboard.png",
       subMenuItems: [{name: "Add Country/City", to: "addCountryCity"}],
     },
-
     /*{
       name: "Activity",
       to: "/activity",
       icon: "/icons/activity.png",
       subMenuItems: [],
-    }*/ {
+    }*/,
+    {
       name: "Appointments",
       to: "/appointments",
       icon: "/icons/appointment.png",
       subMenuItems: [
-        {
-          name: "Working Hours",
-          to: "workingHours",
-          icon: "/icons/workinghours.png",
-        },
+        {name:'Add Appointment',to:'addAppointments', icon:""},
+        {name:'Working Hours',to:'workingHours', icon: "/icons/workinghours.png"},
+        {name:'Prescriptions',to:'Prescriptions', icon: "/icons/prescription.png"}
       ],
     },
-
+    /*{
+      name: "Services",
+      to: "/services",
+      icon: "/icons/services.png",
+      subMenuItems: [],
+    }*/
     {
       name: "About",
       to: "/about",
       icon: "/icons/aboutus.png",
       subMenuItems: [],
     },
-
-    /*{
-      name: "Services",
-      to: "/services",
-      icon: "/icons/services.png",
-      subMenuItems: [],
-    }*/ {
+    {
       name: "HR Manager",
       to: "/hrmanager",
       icon: "/icons/services.png",

@@ -1,69 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import AppointmentsContainer from './Appointments.styles';
 import AppointmentsDashboard from './appointmentsDashboard/AppointmentsDashboard';
-import agent from '../../../api/agent';
+import { useStore } from '../../../stores/store';
+import { observer } from 'mobx-react-lite';
 
-function Appointments(openForm) {
-  const [appointments, setAppointments] = useState([]);
-  const [selectedAppointment, setSelectedAppointment] = useState(undefined);
-  const [editMode, setEditMode] = useState(false);
-  const [submitting, setSubmitting] = useState(false);
+function Appointments() {
+  const {appointmentsStore, userStore} = useStore();
+  const {user} = userStore;
 
   useEffect(() => {
-    agent.Appointments.table().then(response => {
-      let appointments = [];
-      response.forEach(appointment => {
-        appointment.appointmentDate = appointment.appointmentDate.split('T')[0];
-        appointments.push(appointment);
-      })
-      setAppointments(appointments);
-    })
-  }, [])
-
-  function handleSelectAppointment(id) {
-    setSelectedAppointment(appointments.find(x => x.id === id));
-  }
-
-  function handleCancelSelectAppointment() {
-    setSelectedAppointment(undefined);
-  }
-
-  function handleFormOpen(id) {
-    id ? handleSelectAppointment(id) : handleCancelSelectAppointment()
-    setEditMode(true);
-  }
-
-  function handleFormClose() {
-    setEditMode(false);
-  }
-
-  function handleCreateOrEditAppointment(appointment) {
-    setSubmitting(true);
-    if (appointment.id) {
-      agent.Appointments.update(appointment).then(() => {
-        setAppointments([...appointments.filter(x => x.id !== appointment.id), appointment])
-        setSelectedAppointment(appointment);
-        setEditMode(false);
-        setSubmitting(false);
-      })
-    } else {
-      appointment.id = undefined;
-      agent.Appointments.create(appointment).then(() => {
-        setAppointments([...appointments, appointment]);
-        setSelectedAppointment(appointment);
-        setEditMode(false);
-        setSubmitting(false);
-      })
-    }
-  }
-
-  function handleDeleteAppointment(id) {
-    setSubmitting(true);
-    agent.Appointments.delete(id).then(() => {
-      setAppointments([...appointments.filter(x => x.id !== id)]);
-      setSubmitting(false);
-    })
-  }
+    appointmentsStore.loadAppointments();
+  }, [appointmentsStore])
 
   return (
     <div>
@@ -75,31 +22,22 @@ function Appointments(openForm) {
           <button className='lefth'><i class="fa fa-sort"></i>&nbsp;&nbsp;DOCTOR</button>
             &nbsp;&nbsp;&nbsp;
           <button className='lefth'><i class="fa fa-sort"></i>&nbsp;&nbsp;SERVICES</button>
-          <button className="righth" onClick={handleFormOpen}><i class="fa fa-plus"></i>&nbsp;&nbsp; ADD APPOINTMENT</button>
+          {user.role === "Pacient" || user.role === "superadmin"  || user.role === "receptionist" &&(
+            <button className="righth" onClick={() => appointmentsStore.openForm()}><i class="fa fa-plus"></i>&nbsp;&nbsp; ADD APPOINTMENT</button>
+          )}
         </div>
         <div className='title'>
           <h1>APPOINTMENTS</h1>
         </div>
         <table class="content-table">
-          <AppointmentsDashboard
-            appointments={appointments}
-            selectedAppointment={selectedAppointment}
-            selectAppointment={handleSelectAppointment}
-            cancelSelectAppointment={handleCancelSelectAppointment}
-            editMode={editMode}
-            openForm={handleFormOpen}
-            closeForm={handleFormClose}
-            createOrEdit={handleCreateOrEditAppointment}
-            deleteAppointment={handleDeleteAppointment}
-            submitting={submitting}
-          />
+          <AppointmentsDashboard />
         </table>
       </AppointmentsContainer>
     </div>
   )
 }
 
-export default Appointments
+export default observer(Appointments);
 
 
 
